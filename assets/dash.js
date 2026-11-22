@@ -51,3 +51,14 @@
   };
   requestAnimationFrame(loop);
 })();
+
+// Glovebox: the lid swings down and shows what's inside.
+(() => {
+  const gb = document.getElementById("glovebox");
+  if (!gb) return;
+  const lid = gb.querySelector(".gb-lid");
+  const set = open => { gb.classList.toggle("open", open); lid.setAttribute("aria-expanded", open); };
+  lid.addEventListener("click", () => set(!gb.classList.contains("open")));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
+  document.addEventListener("click", e => { if (!gb.contains(e.target)) set(false); });
+})();

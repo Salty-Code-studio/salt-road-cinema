@@ -255,3 +255,34 @@ a.vid:hover{border-color:var(--pan)}
 .apk-small{font:600 7px "Kode Mono",monospace;fill:#0c0b0a;text-anchor:middle;letter-spacing:.12em}
 .apk-year{font:400 26px "Bruno Ace SC",sans-serif;fill:#0c0b0a;text-anchor:middle}
 @media(max-width:820px){.apk{display:none}}
+
+/* ---------- glovebox ---------- */
+.glovebox{position:absolute;z-index:3;left:6.6%;top:52%;width:19%;height:27%;perspective:900px}
+.gb-cavity{position:absolute;inset:0;border-radius:12px;background:radial-gradient(120% 90% at 50% 0%,#3a2a20 0%,#140f0c 55%,#060504 100%);box-shadow:inset 0 8px 24px rgba(0,0,0,.9),inset 0 0 0 2px #0a0908;
+  display:grid;grid-template-columns:1fr 1fr;gap:.6cqw;padding:1cqw;align-content:center;opacity:0;transition:opacity .25s .1s}
+.gb-cavity::before{content:"";position:absolute;left:30%;right:30%;top:0;height:3px;border-radius:0 0 4px 4px;background:#ffd9a8;box-shadow:0 0 18px 6px rgba(255,200,140,.35);opacity:0;transition:opacity .3s .2s}
+.glovebox.open .gb-cavity,.glovebox.open .gb-cavity::before{opacity:1}
+.gb-item{display:flex;align-items:center;gap:.5cqw;padding:.55cqw .7cqw;border-radius:6px;text-decoration:none;color:#0c0b0a;font:600 clamp(9px,.66cqw,12px) var(--wide);box-shadow:0 3px 8px rgba(0,0,0,.5);transform:translateY(14px);opacity:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.gb-item b{font-size:1.1em}
+.gb-item:hover{filter:brightness(1.08)}
+.glovebox.open .gb-item{transform:none;opacity:1}
+.glovebox.open .gb-item:nth-child(2){transition-delay:.06s}.glovebox.open .gb-item:nth-child(3){transition-delay:.12s}.glovebox.open .gb-item:nth-child(4){transition-delay:.18s}
+.gb-stickers{background:#e8a49b;rotate:-3deg}
+.gb-flyer{background:#f3efe6;rotate:2deg}
+.gb-manual{background:#2346b8;color:#f3efe6;rotate:1deg}
+.gb-papers{background:#d4a72c;rotate:-2deg}
+.gb-lid{position:absolute;inset:0;border-radius:12px;border:1px solid #34302b;cursor:pointer;transform-origin:50% 100%;transition:transform .55s cubic-bezier(.3,1.25,.4,1),box-shadow .3s;
+  background:linear-gradient(180deg,#24211d 0%,#171512 55%,#0f0e0c 100%);box-shadow:0 4px 10px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.07)}
+.gb-lid:hover{border-color:#4a453d}
+.glovebox.open .gb-lid{transform:rotateX(-78deg);box-shadow:0 -10px 30px rgba(0,0,0,.6)}
+.gb-seam{position:absolute;inset:10px;border:1px dashed rgba(232,164,155,.3);border-radius:8px}
+.gb-handle{position:absolute;left:50%;top:22%;transform:translateX(-50%);width:28%;height:12%;border-radius:99px;background:linear-gradient(180deg,#6b665e,#3a3732 50%,#55514a);box-shadow:inset 0 -2px 3px rgba(0,0,0,.5),0 1px 0 rgba(255,255,255,.08)}
+.gb-label{position:absolute;left:0;right:0;bottom:16%;text-align:center;font:400 clamp(8px,.58cqw,11px) "Kode Mono",monospace;letter-spacing:.18em;text-transform:uppercase;color:#8f897d}
+.glovebox.open .gb-label{opacity:0}
+@media(max-width:820px){.glovebox{display:none}}
+@media(prefers-reduced-motion:reduce){.gb-lid,.gb-item{transition:none}}
+/* mirror v3: smaller, sits behind the title, livelier image */
+.mirror{width:min(10.5vw,160px);z-index:2}
+.mirror-body{padding:4px;border-radius:10px}
+.mirror-glass{border-radius:7px;filter:brightness(.85) saturate(1.45) contrast(1.05)}
+.hero .wrap{z-index:3}

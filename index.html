@@ -77,16 +77,22 @@
         <!-- instrument hood (brow) and the gauge well -->
         <path d="M470,190 C500,70 1100,70 1130,190 L1112,190 C1080,98 520,98 488,190 Z" fill="url(#cpBrow)"/>
         <path d="M492,192 C522,104 1078,104 1108,192 C1114,262 1084,326 1030,340 L570,340 C516,326 486,262 492,192 Z" fill="url(#cpWell)"/>
-        <!-- vent, left -->
-        <g transform="translate(120,236)">
-          <rect width="250" height="54" rx="14" fill="#0a0908" stroke="#34302b" stroke-width="2"/>
-          <g stroke="#2a2723" stroke-width="3"><line x1="16" y1="12" x2="234" y2="12"/><line x1="16" y1="21" x2="234" y2="21"/><line x1="16" y1="30" x2="234" y2="30"/><line x1="16" y1="39" x2="234" y2="39"/></g>
-        </g>
         <!-- centre console bezel, right -->
         <path d="M1160,206 C1250,197 1400,208 1546,232 L1546,338 Q1546,352 1532,352 L1174,352 Q1160,352 1160,338 Z" fill="#060606" stroke="#34302b" stroke-width="2"/>
         <path d="M1172,216 C1258,208 1400,218 1534,240" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1.5"/>
         <rect width="1600" height="420" filter="url(#cpGrain)" opacity=".5"/>
       </svg>
+    <div class="glovebox" id="glovebox">
+      <div class="gb-cavity">
+        <a class="gb-item gb-stickers" href="shop.html"><b>◆</b><span data-i18n="glove.stickers"></span></a>
+        <a class="gb-item gb-flyer" href="events.html"><b>★</b><span data-i18n="glove.flyers"></span></a>
+        <a class="gb-item gb-manual" href="behind-the-scenes.html"><b>▤</b><span data-i18n="glove.manual"></span></a>
+        <a class="gb-item gb-papers" href="subi.html"><b>✎</b><span data-i18n="glove.papers"></span></a>
+      </div>
+      <button class="gb-lid" type="button" aria-expanded="false" aria-controls="glovebox">
+        <span class="gb-seam"></span><span class="gb-handle"></span><span class="gb-label" data-i18n="glove.label"></span>
+      </button>
+    </div>
       <div class="pod pod-boost"><div class="g"></div><div class="dig"><b id="d-boost">-0.6</b><span>BAR</span></div></div>
       <div class="pod pod-tach"><div class="g"></div><div class="shiftlight" id="d-shift"></div></div>
       <div class="pod pod-speed"><div class="spd"><b id="d-speed">0</b><span>KM/H</span><i id="d-gear">N</i></div></div>

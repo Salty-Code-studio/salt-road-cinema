@@ -96,3 +96,9 @@ SRC_I18N.add({
   nl: { "home.rev": "Ingedrukt = gas" },
   pap: { "home.rev": "Tene pa rev" }
 });
+
+SRC_I18N.add({
+  en: { "glove.label": "Glovebox", "glove.stickers": "Sticker pack", "glove.flyers": "Event flyers", "glove.manual": "Owner's manual", "glove.papers": "Save the Subi papers" },
+  nl: { "glove.label": "Dashboardkastje", "glove.stickers": "Stickerpakket", "glove.flyers": "Eventflyers", "glove.manual": "Handleiding", "glove.papers": "Save the Subi papieren" },
+  pap: { "glove.label": "Kashi di dashboard", "glove.stickers": "Pakete di sticker", "glove.flyers": "Flyer di evento", "glove.manual": "Manual", "glove.papers": "Papel di Save the Subi" }
+});
