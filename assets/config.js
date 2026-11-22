@@ -4,7 +4,7 @@ window.SRC = {
   email: "hello@saltroadcinema.com",      // TODO: real inbox
   whatsapp: "5997000000",                 // TODO: +599 number, digits only
   youtube: "https://www.youtube.com/@saltroadcinema",
-  youtubeChannelId: "",                   // TODO: UC... id, used by tools/fetch-videos.mjs
+  youtubeChannelId: "UC_9DRztFlyJ7oeig9lC-v4w", // used by tools/fetch-videos.mjs
   instagram: "https://www.instagram.com/saltroadcinema", // TODO: confirm handle
   tiktok: "",
 
