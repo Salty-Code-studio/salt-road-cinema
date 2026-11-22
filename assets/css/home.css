@@ -108,3 +108,8 @@ a.vid:hover{border-color:var(--pan)}
 @media(max-width:560px){.cluster{flex-direction:column;align-items:center;gap:0}.boost{width:min(48vw,190px)}.tach{width:min(70vw,300px)}}
 .hero h1{font-size:calc((100vw - 48px) / 12.2);white-space:nowrap;line-height:1;margin-left:calc(50% - 50vw + 24px)}
 @media(max-width:600px){.hero h1{font-size:calc((100vw - 32px) / 12.2);margin-left:calc(50% - 50vw + 16px)}}
+/* title up top, lead + buttons stay at the bottom */
+.hero{align-items:stretch}
+.hero .wrap{display:flex;flex-direction:column;padding-top:calc(5vh + 56px)}
+.hero h1{margin-bottom:auto}
+@media(max-width:600px){.hero .wrap{padding-top:calc(5vh + 44px)}}
