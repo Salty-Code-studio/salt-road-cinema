@@ -106,3 +106,5 @@ a.vid:hover{border-color:var(--pan)}
 .psi span{font-size:10px;color:#8f8a7e;letter-spacing:.15em}
 .intro.spooled .psi b{color:#a9bcff}
 @media(max-width:560px){.cluster{flex-direction:column;align-items:center;gap:0}.boost{width:min(48vw,190px)}.tach{width:min(70vw,300px)}}
+.hero h1{font-size:calc((100vw - 48px) / 12.2);white-space:nowrap;line-height:1;margin-left:calc(50% - 50vw + 24px)}
+@media(max-width:600px){.hero h1{font-size:calc((100vw - 32px) / 12.2);margin-left:calc(50% - 50vw + 16px)}}
