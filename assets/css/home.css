@@ -226,3 +226,4 @@ a.vid:hover{border-color:var(--pan)}
 }
 .hero .trip p.lead{margin:0}
 @media(min-width:821px){.cp-wheel{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,.8) 62%,rgba(0,0,0,.5) 86%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,.8) 62%,rgba(0,0,0,.5) 86%,transparent 100%)}}
+@media(min-width:821px){.cp-console{height:41.64%}.cp-console .switches{position:absolute;left:1cqw;bottom:0;transform:translateY(50%);margin:0}}
