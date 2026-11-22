@@ -43,7 +43,7 @@
       <p class="meet-about">${esc(about)}</p>
       <div class="meet-box"><span>${I.t("meet.when")}</span><b>${esc(when)}</b>${ev && ev.time ? `<i>${esc(ev.time)}</i>` : ""}</div>
       <div class="meet-box"><span>${I.t("meet.where")}</span><b>${esc(address)}</b><code>${fmt(at[0], "N", "S")} · ${fmt(at[1], "E", "W")}</code><a href="${esc(route)}" target="_blank" rel="noopener">${I.t("meet.route")} ↗</a></div>
-      <div class="meet-actions"><a class="meet-go" href="${wa}" target="_blank" rel="noopener">${ev ? I.t("meet.go") : I.t("meet.tell")} ✓</a><a class="meet-all" href="events.html">${I.t("home.events.all")}</a></div>`;
+      <div class="meet-actions"><a class="meet-go" href="${wa}" target="_blank" rel="noopener">${ev ? I.t("meet.go") : I.t("meet.tell")} ✓</a></div>`;
   };
   render();
   document.addEventListener("langchange", render);
