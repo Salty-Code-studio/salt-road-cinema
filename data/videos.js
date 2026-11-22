@@ -8,4 +8,4 @@ window.DATA.series = [
   { slug: "spotlight",  en: "Car spotlight",nl: "Auto in de spotlight", pap: "Outo den spotlight" },
   { slug: "bts",        en: "Behind the scenes", nl: "Achter de schermen", pap: "Tras di kámara" }
 ];
-window.DATA.videos = []; // empty until the feed script runs
+window.DATA.videos = [];

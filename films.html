@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Films | Salt Road Cinema</title>
+<meta name="description" content="Car films from Bonaire. Builds, night runs, meets and car spotlights from Salt Road Cinema.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/css/films.css">
+</head>
+<body data-page="films">
+<div data-shell="nav"></div>
+
+<header class="page-head"><div class="wrap">
+  <h1 data-i18n-html="films.title"></h1>
+  <p class="sub" data-i18n="films.sub"></p>
+</div></header>
+
+<section class="films-feature" id="featured-sec" hidden><div class="wrap">
+  <div id="featured"></div>
+</div></section>
+
+<section class="films-all"><div class="wrap">
+  <div class="filters" id="filters" role="group" data-i18n-aria="films.filter.aria" hidden></div>
+  <div class="cards" id="grid"></div>
+  <div class="films-empty" id="empty" hidden>
+    <div class="reel-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h2 data-i18n-html="films.empty.title"></h2>
+    <p class="sub" data-i18n="films.empty.sub"></p>
+    <div class="ctas">
+      <a class="btn btn-pan" id="sub-btn" href="#" target="_blank" rel="noopener" data-i18n="films.subscribe"></a>
+      <a class="btn btn-ghost" href="garage.html" data-i18n="films.empty.garage"></a>
+    </div>
+  </div>
+  <p class="films-demo-note" id="demo-note" hidden data-i18n="films.demo.note"></p>
+</div></section>
+
+<dialog id="player" aria-label="Video player">
+  <button class="close" type="button" id="player-close" data-i18n-aria="films.close">×</button>
+  <div class="stage" id="stage"></div>
+  <div class="meta"><div><h3 id="player-title"></h3><span id="player-meta"></span></div>
+    <a class="btn btn-ghost btn-sm" id="player-yt" href="#" target="_blank" rel="noopener" data-i18n="films.onyoutube"></a></div>
+</dialog>
+
+<div data-shell="signup"></div><div data-shell="footer"></div>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n/films.js"></script>
+<script src="data/videos.js"></script>
+<script src="assets/shell.js"></script>
+<script src="assets/films.js"></script>
+</body>
+</html>
