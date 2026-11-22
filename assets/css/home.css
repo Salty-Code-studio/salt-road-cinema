@@ -698,3 +698,19 @@ span.gb-obj.zoom{cursor:default}
 .meet-full{transform-origin:50% 70%;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
 .meet-full.tilting{transform:perspective(1400px) rotateX(22deg) scale(1.12)}
 .meet-full.landed{transform:none}
+/* glovebox label sits on top, right above the item */
+.gb-caption{z-index:60}
+/* hero title: in, hold, out */
+.hero h1 .ch{display:inline-block;will-change:transform,opacity,filter}
+.hero h1.t-pre .ch{opacity:0;transform:translateY(55%) rotateX(-60deg);filter:blur(10px)}
+.hero h1.t-in .ch{opacity:1;transform:none;filter:none;transition:opacity .6s,transform .9s cubic-bezier(.2,.9,.2,1.05),filter .7s;transition-delay:calc(var(--i) * 38ms)}
+.hero h1.t-out .ch{opacity:0;transform:translateY(-160%) skewX(-8deg);filter:blur(6px);transition:opacity .5s,transform .8s cubic-bezier(.6,0,.8,.3),filter .5s;transition-delay:calc(var(--i) * 26ms)}
+.hero h1{perspective:800px}
+.mock img{object-position:center 45%}
+
+/* glovebox label: outside the clipped opening, bigger, always readable */
+.glovebox > .gb-caption{position:absolute;left:50%;right:auto;z-index:70;transform:translate(-50%,-100%);margin:0;white-space:nowrap;pointer-events:none;
+  font:400 clamp(12px,.95cqw,16px) "Bruno Ace SC",sans-serif;color:#fff;background:rgba(10,9,8,.92);border:1px solid #e8a49b;padding:5px 12px;
+  box-shadow:0 0 14px rgba(232,164,155,.45),0 6px 14px rgba(0,0,0,.6);opacity:0;transition:opacity .15s;
+  clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
+.glovebox.focus.open > .gb-caption{opacity:1}

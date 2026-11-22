@@ -164,7 +164,9 @@
   const cav = document.querySelector(".gb-cavity");
   if (!cav) return;
   cav.querySelectorAll(".gb-hit,.gb-ghost").forEach(h => h.remove());
-  const cap = cav.querySelector(".gb-caption");
+  const cap = cav.querySelector(".gb-caption") || document.querySelector(".glovebox > .gb-caption");
+  const gbox = document.querySelector(".glovebox");
+  if (cap && cap.parentElement !== gbox) gbox.appendChild(cap); // outside the clipped opening, so the label is never cut off
   const items = [...cav.querySelectorAll(".gb-obj")];
   let current = null, enterT = null, backT = null;
   const ghosts = items.map(el => {
@@ -172,7 +174,7 @@
     g.classList.add("gb-ghost"); g.removeAttribute("href"); g.setAttribute("aria-hidden", "true"); g.tabIndex = -1;
     g.querySelectorAll("[id]").forEach(n => n.removeAttribute("id"));
     g.querySelectorAll("span").forEach(n => n.remove());
-    cav.insertBefore(g, cap);
+    cav.appendChild(g);
     return g;
   });
   const show = el => {
@@ -184,12 +186,12 @@
     const s = Math.min(2.2, (c.width * .46) / w, (c.height * .42) / h);
     el.style.setProperty("--dx", `${tx - ex}px`); el.style.setProperty("--dy", `${ty - ey}px`); el.style.setProperty("--s", s.toFixed(2));
     items.forEach(i => i.classList.toggle("zoom", i === el));
-    cav.classList.add("focus");
+    cav.classList.add("focus"); gbox.classList.add("focus");
     cap.textContent = el.getAttribute("aria-label") || "";
-    cap.style.top = Math.max(4, ty - (h * s) / 2 - 6) + "px";
+    cap.style.top = (ty - (h * s) / 2 - 8) + "px";
     current = el;
   };
-  const hide = () => { clearTimeout(enterT); clearTimeout(backT); items.forEach(i => i.classList.remove("zoom", "glow")); cav.classList.remove("focus"); current = null; };
+  const hide = () => { clearTimeout(enterT); clearTimeout(backT); items.forEach(i => i.classList.remove("zoom", "glow")); cav.classList.remove("focus"); gbox.classList.remove("focus"); current = null; };
   const backSoon = () => { clearTimeout(backT); backT = setTimeout(hide, 220); };
   const stay = () => clearTimeout(backT);
   const go = el => { if (el.tagName === "A") el.click(); };

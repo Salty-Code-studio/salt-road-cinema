@@ -132,3 +132,9 @@ SRC_I18N.add({
         "meet.about": "Meets na Boneiru ta organisá lihé. Bisa nos ki dia i unda i nos ta pone e aki, ku mapa i ruta.",
         "meet.tba": "Siguiente meet: ta bin", "meet.when": "Ki dia", "meet.where": "Unda", "meet.route": "Ruta", "meet.going": "ta bai", "meet.go": "Mi ta bai", "meet.tell": "Bisa nos di un meet", "meet.soon": "Fecha ta bin", "meet.wa": "Halo Salt Road Cinema! Mi ta bin na: " }
 });
+
+SRC_I18N.add({
+  en: { "merch.tee.hopi": "HOPI GAZZZ tee", "merch.dice": "Fuzzy dice" },
+  nl: { "merch.tee.hopi": "HOPI GAZZZ shirt", "merch.dice": "Pluche dobbelstenen" },
+  pap: { "merch.tee.hopi": "T-shirt HOPI GAZZZ", "merch.dice": "Dado peludo" }
+});
