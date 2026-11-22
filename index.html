@@ -35,7 +35,7 @@
     <h1 data-i18n-html="home.h1"></h1>
   </div>
   <!-- Cockpit: the hero is the view from the driver's seat -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="windshield" clipPathUnits="objectBoundingBox"><path d="M0.095,0.088 Q0.5,0.018 0.905,0.088 Q0.932,0.093 0.938,0.125 L0.995,0.86 L0.995,1 L0.005,1 L0.005,0.86 L0.062,0.125 Q0.068,0.093 0.095,0.088 Z"/></clipPath></defs></svg>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="gbShape" clipPathUnits="objectBoundingBox"><path d="M0,0.22 C0.33,0.125 0.66,0.055 1,0.025 L1,0.9 Q1,1 0.955,1 L0.045,1 Q0,1 0,0.9 Z"/></clipPath><clipPath id="windshield" clipPathUnits="objectBoundingBox"><path d="M0.095,0.088 Q0.5,0.018 0.905,0.088 Q0.932,0.093 0.938,0.125 L0.995,0.86 L0.995,1 L0.005,1 L0.005,0.86 L0.062,0.125 Q0.068,0.093 0.095,0.088 Z"/></clipPath></defs></svg>
   <div class="apk" aria-label="Salt Road Cinema, established March 2026">
     <svg viewBox="0 0 120 120">
       <circle cx="60" cy="60" r="57" fill="#e8a49b"/>
@@ -89,8 +89,8 @@
         <a class="gb-item gb-manual" href="behind-the-scenes.html"><b>▤</b><span data-i18n="glove.manual"></span></a>
         <a class="gb-item gb-papers" href="subi.html"><b>✎</b><span data-i18n="glove.papers"></span></a>
       </div>
-      <button class="gb-lid" type="button" aria-expanded="false" aria-controls="glovebox">
-        <span class="gb-seam"></span><span class="gb-handle"></span><span class="gb-label" data-i18n="glove.label"></span>
+      <button class="gb-lid" type="button" aria-expanded="false" aria-controls="glovebox" data-i18n-aria="glove.label">
+        <svg class="gb-line" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M0,220 C330,125 660,55 1000,25 L1000,900 Q1000,1000 955,1000 L45,1000 Q0,1000 0,900 Z" fill="none" stroke="#050505" stroke-width="2.5" vector-effect="non-scaling-stroke"/><path d="M8,232 C330,139 660,69 992,40" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg><span class="gb-handle"></span>
       </button>
     </div>
       <div class="pod pod-boost"><div class="g"></div><div class="dig"><b id="d-boost">-0.6</b><span>BAR</span></div></div>
