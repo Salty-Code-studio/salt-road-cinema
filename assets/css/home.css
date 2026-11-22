@@ -490,3 +490,6 @@ span.gb-obj.zoom{cursor:default}
 .glovebox.open .gb-obj.glow:not(.zoom){transform:translate(0,-3px) rotate(calc(var(--r) + 5deg)) scale(1.05);
   filter:drop-shadow(0 0 1px rgba(255,214,186,.85)) drop-shadow(0 0 7px rgba(232,164,155,.5)) drop-shadow(0 4px 4px rgba(0,0,0,.6))}
 .glovebox.open .gb-obj.zoom svg *{cursor:pointer}
+/* no shift-light bar above the tach; dash sits lower so more windshield shows */
+.shiftlight{display:none}
+@media(min-width:821px){.hero{min-height:calc(100svh - 64px + 5.5vw)}}
