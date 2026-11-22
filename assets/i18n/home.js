@@ -1,6 +1,6 @@
 SRC_I18N.add({
   en: {
-    "home.h1": "Car films from<br>a <em>salt road</em><br>island.",
+    "home.h1": "Salt <em>Road</em><br>Cinema",
     "home.lead": "We film the builds, the night runs and the people who **tune cars** on a **39 km island**. Bonaire, no filter.",
     "home.cta.yt": "Watch on YouTube",
     "home.cta.garage": "Enter the Garage",
@@ -28,7 +28,7 @@ SRC_I18N.add({
     "home.submit.go": "Submit your car"
   },
   nl: {
-    "home.h1": "Autofilms van<br>een <em>salt road</em><br>eiland.",
+    "home.h1": "Salt <em>Road</em><br>Cinema",
     "home.lead": "We filmen de builds, de nachtritten en de mensen die **auto's tunen** op een **eiland van 39 km**. Bonaire, zonder filter.",
     "home.cta.yt": "Kijk op YouTube",
     "home.cta.garage": "Naar de Garage",
@@ -56,7 +56,7 @@ SRC_I18N.add({
     "home.submit.go": "Stuur je auto in"
   },
   pap: {
-    "home.h1": "Pelíkula di outo<br>di un isla di<br><em>salt road</em>.",
+    "home.h1": "Salt <em>Road</em><br>Cinema",
     "home.lead": "Nos ta filma e builds, e kore di anochi i e hendenan ku ta **tune outo** riba un **isla di 39 km**. Boneiru, sin filter.",
     "home.cta.yt": "Wak riba YouTube",
     "home.cta.garage": "Drenta e Garashi",
