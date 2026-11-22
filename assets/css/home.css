@@ -692,3 +692,4 @@ span.gb-obj.zoom{cursor:default}
 .meet-full::after{display:none}
 .meet-tiles{filter:grayscale(1) invert(1) brightness(.88) contrast(1.15) sepia(1) hue-rotate(185deg) saturate(1.9) brightness(.72)}
 .meet-tags span{border-radius:0;clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+.meet-sec .leaflet-control-zoom{margin:84px 0 0 20px!important}

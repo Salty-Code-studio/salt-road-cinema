@@ -21,7 +21,11 @@
     const map = window.L.map(mapEl, { zoomControl: true, scrollWheelZoom: false, dragging: !mobile, tap: false, attributionControl: true }).setView([at[0], at[1] + 0.005], 16);
     window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "© OpenStreetMap contributors", maxZoom: 19, className: "meet-tiles" }).addTo(map);
     window.L.marker(at, { icon: window.L.divIcon({ className: "meet-dot", html: "<i></i><b></b>", iconSize: [40, 40], iconAnchor: [20, 20] }), keyboard: false }).addTo(map);
-    map.zoomControl.setPosition("bottomleft");
+    map.zoomControl.setPosition("topleft");
+    map.setMinZoom(10);
+    // scroll/pinch zoom only after the map is clicked, so the page keeps scrolling normally
+    map.on("click", () => map.scrollWheelZoom.enable());
+    mapEl.addEventListener("mouseleave", () => map.scrollWheelZoom.disable());
   }
 
   const render = () => {
@@ -35,8 +39,6 @@
     const route = ev && ev.mapUrl ? ev.mapUrl : `https://www.google.com/maps/search/?api=1&query=${at[0]},${at[1]}`;
     const wa = `https://wa.me/${C.whatsapp}?text=${encodeURIComponent(ev ? I.t("meet.wa") + ev.title.en : "Hi Salt Road Cinema! There's a car meet coming up: ")}`;
     box.innerHTML = `
-      <h2 class="meet-h" >${I.t("meet.h")}</h2>
-      <div class="meet-tags">${tags.map(t => `<span>${esc(t)}</span>`).join("")}</div>
       <h3>${esc(title)}</h3>
       <p class="meet-about">${esc(about)}</p>
       <div class="meet-box"><span>${I.t("meet.when")}</span><b>${esc(when)}</b>${ev && ev.time ? `<i>${esc(ev.time)}</i>` : ""}</div>
