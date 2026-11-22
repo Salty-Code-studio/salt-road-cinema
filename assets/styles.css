@@ -336,3 +336,23 @@ strong{font-weight:700;color:var(--salt)}
 .car-photo .zone{fill:rgba(243,239,230,.06);stroke:rgba(243,239,230,.75)}
 .car-photo .zone:hover,.car-photo .zone.on{fill:rgba(243,239,230,.32);stroke:#fff;stroke-dasharray:0}
 .car-photo .zone.taken{fill:rgba(212,167,44,.35);stroke:var(--gold)}
+
+/* ---------- game-UI buttons: cut corners everywhere ---------- */
+.btn,.chip,.sw,.dock-btn,.dock-full,.lang,.tier,.amounts button,.burger,.signup-form input,.meet-go{
+  --bc:8px;border-radius:0!important;
+  clip-path:polygon(var(--bc) 0,100% 0,100% calc(100% - var(--bc)),calc(100% - var(--bc)) 100%,0 100%,0 var(--bc))}
+.btn,.chip,.sw,.dock-btn,.dock-full,.lang,.tier,.amounts button,.burger{position:relative}
+.btn-sm,.chip,.dock-btn,.lang button,.dock-full{--bc:6px}
+.lang button{border-radius:0!important;clip-path:polygon(var(--bc,5px) 0,100% 0,100% calc(100% - var(--bc,5px)),calc(100% - var(--bc,5px)) 100%,0 100%,0 var(--bc,5px))}
+/* outlined variants: draw the outline along the cut shape */
+.btn-ghost,.chip,.sw,.dock-btn:not(.dock-pp),.dock-full,.lang,.tier,.amounts button,.burger{border-color:transparent!important}
+.btn-ghost::before,.chip::before,.sw::before,.dock-btn:not(.dock-pp)::before,.dock-full::before,.lang::before,.tier::before,.amounts button::before,.burger::before{
+  content:"";position:absolute;inset:0;pointer-events:none;background:var(--ring,var(--line));
+  clip-path:polygon(var(--bc) 0,100% 0,100% calc(100% - var(--bc)),calc(100% - var(--bc)) 100%,0 100%,0 var(--bc),var(--bc) 0,calc(var(--bc) + .7px) 1px,1px calc(var(--bc) + .7px),1px calc(100% - 1px),calc(100% - var(--bc) - .7px) calc(100% - 1px),calc(100% - 1px) calc(100% - var(--bc) - .7px),calc(100% - 1px) 1px,calc(var(--bc) + .7px) 1px)}
+.btn-ghost:hover,.chip:hover,.sw:hover,.dock-btn:hover,.dock-full:hover,.tier:hover,.tier.on,.amounts button:hover,.amounts button.on{--ring:var(--pan)}
+.chip[aria-pressed="true"]{--ring:var(--salt)}
+.sw::before{--ring:#34312c}
+/* small pink accent on the cut of solid buttons */
+.btn-pan::after,.btn-salt::after{content:"";position:absolute;left:0;top:0;width:calc(var(--bc) * 1.5);height:calc(var(--bc) * 1.5);background:linear-gradient(135deg,rgba(12,12,11,.55) 0 calc(var(--bc) * .55),transparent calc(var(--bc) * .55));pointer-events:none}
+.dock-pp{border-radius:0}
+.status,.tag-pill{border-radius:0!important;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
