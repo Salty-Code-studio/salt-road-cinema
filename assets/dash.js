@@ -151,44 +151,62 @@
   document.addEventListener("click", e => { if (!gb.contains(e.target)) set(false); });
 })();
 
-// Glovebox items. Each item reacts only on its painted shape, so every item is reachable.
-// Hover: small tilt + glow. Click: zoom to the middle. Click again: open its page.
-// Move off the zoomed item (or out of the box): it goes back into the pile.
+// Glovebox items. Hover ~0.5s: the item zooms to the middle. Hover away: it goes back.
+// An invisible copy of each item stays where it lies, so the zoomed item doesn't
+// "run away" from the cursor. Click the zoomed item to open its page.
 (() => {
   const cav = document.querySelector(".gb-cavity");
   if (!cav) return;
+  cav.querySelectorAll(".gb-hit").forEach(h => h.remove());
   const cap = cav.querySelector(".gb-caption");
-  const items = [...cav.querySelectorAll(".gb-obj")];
-  let current = null, armed = false;
+  const items = [...cav.querySelectorAll(".gb-obj:not(.gb-ghost)")];
+  let current = null, dwell = null, back = null;
+  const ghosts = items.map(el => {
+    const g = el.cloneNode(true);
+    g.classList.add("gb-ghost"); g.removeAttribute("href"); g.setAttribute("aria-hidden", "true"); g.tabIndex = -1;
+    g.querySelectorAll("[id]").forEach(n => n.removeAttribute("id"));
+    g.querySelectorAll("span").forEach(n => n.remove());
+    cav.insertBefore(g, cap);
+    return g;
+  });
   const zoom = el => {
-    el.classList.remove("glow");
+    clearTimeout(back);
     const c = cav.getBoundingClientRect();
     const w = el.offsetWidth, h = el.offsetHeight;
     const ex = el.offsetLeft + w / 2, ey = el.offsetTop + h / 2;
     const tx = c.width / 2, ty = c.height * .56;
     const s = Math.min(2.4, (c.width * .52) / w, (c.height * .6) / h);
     el.style.setProperty("--dx", `${tx - ex}px`); el.style.setProperty("--dy", `${ty - ey}px`); el.style.setProperty("--s", s.toFixed(2));
-    items.forEach(i => i.classList.toggle("zoom", i === el));
+    items.forEach(i => { i.classList.toggle("zoom", i === el); i.classList.remove("glow"); });
     cav.classList.add("focus");
     cap.textContent = el.getAttribute("aria-label") || "";
     cap.style.top = Math.max(4, ty - (h * s) / 2 - 6) + "px";
-    current = el; armed = false;
+    current = el;
   };
-  const reset = () => { items.forEach(i => i.classList.remove("zoom")); cav.classList.remove("focus"); current = null; };
-  items.forEach(el => {
-    el.addEventListener("mouseenter", () => { if (el === current) armed = true; else if (!current) el.classList.add("glow"); });
-    el.addEventListener("mouseleave", () => { el.classList.remove("glow"); if (el === current && armed) reset(); });
-    el.addEventListener("click", e => {
-      if (el !== current) { e.preventDefault(); e.stopPropagation(); zoom(el); }
-      // second click on the zoomed <a> follows the link (soft navigation handles it)
+  const reset = () => { clearTimeout(dwell); clearTimeout(back); items.forEach(i => i.classList.remove("zoom", "glow")); cav.classList.remove("focus"); current = null; };
+  const goBackSoon = () => { clearTimeout(back); back = setTimeout(reset, 180); };
+  const stay = () => clearTimeout(back);
+
+  items.forEach((el, i) => {
+    const g = ghosts[i];
+    g.addEventListener("mouseenter", () => {
+      if (current === el) return stay();
+      clearTimeout(dwell);
+      if (!current) el.classList.add("glow");
+      dwell = setTimeout(() => zoom(el), 500);
     });
-    el.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && el !== current) { e.preventDefault(); zoom(el); } });
-    el.addEventListener("blur", () => { if (el === current) reset(); });
+    g.addEventListener("mouseleave", () => {
+      clearTimeout(dwell); el.classList.remove("glow");
+      if (current === el) goBackSoon();
+    });
+    g.addEventListener("click", e => { e.preventDefault(); if (current === el) el.click(); else zoom(el); });
+    el.addEventListener("mouseenter", () => { if (current === el) stay(); });
+    el.addEventListener("mouseleave", () => { if (current === el) goBackSoon(); });
+    el.addEventListener("click", e => { if (current !== el) { e.preventDefault(); zoom(el); } });
+    el.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && current !== el) { e.preventDefault(); zoom(el); } });
+    el.addEventListener("blur", () => { if (current === el) reset(); });
   });
   cav.addEventListener("mouseleave", reset);
-  cav.addEventListener("click", e => { if (!e.target.closest(".gb-obj")) reset(); });
   const lidBtn = document.querySelector(".gb-lid");
   lidBtn && lidBtn.addEventListener("click", reset);
-  // drop the old box-shaped hover targets if a previous version added them
-  cav.querySelectorAll(".gb-hit").forEach(h => h.remove());
 })();

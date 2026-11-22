@@ -493,3 +493,12 @@ span.gb-obj.zoom{cursor:default}
 /* no shift-light bar above the tach; dash sits lower so more windshield shows */
 .shiftlight{display:none}
 @media(min-width:821px){.hero{min-height:calc(100svh - 64px + 5.5vw)}}
+
+/* glovebox v5: invisible resting copies take the hover; the real item only when zoomed */
+.gb-ghost{opacity:0!important;filter:none!important;transition:none!important}
+.glovebox.open .gb-ghost{transform:rotate(var(--r))!important}
+.glovebox.open .gb-obj:not(.gb-ghost) svg *{pointer-events:none}
+.glovebox.open .gb-obj.zoom:not(.gb-ghost) svg *{pointer-events:visiblePainted}
+.glovebox.open .gb-ghost svg *{pointer-events:visiblePainted;cursor:pointer}
+.glovebox.open span.gb-ghost svg *{cursor:default}
+.ign{width:3.6%;left:67.1%;top:69.5%}
