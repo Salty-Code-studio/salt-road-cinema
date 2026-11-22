@@ -342,3 +342,13 @@ a.vid:hover{border-color:var(--pan)}
 .pod-tach .g::after{content:"";position:absolute;inset:-6%;border-radius:50%;z-index:-1;background:radial-gradient(circle,#000 58%,rgba(0,0,0,.75) 66%,transparent 74%)}
 .pod-tach .g::before{box-shadow:inset 0 0 0 2px #3a352f,inset 0 0 40px rgba(0,0,0,.95),0 0 0 1px #4a453d,0 0 0 5px #0a0908,0 0 0 6px #2c2925}
 .pod-boost{left:31.9%}.pod-speed{left:57.16%}
+
+/* glovebox caption: Bruno Ace, small, right above the zoomed item */
+.gb-caption{top:auto;left:50%;right:auto;transform:translate(-50%,-100%);font:400 clamp(9px,.62cqw,12px) "Bruno Ace SC",sans-serif;letter-spacing:.02em;color:#f3efe6;white-space:nowrap;
+  background:rgba(12,11,10,.75);border:1px solid rgba(232,164,155,.35);border-radius:6px;padding:3px 9px;box-shadow:0 0 12px rgba(232,164,155,.18)}
+
+/* glovebox interaction v2: hover glows, click zooms */
+.glovebox.open .gb-obj:hover{transform:translate(0,0) rotate(var(--r)) scale(1)}
+.glovebox.open .gb-obj.glow:not(.zoom){filter:drop-shadow(0 0 1px rgba(255,214,186,.8)) drop-shadow(0 0 6px rgba(232,164,155,.45)) drop-shadow(0 3px 3px rgba(0,0,0,.6))}
+.glovebox.open .gb-obj.zoom{pointer-events:auto;z-index:40;cursor:pointer}
+span.gb-obj.zoom{cursor:default}

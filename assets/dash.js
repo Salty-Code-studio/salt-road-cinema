@@ -81,24 +81,29 @@
     items.forEach(i => i.classList.toggle("zoom", i === el));
     cav.classList.add("focus");
     cap.textContent = el.getAttribute("aria-label") || "";
+    // caption sits just above the zoomed item
+    const top = ty - (h * s) / 2 - 6;
+    cap.style.top = Math.max(4, top) + "px";
   };
   const reset = () => { items.forEach(i => i.classList.remove("zoom")); cav.classList.remove("focus"); };
-  // Hover targets stay where the items lie, so a zoomed item never "runs away" from the cursor.
+  // Hover = faint glow in place. Click = item comes to the middle (zoom + caption).
+  // Click the zoomed item to open its page; click the empty box to put it back.
   const hits = items.map(el => {
     const h = document.createElement("span");
     h.className = "gb-hit"; h.setAttribute("aria-hidden", "true");
-    h.style.zIndex = getComputedStyle(el).zIndex;
+    h.style.zIndex = 30;
     cav.appendChild(h);
-    h.addEventListener("mouseenter", () => zoom(el));
-    h.addEventListener("mouseleave", e => { if (!e.relatedTarget || !e.relatedTarget.classList || !e.relatedTarget.classList.contains("gb-hit")) reset(); });
-    h.addEventListener("click", () => { if (el.classList.contains("zoom") && el.tagName === "A") el.click(); else zoom(el); });
+    h.addEventListener("mouseenter", () => el.classList.add("glow"));
+    h.addEventListener("mouseleave", () => el.classList.remove("glow"));
+    h.addEventListener("click", e => { e.stopPropagation(); el.classList.remove("glow"); zoom(el); });
     return h;
   });
   const place = () => items.forEach((el, i) => Object.assign(hits[i].style, { left: el.offsetLeft + "px", top: el.offsetTop + "px", width: el.offsetWidth + "px", height: el.offsetHeight + "px" }));
   place(); addEventListener("resize", place);
-  document.querySelector(".gb-lid")?.addEventListener("click", () => requestAnimationFrame(place));
-  items.forEach(el => {
-    el.addEventListener("focus", () => zoom(el));
-    el.addEventListener("blur", reset);
-  });
+  const lidBtn = document.querySelector(".gb-lid");
+  lidBtn && lidBtn.addEventListener("click", () => { reset(); requestAnimationFrame(place); });
+  cav.addEventListener("click", e => { if (!e.target.closest(".gb-obj.zoom")) reset(); });
+  items.forEach(el => el.addEventListener("keydown", e => {
+    if ((e.key === "Enter" || e.key === " ") && !el.classList.contains("zoom")) { e.preventDefault(); zoom(el); }
+  }));
 })();
