@@ -227,3 +227,16 @@ a.vid:hover{border-color:var(--pan)}
 .hero .trip p.lead{margin:0}
 @media(min-width:821px){.cp-wheel{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,.8) 62%,rgba(0,0,0,.5) 86%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,.8) 62%,rgba(0,0,0,.5) 86%,transparent 100%)}}
 @media(min-width:821px){.cp-console{height:41.64%}.cp-console .switches{position:absolute;left:1cqw;bottom:0;transform:translateY(50%);margin:0}}
+
+/* ---------- windshield: the video is the glass ---------- */
+.hero{background:linear-gradient(180deg,#171512 0%,#0f0e0c 40%,#0b0a09 100%)}
+.hero.letterbox::before{display:none}
+.pillar{display:none}
+.hero-bg,.hero-video,.hero-shade{clip-path:url(#windshield)}
+.ws-frame{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.mirror{position:absolute;z-index:3;left:50%;top:0;transform:translateX(-50%);width:min(17vw,260px);pointer-events:none}
+.mirror-stem{display:block;width:14px;height:clamp(10px,2.2vh,20px);margin:0 auto;background:linear-gradient(90deg,#1b1916,#2c2925,#1b1916);border-radius:0 0 4px 4px}
+.mirror-glass{aspect-ratio:3.4/1;border-radius:40% 40% 46% 46%/50% 50% 50% 50%;border:5px solid #121110;box-shadow:0 6px 18px rgba(0,0,0,.6),inset 0 0 18px rgba(0,0,0,.8);
+  background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 40%),url(../../media/drift-crowd.jpg) center 60%/cover;filter:brightness(.55) saturate(.8);transform:scaleX(-1)}
+.timecode{top:calc(4vh + 26px);right:7%}
+@media(max-width:820px){.mirror{width:30vw}.timecode{display:none}}
