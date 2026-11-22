@@ -33,11 +33,29 @@
   <div class="timecode"><b></b>REC <span id="tc">00:00:00:00</span> · 12.15°N 68.27°W</div>
   <div class="wrap">
     <h1 data-i18n-html="home.h1"></h1>
-    <p class="lead" data-i18n="home.lead"></p>
-    <div class="ctas">
-      <a class="btn btn-salt" data-yt target="_blank" rel="noopener"><span data-i18n="home.cta.yt"></span> ▸</a>
-      <a class="btn btn-ghost" href="garage.html" data-i18n="home.cta.garage"></a>
+  </div>
+  <!-- Dashboard: the hero is the view from the driver's seat -->
+  <div class="dash" aria-label="Dashboard">
+    <div class="dash-inner">
+      <div class="dash-g dash-boost"><div class="g"></div><div class="dig"><b id="d-boost">-0.6</b><span>BAR</span></div></div>
+      <div class="dash-g dash-tach">
+        <div class="g"></div>
+        <div class="dash-center"><b id="d-speed">0</b><span>KM/H</span><i id="d-gear">N</i></div>
+        <div class="shiftlight" id="d-shift"></div>
+      </div>
+      <div class="dash-side">
+        <div class="trip">
+          <div class="trip-top"><span>SALT ROAD · BONAIRE</span><span id="d-clock">--:--</span></div>
+          <p class="lead" data-i18n="home.lead"></p>
+        </div>
+        <div class="switches">
+          <a class="sw sw-on" data-yt target="_blank" rel="noopener"><i></i><span data-i18n="home.cta.yt"></span></a>
+          <a class="sw" href="garage.html"><i></i><span data-i18n="home.cta.garage"></span></a>
+          <button class="sw sw-rev" type="button" id="d-rev"><i></i><span data-i18n="home.rev"></span></button>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
 </header>
 
@@ -118,8 +136,10 @@
 <script src="data/partners.js"></script>
 <script src="data/images.js"></script>
 <script src="assets/shell.js"></script>
+<script src="assets/gauges.js"></script>
 <script src="assets/car.js"></script>
 <script src="assets/home.js"></script>
+<script src="assets/dash.js"></script>
 <script src="assets/intro.js"></script>
 </body>
 </html>

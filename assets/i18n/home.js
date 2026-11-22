@@ -90,3 +90,9 @@ SRC_I18N.add({
   nl: { "home.reel.h": "Driftdag,<br><em>Bonaire</em>.", "home.reel.sub": "Rook, bandenmuren en een **vol publiek**. Dit is de scene die we filmen. **Geluid aan.**" },
   pap: { "home.reel.h": "Dia di drift,<br><em>Boneiru</em>.", "home.reel.sub": "Huma, muraya di band i un **publiko yen**. Esaki ta e scene ku nos ta filma. **Zonido aden.**" }
 });
+
+SRC_I18N.add({
+  en: { "home.rev": "Hold to rev" },
+  nl: { "home.rev": "Ingedrukt = gas" },
+  pap: { "home.rev": "Tene pa rev" }
+});
