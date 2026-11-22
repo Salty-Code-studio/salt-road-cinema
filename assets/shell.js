@@ -139,13 +139,15 @@
   document.addEventListener("DOMContentLoaded", () => { I.apply(); watch(); });
 
   /* ------------------------------------------------------------------
-     Salt Road Radio: docked audio player (NFSU2 soundtrack previews).
+     Salt Road Radio: docked player, full songs from the NFSU2 soundtrack
+     playlist on YouTube. The mini video stays visible (YouTube's terms).
      Lives outside the swapped page content, so it keeps playing.
      ------------------------------------------------------------------ */
+  const PLAYLIST = C.radioPlaylist || "PL8JNJBL95furpHQEw8psHiU-zdVlummlj";
   const dock = document.createElement("div");
   dock.className = "dock";
   dock.innerHTML = `
-    <img class="dock-cover" alt="" src="favicon.svg">
+    <div class="dock-video"><div id="dock-yt"></div><img class="dock-cover" alt="" src="media/drift-night-smoke.jpg"></div>
     <button class="dock-btn dock-pp" type="button" aria-label="Play radio">▶</button>
     <div class="dock-info">
       <span class="dock-label"><span class="eq"><i></i><i></i><i></i></span>Salt Road <em>Radio</em></span>
@@ -154,68 +156,56 @@
       <div class="dock-bar"><i></i></div>
     </div>
     <button class="dock-btn dock-prev" type="button" aria-label="Previous track">⏮</button>
-    <button class="dock-btn dock-next" type="button" aria-label="Next track">⏭</button>
-    <a class="dock-btn dock-link" href="#" target="_blank" rel="noopener" aria-label="Full song on Apple Music" hidden>↗</a>
-    <button class="dock-full" type="button" data-i18n="radio.full"></button>
-    <div class="dock-sp" hidden>
-      <div class="dock-sp-head"><span class="dock-label"><span class="eq"><i></i><i></i><i></i></span>Salt Road <em>Radio</em> · Spotify</span><button class="dock-back" type="button" data-i18n="radio.previews"></button></div>
-      <div class="dock-sp-frame"></div>
-      <p class="dock-sp-note" data-i18n="radio.spnote"></p>
-    </div>`;
+    <button class="dock-btn dock-next" type="button" aria-label="Next track">⏭</button>`;
   document.body.appendChild(dock);
-  const audio = new Audio(); audio.preload = "none"; audio.volume = .5;
-  let list = [], idx = -1;
   const D$ = s => dock.querySelector(s);
-  const loadList = () => new Promise(res => {
-    if (window.SRC_RADIO) return res(list = window.SRC_RADIO);
-    const sc = document.createElement("script"); sc.src = "data/radio.js";
-    sc.onload = () => res(list = window.SRC_RADIO || []); sc.onerror = () => res([]);
-    document.head.appendChild(sc);
-  });
+  let yt = null, ytReady = null, playing = false, tick = null;
+  const clean = t => t.replace(/\s*[\(\[][^\)\]]*(need for speed|nfs|soundtrack|ost|hq|underground)[^\)\]]*[\)\]]/gi, "").trim();
   const sync = () => {
-    const on = !audio.paused && !audio.ended;
-    dock.classList.toggle("on", on);
-    D$(".dock-pp").textContent = on ? "❚❚" : "▶";
-    D$(".dock-pp").setAttribute("aria-label", on ? "Pause radio" : "Play radio");
-  };
-  const playAt = async i => {
-    if (!list.length) await loadList();
-    if (!list.length) return;
-    idx = (i + list.length) % list.length;
-    const t = list[idx];
-    audio.src = t.src; audio.play().catch(() => {});
-    D$(".dock-cover").src = t.cover; D$(".dock-title").textContent = t.t;
-    const by = D$(".dock-by"); by.removeAttribute("data-i18n"); by.textContent = t.by;
-    const ln = D$(".dock-link"); ln.href = t.link; ln.hidden = false;
-    dock.classList.add("started");
-    try { sessionStorage.setItem("src-radio", idx); } catch {}
-  };
-  D$(".dock-pp").addEventListener("click", () => idx < 0 ? playAt(0) : (audio.paused ? audio.play() : audio.pause()));
-  D$(".dock-next").addEventListener("click", () => playAt(idx + 1));
-  D$(".dock-prev").addEventListener("click", () => playAt(idx - 1));
-  D$(".dock-bar").addEventListener("click", e => {
-    if (!audio.duration) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
-  });
-  // Full songs: official NFSU2 playlist in Spotify's player (full tracks when logged in to Spotify).
-  const SPOTIFY = C.radioSpotify || "2KYnOjOMzSCeQs97ZJiMe1";
-  const spMode = on => {
-    dock.classList.toggle("sp", on);
-    D$(".dock-sp").hidden = !on;
-    if (on) {
-      audio.pause();
-      const fr = D$(".dock-sp-frame");
-      if (!fr.firstChild) fr.innerHTML = `<iframe src="https://open.spotify.com/embed/playlist/${SPOTIFY}?theme=0" title="Need for Speed Underground 2 on Spotify" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+    dock.classList.toggle("on", playing);
+    D$(".dock-pp").textContent = playing ? "❚❚" : "▶";
+    D$(".dock-pp").setAttribute("aria-label", playing ? "Pause radio" : "Play radio");
+    const d = yt && yt.getVideoData && yt.getVideoData();
+    if (d && d.title) {
+      const t = clean(d.title), m = t.match(/^(.+?)\s+-\s+(.+)$/);
+      D$(".dock-title").textContent = m ? m[2] : t;
+      const by = D$(".dock-by"); by.removeAttribute("data-i18n"); by.textContent = m ? m[1] : (d.author || "");
     }
-    try { sessionStorage.setItem("src-radio-sp", on ? "1" : "0"); } catch {}
   };
-  D$(".dock-full").addEventListener("click", () => spMode(true));
-  D$(".dock-back").addEventListener("click", () => spMode(false));
-
-  audio.addEventListener("play", sync); audio.addEventListener("pause", sync);
-  audio.addEventListener("ended", () => playAt(idx + 1));
-  audio.addEventListener("timeupdate", () => { D$(".dock-bar i").style.width = (audio.currentTime / (audio.duration || 30) * 100) + "%"; });
+  const loadYT = () => ytReady ??= new Promise(res => {
+    dock.classList.add("started");
+    const make = () => {
+      yt = new YT.Player("dock-yt", {
+        width: 96, height: 54,
+        playerVars: { listType: "playlist", list: PLAYLIST, autoplay: 1, playsinline: 1, controls: 0, rel: 0, iv_load_policy: 3, disablekb: 1 },
+        events: {
+          onReady: e => { e.target.setVolume(60); e.target.playVideo(); res(); },
+          onStateChange: e => { playing = e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING; sync(); },
+          onError: () => yt.nextVideo() // skip anything that refuses to embed
+        }
+      });
+      clearInterval(tick);
+      tick = setInterval(() => {
+        if (!yt || !yt.getDuration) return;
+        const d = yt.getDuration(), c = yt.getCurrentTime();
+        D$(".dock-bar i").style.width = d ? (c / d * 100) + "%" : "0";
+      }, 500);
+    };
+    if (window.YT && YT.Player) return make();
+    window.onYouTubeIframeAPIReady = make;
+    const sc = document.createElement("script"); sc.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(sc);
+  });
+  D$(".dock-pp").addEventListener("click", async () => {
+    if (!yt) return loadYT();
+    playing ? yt.pauseVideo() : yt.playVideo();
+  });
+  D$(".dock-next").addEventListener("click", async () => { if (!yt) await loadYT(); yt.nextVideo(); });
+  D$(".dock-prev").addEventListener("click", async () => { if (!yt) await loadYT(); yt.previousVideo(); });
+  D$(".dock-bar").addEventListener("click", e => {
+    if (!yt || !yt.getDuration) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    yt.seekTo(((e.clientX - r.left) / r.width) * yt.getDuration(), true);
+  });
 
   /* ------------------------------------------------------------------
      Soft navigation: internal links swap the page content in place so

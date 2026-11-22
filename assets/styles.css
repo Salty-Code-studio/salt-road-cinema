@@ -326,3 +326,10 @@ strong{font-weight:700;color:var(--salt)}
 .dock-sp-note{font-size:11px;color:var(--salt-dim)}
 @media(max-width:480px){.dock.sp{width:auto}.dock-full{padding:6px 8px}}
 .dock-label{white-space:nowrap}.dock{min-width:min(380px,calc(100vw - 32px))}
+
+/* radio v3: YouTube mini video in the dock */
+.dock-video{position:relative;width:96px;height:54px;flex:none;border-radius:8px;overflow:hidden;background:#000}
+.dock-video iframe,.dock-video #dock-yt{position:absolute;inset:0;width:100%;height:100%;border:0}
+.dock-video .dock-cover{position:absolute;inset:0;width:100%;height:100%;border-radius:0}
+.dock.started .dock-video .dock-cover{display:none}
+@media(max-width:480px){.dock-video{width:80px;height:45px}}
