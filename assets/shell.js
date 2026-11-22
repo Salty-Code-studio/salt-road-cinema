@@ -177,7 +177,7 @@
     const make = () => {
       yt = new YT.Player("dock-yt", {
         width: 96, height: 54,
-        playerVars: { listType: "playlist", list: PLAYLIST, autoplay: 1, playsinline: 1, controls: 0, rel: 0, iv_load_policy: 3, disablekb: 1 },
+        playerVars: { listType: "playlist", list: PLAYLIST, index: 1, autoplay: 1, playsinline: 1, controls: 0, rel: 0, iv_load_policy: 3, disablekb: 1 },
         events: {
           onReady: e => { e.target.setVolume(60); e.target.playVideo(); res(); },
           onStateChange: e => { playing = e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING; sync(); },
