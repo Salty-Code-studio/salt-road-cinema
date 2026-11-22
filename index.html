@@ -4,78 +4,96 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Salt Road Cinema | Car films from Bonaire</title>
-<meta name="description" content="Salt Road Cinema makes car and tuning films on Bonaire. Builds, night runs and the island's car scene.">
+<meta name="description" content="Salt Road Cinema makes car and tuning films on Bonaire. Builds, night runs, meets and the island's car scene.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/css/home.css">
 </head>
-<body>
-<nav class="nav"><div class="wrap">
-  <a class="logo" href="./"><i></i>SALT ROAD CINEMA</a>
-  <ul>
-    <li class="hide-s"><a href="#films">Films</a></li>
-    <li class="hide-s"><a href="#about">About</a></li>
-    <li><a href="subi.html">Save the Subi</a></li>
-    <li><a data-yt href="#" target="_blank" rel="noopener">YouTube</a></li>
-  </ul>
-</div></nav>
+<body data-page="home">
+<div data-shell="nav"></div>
 
 <header class="hero letterbox">
-  <!-- Drop a still at assets/hero.jpg and add class="photo" + style="--hero-img:url(assets/hero.jpg)" -->
+  <!-- Drop a still at photos/hero.jpg, then: class="hero-bg photo" style="--hero-img:url(photos/hero.jpg)" -->
   <div class="hero-bg"></div>
-  <div class="timecode"><b></b>REC 00:12:04:19 · 12.15°N 68.27°W</div>
+  <div class="timecode"><b></b>REC <span id="tc">00:00:00:00</span> · 12.15°N 68.27°W</div>
   <div class="wrap">
-    <h1>Car films from<br>a <em>salt road</em><br>island.</h1>
-    <p class="lead">We film the builds, the night runs and the people who tune cars on a 39 km island. Bonaire, no filter.</p>
+    <h1 data-i18n-html="home.h1"></h1>
+    <p class="lead" data-i18n="home.lead"></p>
     <div class="ctas">
-      <a class="btn btn-salt" data-yt href="#" target="_blank" rel="noopener">Watch on YouTube ▸</a>
-      <a class="btn btn-ghost" href="subi.html">Help save the Subi</a>
+      <a class="btn btn-salt" data-yt target="_blank" rel="noopener"><span data-i18n="home.cta.yt"></span> ▸</a>
+      <a class="btn btn-ghost" href="garage.html" data-i18n="home.cta.garage"></a>
     </div>
   </div>
 </header>
 
-<section id="films"><div class="wrap">
+<section><div class="wrap">
   <div class="head reveal">
-    <div><h2>Latest <em>films</em></h2><p class="sub">New episodes drop on the channel first. Subscribe and you see the Subi come back to life.</p></div>
-    <a class="btn btn-ghost" data-yt href="#" target="_blank" rel="noopener">All videos</a>
+    <div><h2 data-i18n-html="home.films.h"></h2><p class="sub" data-i18n="home.films.sub"></p></div>
+    <a class="btn btn-ghost" href="films.html" data-i18n="common.more"></a>
   </div>
   <div id="reel" class="reel reveal"></div>
+  <div id="series" class="series reveal"></div>
 </div></section>
 
-<section id="subi"><div class="wrap subi-teaser">
-  <div class="car-frame reveal" data-car></div>
-  <div class="reveal">
-    <h2>Save the <em>Subi</em></h2>
-    <p class="sub">A 2.0 turbo WRX, EJ205, parked with a blown head gasket. We are bringing it back on camera. Every part, every bolt, every sponsor in the edit.</p>
-    <div class="meter"><div class="bar"><div class="fill"></div></div><div class="nums"></div></div>
-    <a class="btn btn-pan" href="subi.html">See what she needs</a>
+<section><div class="wrap">
+  <div class="head reveal">
+    <div><h2 data-i18n-html="home.garage.h"></h2><p class="sub" data-i18n="home.garage.sub"></p></div>
+    <a class="btn btn-ghost" href="garage.html" data-i18n="common.more"></a>
   </div>
-</div></section>
-
-<section id="about"><div class="wrap about">
-  <div class="reveal"><h2>Small island. <em>Loud</em> cars.</h2></div>
-  <div class="reveal">
-    <p>Bonaire has one main road, a lot of salt and more turbo cars than you would think.</p>
-    <p>Salt Road Cinema films that scene properly. Real builds, real owners, shot like a film.</p>
-    <p>Got a car worth filming? Send it. Got a brand that belongs on a car? Even better.</p>
-    <div class="stats">
-      <div><b>39 km</b><span>of island</span></div>
-      <div><b>1</b><span>Subi to save</span></div>
-      <div><b>0</b><span>excuses</span></div>
+  <a class="subi-band reveal" href="subi.html">
+    <div class="car-frame" data-car></div>
+    <div>
+      <h3 data-i18n="home.subi.title"></h3>
+      <p data-i18n="home.subi.text"></p>
+      <div class="meter"><div class="bar"><div class="fill"></div></div><div class="nums"></div></div>
+      <span class="btn btn-pan" data-i18n="home.subi.go"></span>
     </div>
+  </a>
+</div></section>
+
+<section class="duo"><div class="wrap duo-grid">
+  <div class="reveal">
+    <h2 data-i18n-html="home.events.h"></h2>
+    <div id="next-event" class="next-event"></div>
+    <a class="btn btn-ghost" href="events.html" data-i18n="home.events.all"></a>
+  </div>
+  <div class="reveal">
+    <h2 data-i18n-html="home.shop.h"></h2>
+    <p class="sub" data-i18n="home.shop.sub"></p>
+    <div id="shop-strip" class="shop-strip"></div>
+    <a class="btn btn-pan" href="shop.html" data-i18n="home.shop.go"></a>
   </div>
 </div></section>
 
-<footer><div class="wrap">
-  <div class="big">See you on<br>the salt road.</div>
-  <div class="row">
-    <div><a data-yt href="#" target="_blank" rel="noopener">YouTube</a><a data-ig href="#" target="_blank" rel="noopener">Instagram</a><a data-wa href="#" target="_blank" rel="noopener">WhatsApp</a><a data-mail href="#">Email</a></div>
-    <div>© 2026 Salt Road Cinema · Bonaire</div>
+<section class="partners-band"><div class="wrap duo-grid">
+  <div class="reveal"><h2 data-i18n-html="home.partners.h"></h2></div>
+  <div class="reveal">
+    <p class="sub" data-i18n="home.partners.sub"></p>
+    <div id="logo-strip" class="logo-strip"></div>
+    <a class="btn btn-salt" href="partners.html" data-i18n="home.partners.go"></a>
   </div>
-</div></footer>
+</div></section>
+
+<section class="submit-band"><div class="wrap">
+  <h2 class="reveal" data-i18n-html="home.submit.h"></h2>
+  <a class="btn btn-pan reveal" href="submit.html" data-i18n="home.submit.go"></a>
+</div></section>
+
+<div data-shell="signup"></div>
+<div data-shell="footer"></div>
 
 <script src="assets/config.js"></script>
-<script src="assets/site.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n/home.js"></script>
+<script src="data/videos.js"></script>
+<script src="data/cars.js"></script>
+<script src="data/events.js"></script>
+<script src="data/products.js"></script>
+<script src="data/partners.js"></script>
+<script src="assets/shell.js"></script>
+<script src="assets/car.js"></script>
+<script src="assets/home.js"></script>
 </body>
 </html>

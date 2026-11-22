@@ -240,3 +240,6 @@ a.card:hover{border-color:var(--pan);transform:translateY(-2px)}
 .signup-done{margin-top:22px;color:var(--ok);font-weight:600}
 footer .foot-links{display:flex;flex-wrap:wrap;gap:6px 18px}
 footer .foot-links a{margin:0}
+.car-photo{position:relative}
+.car-photo img{width:100%;height:auto}
+.car-photo .zones-overlay{position:absolute;inset:0;width:100%;height:100%}
