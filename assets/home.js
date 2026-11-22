@@ -37,7 +37,7 @@
   document.querySelectorAll("[data-car]").forEach(el => window.SRC_CAR.render(el, subi));
   const pct = Math.min(100, Math.round((C.raisedUSD / C.goalUSD) * 100));
 
-  const prices = () => document.querySelectorAll("[data-product]").forEach(el => { const p = (D.products || []).find(x => x.id === el.dataset.product); el.textContent = p ? usd(p.price) : ""; });
+  const prices = () => document.querySelectorAll("[data-product]").forEach(el => { const p = (D.products || []).find(x => x.id === el.dataset.product); el.textContent = !p ? "" : (p.soldOut || !p.price) ? I.t("merch.soon") : usd(p.price); });
   const render = () => {
     prices();
     // films

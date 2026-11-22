@@ -96,3 +96,5 @@ SRC_I18N.add({
     "shop.dec": "Un menos"
   }
 });
+
+SRC_I18N.add({ en: { "shop.soon": "Coming soon" }, nl: { "shop.soon": "Binnenkort" }, pap: { "shop.soon": "Ta bin pronto" } });

@@ -78,7 +78,7 @@
     <article class="pcard${p.soldOut ? " sold" : ""}" data-id="${esc(p.id)}">
       <div class="pmedia">${p.photo ? `<img src="${esc(p.photo)}" alt="${name}" loading="lazy">` : art(p, s.color)}</div>
       <div class="pbody">
-        <div class="ptop"><h3>${name}</h3><span class="pprice">${money(p.price)}</span></div>
+        <div class="ptop"><h3>${name}</h3><span class="pprice">${p.price ? money(p.price) : t("shop.soon")}</span></div>
         ${p.desc ? `<p>${esc(lc(p.desc))}</p>` : ""}
         <div class="pctl">
           ${(p.sizes || []).length ? `<label><span>${t("shop.size")}</span><select data-f="size">${opts(p.sizes, s.size)}</select></label>` : ""}
@@ -87,7 +87,7 @@
             <select data-f="qty">${[1, 2, 3, 4, 5, 6, 8, 10].map(n => `<option value="${n}"${n === s.qty ? " selected" : ""}>${n}</option>`).join("")}</select>
           </label>
         </div>
-        <button class="btn btn-pan add" type="button" ${p.soldOut ? "disabled" : ""}>${p.soldOut ? t("shop.soldout") : t("shop.add")}</button>
+        <button class="btn btn-pan add" type="button" ${p.soldOut ? "disabled" : ""}>${p.soldOut ? (p.price ? t("shop.soldout") : t("shop.soon")) : t("shop.add")}</button>
       </div>
     </article>`;
   };

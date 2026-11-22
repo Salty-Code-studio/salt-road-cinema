@@ -138,3 +138,9 @@ SRC_I18N.add({
   nl: { "merch.tee.hopi": "HOPI GAZZZ shirt", "merch.dice": "Pluche dobbelstenen" },
   pap: { "merch.tee.hopi": "T-shirt HOPI GAZZZ", "merch.dice": "Dado peludo" }
 });
+
+SRC_I18N.add({
+  en: { "merch.lighter": "Engraved lighter", "merch.soon": "Soon", "home.shop.sub": "Tees, caps, fuzzy dice and lighters. Pickup in Kralendijk." },
+  nl: { "merch.lighter": "Gegraveerde aansteker", "merch.soon": "Binnenkort", "home.shop.sub": "Shirts, petten, pluche dobbelstenen en aanstekers. Ophalen in Kralendijk." },
+  pap: { "merch.lighter": "Lighter grabá", "merch.soon": "Pronto", "home.shop.sub": "T-shirt, pet, dado peludo i lighter. Buska na Kralendijk." }
+});

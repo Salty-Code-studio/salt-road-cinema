@@ -33,5 +33,10 @@ window.DATA.products = [
     id: "fuzzy-dice", kind: "dice", price: 15, sizes: [], colors: ["Black"], photo: "media/merch-fuzzy-dice.jpg",
     name: { en: "Fuzzy dice", nl: "Pluche dobbelstenen", pap: "Dado peludo" },
     desc: { en: "Hang them from the mirror. Embroidered Salt Road logo.", nl: "Hang ze aan je spiegel. Geborduurd Salt Road logo.", pap: "Kolg'é na bo spil. Logo di Salt Road bordá." }
+  },
+  {
+    id: "lighter", kind: "lighter", price: 0, soldOut: true, sizes: [], colors: ["Brass"], photo: "media/merch-lighter.jpg", // TODO price from Rudo, then remove soldOut
+    name: { en: "Engraved lighter", nl: "Gegraveerde aansteker", pap: "Lighter grabá" },
+    desc: { en: "Brushed brass, Salt Road logo and a road map engraved on the case.", nl: "Geborsteld messing, Salt Road logo en een wegenkaart gegraveerd op de behuizing.", pap: "Bròns sepiyá, logo di Salt Road i un mapa di kaminda grabá riba e kaha." }
   }
 ];
