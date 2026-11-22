@@ -48,6 +48,10 @@
           <linearGradient id="cpRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a49b" stop-opacity="0"/><stop offset="1" stop-color="#e8a49b" stop-opacity=".16"/></linearGradient>
           <filter id="cpGrain"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
         </defs>
+        <!-- dash light reflecting on the windshield: sits behind the dash, shows only above its edge -->
+        <ellipse cx="462" cy="170" rx="210" ry="110" fill="url(#cpGlow)"/>
+        <ellipse cx="1138" cy="170" rx="210" ry="110" fill="url(#cpGlow)"/>
+        <ellipse cx="800" cy="96" rx="330" ry="60" fill="url(#cpGlow)" opacity=".45"/>
         <!-- dash top surface, windshield base to edges -->
         <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200 L1600,420 L0,420 Z" fill="url(#cpDash)"/>
         <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="2"/>
@@ -55,10 +59,6 @@
         <!-- instrument hood (brow) and the gauge well -->
         <path d="M470,190 C500,70 1100,70 1130,190 L1112,190 C1080,98 520,98 488,190 Z" fill="url(#cpBrow)"/>
         <path d="M492,192 C522,104 1078,104 1108,192 C1114,262 1084,326 1030,340 L570,340 C516,326 486,262 492,192 Z" fill="url(#cpWell)"/>
-        <!-- faint dash-light reflections in the hood corners -->
-        <ellipse cx="512" cy="206" rx="150" ry="62" fill="url(#cpGlow)" class="glow"/>
-        <ellipse cx="1088" cy="206" rx="150" ry="62" fill="url(#cpGlow)" class="glow"/>
-        <path d="M494,190 C524,104 1076,104 1106,190" fill="none" stroke="url(#cpRim)" stroke-width="3" class="glow"/>
         <!-- vent, left -->
         <g transform="translate(120,236)">
           <rect width="250" height="54" rx="14" fill="#0a0908" stroke="#34302b" stroke-width="2"/>
