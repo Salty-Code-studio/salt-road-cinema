@@ -19,7 +19,7 @@
 
   // hero media
   const hv = document.querySelector(".hero-video"), hb = document.querySelector(".hero-bg");
-  if (C.heroImage) { hb.classList.add("photo"); hb.style.setProperty("--hero-img", `url(${C.heroImage})`); }
+  if (C.heroImage) { hb.classList.add("photo"); hb.style.setProperty("--hero-img", `url("${new URL(C.heroImage, location.href).href}")`); }
   if (C.heroVideo && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     hv.src = (innerWidth < 700 && C.heroVideoSmall) ? C.heroVideoSmall : C.heroVideo; if (C.heroImage) hv.poster = C.heroImage;
     hv.hidden = false; hv.play().catch(() => {});

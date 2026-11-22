@@ -102,7 +102,7 @@
 
   // mood images: data-bg="key" -> graded background from DATA.images
   const IM = (window.DATA && window.DATA.images) || {};
-  const imgUrl = (im, w) => im.src || `https://images.unsplash.com/photo-${im.unsplash}?w=${w}&q=70&auto=format&fit=crop`;
+  const imgUrl = (im, w) => im.src ? new URL(im.src, location.href).href : `https://images.unsplash.com/photo-${im.unsplash}?w=${w}&q=70&auto=format&fit=crop`;
   document.querySelectorAll("[data-bg]").forEach(el => {
     const im = IM[el.dataset.bg]; if (!im) return;
     el.classList.add("has-bg");
