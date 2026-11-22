@@ -1,10 +1,10 @@
 // Hero dashboard: tach + boost + speed + gear. Idles, revs while REV is held,
 // and the scroll through the hero works as a throttle.
 (() => {
-  const root = document.querySelector(".dash");
+  const root = document.querySelector(".cockpit");
   if (!root || !window.SRC_GAUGE) return;
-  const tach = SRC_GAUGE.make(root.querySelector(".dash-tach .g"), { min: 0, max: 8, majorStep: 1, minorPerMajor: 4, zoneFrom: 6.5, zoneClass: "redzone", label: null, size: 320 });
-  const boost = SRC_GAUGE.make(root.querySelector(".dash-boost .g"), { min: -1, max: 1.5, majorStep: 0.5, minorPerMajor: 5, zoneFrom: 0, zoneClass: "boostzone", label: "TURBO", size: 240 });
+  const tach = SRC_GAUGE.make(root.querySelector(".pod-tach .g"), { min: 0, max: 8, majorStep: 1, minorPerMajor: 4, zoneFrom: 6.5, zoneClass: "redzone", label: null, size: 320 });
+  const boost = SRC_GAUGE.make(root.querySelector(".pod-boost .g"), { min: -1, max: 1.5, majorStep: 0.5, minorPerMajor: 5, zoneFrom: 0, zoneClass: "boostzone", label: "TURBO", size: 240 });
   const $ = id => document.getElementById(id);
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hero = document.querySelector(".hero");

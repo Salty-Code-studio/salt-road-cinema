@@ -34,28 +34,53 @@
   <div class="wrap">
     <h1 data-i18n-html="home.h1"></h1>
   </div>
-  <!-- Dashboard: the hero is the view from the driver's seat -->
-  <div class="dash" aria-label="Dashboard">
-    <div class="dash-inner">
-      <div class="dash-g dash-boost"><div class="g"></div><div class="dig"><b id="d-boost">-0.6</b><span>BAR</span></div></div>
-      <div class="dash-g dash-tach">
-        <div class="g"></div>
-        <div class="dash-center"><b id="d-speed">0</b><span>KM/H</span><i id="d-gear">N</i></div>
-        <div class="shiftlight" id="d-shift"></div>
+  <!-- Cockpit: the hero is the view from the driver's seat -->
+  <div class="pillar pillar-l" aria-hidden="true"></div><div class="pillar pillar-r" aria-hidden="true"></div>
+  <div class="cockpit" aria-label="Dashboard">
+    <div class="cp-scene">
+      <svg class="cp-shape" viewBox="0 0 1600 420" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="cpDash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262320"/><stop offset=".25" stop-color="#16140f"/><stop offset="1" stop-color="#070605"/></linearGradient>
+          <linearGradient id="cpBrow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e2a25"/><stop offset="1" stop-color="#0d0c0a"/></linearGradient>
+          <radialGradient id="cpWell" cx=".5" cy=".35" r=".7"><stop offset="0" stop-color="#121110"/><stop offset="1" stop-color="#030303"/></radialGradient>
+          <linearGradient id="cpWheel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2824"/><stop offset=".4" stop-color="#151311"/><stop offset="1" stop-color="#050505"/></linearGradient>
+          <filter id="cpGrain"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+        </defs>
+        <!-- dash top surface, windshield base to edges -->
+        <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200 L1600,420 L0,420 Z" fill="url(#cpDash)"/>
+        <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="2"/>
+        <path d="M0,214 C230,186 384,174 458,178 C548,82 1052,82 1142,178 C1228,170 1390,184 1600,218" fill="none" stroke="rgba(232,164,155,.38)" stroke-width="1.6" stroke-dasharray="7 6"/>
+        <!-- instrument hood (brow) and the gauge well -->
+        <path d="M470,190 C500,70 1100,70 1130,190 L1112,190 C1080,98 520,98 488,190 Z" fill="url(#cpBrow)"/>
+        <path d="M492,192 C522,104 1078,104 1108,192 L1108,330 L492,330 Z" fill="url(#cpWell)"/>
+        <!-- vent, left -->
+        <g transform="translate(120,236)">
+          <rect width="250" height="54" rx="14" fill="#0a0908" stroke="#34302b" stroke-width="2"/>
+          <g stroke="#2a2723" stroke-width="3"><line x1="16" y1="12" x2="234" y2="12"/><line x1="16" y1="21" x2="234" y2="21"/><line x1="16" y1="30" x2="234" y2="30"/><line x1="16" y1="39" x2="234" y2="39"/></g>
+        </g>
+        <!-- centre console bezel, right -->
+        <rect x="1168" y="186" width="350" height="168" rx="16" fill="#060606" stroke="#34302b" stroke-width="2"/>
+        <rect width="1600" height="420" filter="url(#cpGrain)" opacity=".5"/>
+      </svg>
+      <div class="pod pod-boost"><div class="g"></div><div class="dig"><b id="d-boost">-0.6</b><span>BAR</span></div></div>
+      <div class="pod pod-tach"><div class="g"></div><div class="shiftlight" id="d-shift"></div></div>
+      <div class="pod pod-speed"><div class="spd"><b id="d-speed">0</b><span>KM/H</span><i id="d-gear">N</i></div></div>
+      <svg class="cp-wheel" viewBox="0 0 1600 420" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M250,420 A1500,1500 0 0 1 1350,420 L1236,420 A1380,1380 0 0 0 364,420 Z" fill="url(#cpWheel)" stroke="#3a3630" stroke-width="2"/>
+        <path d="M789,320 L811,320 L813,372 L787,372 Z" fill="#e8a49b"/>
+      </svg>
+    </div>
+    <div class="cp-console">
+      <div class="trip">
+        <div class="trip-top"><span>SALT ROAD · BONAIRE</span><span id="d-clock">--:--</span></div>
+        <p class="lead" data-i18n="home.lead"></p>
       </div>
-      <div class="dash-side">
-        <div class="trip">
-          <div class="trip-top"><span>SALT ROAD · BONAIRE</span><span id="d-clock">--:--</span></div>
-          <p class="lead" data-i18n="home.lead"></p>
-        </div>
-        <div class="switches">
-          <a class="sw sw-on" data-yt target="_blank" rel="noopener"><i></i><span data-i18n="home.cta.yt"></span></a>
-          <a class="sw" href="garage.html"><i></i><span data-i18n="home.cta.garage"></span></a>
-          <button class="sw sw-rev" type="button" id="d-rev"><i></i><span data-i18n="home.rev"></span></button>
-        </div>
+      <div class="switches">
+        <a class="sw sw-on" data-yt target="_blank" rel="noopener"><i></i><span data-i18n="home.cta.yt"></span></a>
+        <a class="sw" href="garage.html"><i></i><span data-i18n="home.cta.garage"></span></a>
+        <button class="sw sw-rev" type="button" id="d-rev"><i></i><span data-i18n="home.rev"></span></button>
       </div>
     </div>
-  </div>
   </div>
 </header>
 
