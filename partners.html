@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Partners | Salt Road Cinema</title>
+<meta name="description" content="Put your brand in front of Bonaire's car scene. Media kit, partner wall and enquiry form.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/css/partners.css">
+</head>
+<body data-page="partners">
+<div data-shell="nav"></div>
+
+<header class="page-head"><div class="wrap">
+  <h1 data-i18n-html="partners.h1"></h1>
+  <p class="sub" data-i18n="partners.sub"></p>
+  <p class="head-cta">
+    <a class="btn btn-pan" href="#enquire" data-i18n="partners.cta"></a>
+    <a class="btn btn-ghost" id="kit-link" href="#" data-i18n="partners.kit"></a>
+  </p>
+</div></header>
+
+<main>
+  <section id="kit"><div class="wrap">
+    <div class="head reveal"><h2 data-i18n-html="partners.kit.h"></h2></div>
+    <div class="stat-row" id="stat-row"></div>
+    <div class="audience reveal">
+      <h3 data-i18n="partners.aud.h"></h3>
+      <ul class="places" id="places"></ul>
+    </div>
+    <h3 class="offer-h reveal" data-i18n="partners.offer.h"></h3>
+    <div class="offers" id="offers"></div>
+  </div></section>
+
+  <section id="wall"><div class="wrap">
+    <div class="head reveal"><h2 data-i18n-html="partners.wall.h"></h2></div>
+    <div id="wall-body"></div>
+  </div></section>
+
+  <section id="enquire"><div class="wrap enq">
+    <div class="reveal">
+      <h2 data-i18n-html="partners.form.h"></h2>
+      <p class="sub" data-i18n="partners.form.sub"></p>
+    </div>
+    <form id="enq-form" class="sponsor reveal">
+      <label><span data-i18n="partners.f.name"></span><input name="name" required autocomplete="name"></label>
+      <label><span data-i18n="partners.f.company"></span><input name="company" required autocomplete="organization"></label>
+      <label class="full"><span data-i18n="partners.f.email"></span><input name="email" type="email" required autocomplete="email"></label>
+      <label class="full"><span data-i18n="partners.f.budget"></span>
+        <select name="budget" id="f-budget" required></select>
+      </label>
+      <label class="full"><span data-i18n="partners.f.want"></span>
+        <select name="want" id="f-want" required></select>
+      </label>
+      <label class="full"><span data-i18n="partners.f.msg"></span><textarea name="message" data-i18n-ph="partners.f.msg.ph"></textarea></label>
+      <div class="full"><button class="btn btn-salt" type="submit" data-i18n="common.send"></button></div>
+      <p class="form-ok full" id="enq-ok" hidden role="status"></p>
+      <p class="form-bad full" id="enq-bad" hidden role="alert" data-i18n="partners.err"></p>
+    </form>
+  </div></section>
+</main>
+
+<div data-shell="signup"></div><div data-shell="footer"></div>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n/partners.js"></script>
+<script src="data/partners.js"></script>
+<script src="assets/shell.js"></script>
+<script src="assets/partners.js"></script>
+</body>
+</html>

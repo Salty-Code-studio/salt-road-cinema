@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shop | Salt Road Cinema</title>
+<meta name="description" content="Stickers, tees and a cap from Salt Road Cinema. Pickup in Kralendijk or shipping on request.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/css/shop.css">
+</head>
+<body data-page="shop">
+<div data-shell="nav"></div>
+
+<header class="page-head"><div class="wrap">
+  <h1 data-i18n-html="shop.h1"></h1>
+  <p class="sub" data-i18n="shop.sub"></p>
+  <p class="shop-note" data-i18n="shop.note"></p>
+</div></header>
+
+<main>
+  <section class="shop"><div class="wrap">
+    <div id="shop-grid"></div>
+  </div></section>
+</main>
+
+<button class="cart-fab" id="cart-open" type="button" aria-haspopup="dialog">
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M3 4h2l2.4 11h10.2L20 7H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="19" r="1.6" fill="currentColor"/><circle cx="17" cy="19" r="1.6" fill="currentColor"/></svg>
+  <span data-i18n="shop.cart"></span>
+  <b id="cart-count">0</b>
+</button>
+
+<dialog id="cart" class="cart" aria-labelledby="cart-title">
+  <div class="cart-head">
+    <h3 id="cart-title" data-i18n="shop.cart"></h3>
+    <button class="btn btn-ghost btn-sm" id="cart-close" type="button" data-i18n="shop.close"></button>
+  </div>
+  <div id="cart-lines" class="cart-lines"></div>
+  <form id="cart-form" class="cart-form" novalidate>
+    <div class="cart-total"><span data-i18n="shop.total"></span><b id="cart-total">$0</b></div>
+    <fieldset class="fulfil">
+      <legend data-i18n="shop.fulfil"></legend>
+      <label class="opt"><input type="radio" name="fulfil" value="pickup" checked><span data-i18n="shop.pickup"></span></label>
+      <label class="opt"><input type="radio" name="fulfil" value="ship"><span data-i18n="shop.ship"></span></label>
+    </fieldset>
+    <label>
+      <span data-i18n="shop.name"></span>
+      <input name="name" autocomplete="name" required>
+    </label>
+    <p class="cart-err" id="cart-err" hidden data-i18n="shop.name.err"></p>
+    <a class="btn btn-pan" id="cart-go" href="#" target="_blank" rel="noopener" data-i18n="shop.checkout"></a>
+    <p class="cart-fine" data-i18n="shop.fine"></p>
+  </form>
+</dialog>
+
+<div data-shell="signup"></div><div data-shell="footer"></div>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n/shop.js"></script>
+<script src="data/products.js"></script>
+<script src="assets/shell.js"></script>
+<script src="assets/shop.js"></script>
+</body>
+</html>

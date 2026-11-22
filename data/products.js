@@ -1,4 +1,32 @@
 // Shop. price in USD. sizes optional. photo optional (placeholder art if empty).
 // { id, kind: "sticker"|"tee"|"cap", name: {en,nl,pap}, price, sizes: ["S","M"...], colors: ["Black"...], photo, soldOut }
+// Extra optional fields: desc {en,nl,pap}, shape: "banner" (wide placeholder art).
 window.DATA = window.DATA || {};
-window.DATA.products = []; // seeded by the shop builder with placeholder products, prices TBD by Rudo
+// TODO prices from Rudo. Every price below is a placeholder.
+window.DATA.products = [
+  {
+    id: "sticker-logo", kind: "sticker", price: 4, colors: [], sizes: [], photo: "",
+    name: { en: "Logo die-cut sticker", nl: "Logo die-cut sticker", pap: "Sticker di logo (die-cut)" },
+    desc: { en: "Weatherproof vinyl. Survives sun, salt and a car wash.", nl: "Weerbestendig vinyl. Overleeft zon, zout en de wasstraat.", pap: "Vinil resistente. E ta aguantá solo, salu i lavadó di outo." }
+  },
+  {
+    id: "sticker-subi", kind: "sticker", shape: "banner", price: 15, colors: [], sizes: [], photo: "",
+    name: { en: "Save the Subi windshield banner", nl: "Save the Subi voorruitbanner", pap: "Banner di Save the Subi pa vidrio di dilanti" },
+    desc: { en: "The strip from the film. Sits across the top of the windshield.", nl: "De strip uit de film. Komt bovenaan je voorruit.", pap: "E strip di e pelíkula. E ta bai na tòp di bo vidrio di dilanti." }
+  },
+  {
+    id: "tee-logo-black", kind: "tee", price: 28, sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Black"], photo: "",
+    name: { en: "Logo tee, black", nl: "Logo-shirt, zwart", pap: "Kamisa di logo, pretu" },
+    desc: { en: "Heavy cotton. Pink frame logo on the chest.", nl: "Zwaar katoen. Roze framelogo op de borst.", pap: "Algodon pisá. Logo ruman riba pecho." }
+  },
+  {
+    id: "tee-saltroad-sand", kind: "tee", price: 28, sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Sand"], photo: "",
+    name: { en: "Salt Road tee, sand", nl: "Salt Road-shirt, zand", pap: "Kamisa Salt Road, santu" },
+    desc: { en: "Sand colour, like the road to the salt pans.", nl: "Zandkleurig, als de weg naar de zoutpannen.", pap: "Koló di santu, manera e kaminda pa e salina." }
+  },
+  {
+    id: "cap-logo", kind: "cap", price: 24, sizes: [], colors: ["Black", "Sand"], photo: "",
+    name: { en: "Logo cap", nl: "Logo-pet", pap: "Kachi di logo" },
+    desc: { en: "Six panel, curved brim, adjustable strap.", nl: "Zes panelen, gebogen klep, verstelbaar bandje.", pap: "Seis panel, bisera kurvá, strap ahustabel." }
+  }
+];
