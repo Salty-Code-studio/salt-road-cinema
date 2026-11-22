@@ -27,7 +27,7 @@
   };
   spd.insertAdjacentHTML("afterbegin", `<svg class="spd-ring" viewBox="0 0 200 200" aria-hidden="true">
     ${arcSegs("L")}${arcSegs("R")}
-    <text x="40" y="162" class="arc-lbl">E</text><text x="40" y="44" class="arc-lbl">F</text>
+    <text x="40" y="162" class="arc-lbl">$</text><text x="44" y="44" class="arc-lbl">$$$</text>
     <text x="160" y="162" class="arc-lbl">C</text><text x="160" y="44" class="arc-lbl">H</text>
     <path class="arc-ico" d="M20,96 h8 v14 h-8 Z M28,100 l4,2 v6" transform="translate(-2,-4)"/>
     <path class="arc-ico" d="M178,92 v14 M174,108 a4,4 0 1 0 8,0 a4,4 0 1 0 -8,0 M178,96 h4 M178,100 h4"/>
