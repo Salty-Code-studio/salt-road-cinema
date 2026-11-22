@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Behind the scenes | Salt Road Cinema</title>
+<meta name="description" content="How Salt Road Cinema shoots cars on Bonaire. The kit and the shoots.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/css/bts.css">
+</head>
+<body data-page="bts">
+<div data-shell="nav"></div>
+
+<header class="page-head"><div class="wrap">
+  <h1 data-i18n-html="bts.h1"></h1>
+  <p class="sub" data-i18n="bts.sub"></p>
+</div></header>
+
+<main>
+  <section id="gear"><div class="wrap">
+    <div class="head reveal"><h2 data-i18n-html="bts.gear.h"></h2></div>
+    <div id="gear-body"></div>
+  </div></section>
+
+  <section id="shoots"><div class="wrap">
+    <div class="head reveal"><h2 data-i18n-html="bts.shoots.h"></h2></div>
+    <div id="shoots-body"></div>
+  </div></section>
+</main>
+
+<dialog id="lightbox" class="lightbox" aria-label="Photo viewer">
+  <button class="lb-close" id="lb-close" type="button" data-i18n-aria="bts.close">&times;</button>
+  <button class="lb-nav lb-prev" id="lb-prev" type="button" data-i18n-aria="bts.prev">&#8592;</button>
+  <figure>
+    <img id="lb-img" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+  <button class="lb-nav lb-next" id="lb-next" type="button" data-i18n-aria="bts.next">&#8594;</button>
+</dialog>
+
+<div data-shell="signup"></div><div data-shell="footer"></div>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n/bts.js"></script>
+<script src="data/gear.js"></script>
+<script src="assets/shell.js"></script>
+<script src="assets/bts.js"></script>
+</body>
+</html>
