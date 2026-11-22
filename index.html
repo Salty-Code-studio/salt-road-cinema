@@ -79,18 +79,51 @@
       <div class="pod pod-speed"><div class="spd"><b id="d-speed">0</b><span>KM/H</span><i id="d-gear">N</i></div></div>
       <svg class="cp-wheel" viewBox="0 0 1600 1000" aria-hidden="true">
         <defs>
-          <radialGradient id="cpLeather" cx=".5" cy=".3" r=".75"><stop offset="0" stop-color="#2d2a26"/><stop offset=".6" stop-color="#151311"/><stop offset="1" stop-color="#070606"/></radialGradient>
+          <radialGradient id="whLeather" cx=".5" cy=".25" r=".8"><stop offset="0" stop-color="#34302b"/><stop offset=".55" stop-color="#191714"/><stop offset="1" stop-color="#080707"/></radialGradient>
+          <linearGradient id="whRimShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2824"/><stop offset=".5" stop-color="#151311"/><stop offset="1" stop-color="#080707"/></linearGradient>
+          <pattern id="whPerf" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#121110"/><circle cx="4.5" cy="4.5" r="1.4" fill="#050505"/></pattern>
+          <linearGradient id="whMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b665e"/><stop offset=".45" stop-color="#3a3732"/><stop offset=".55" stop-color="#2b2925"/><stop offset="1" stop-color="#4a463f"/></linearGradient>
+          <radialGradient id="whPad" cx=".5" cy=".35" r=".75"><stop offset="0" stop-color="#2c2925"/><stop offset=".7" stop-color="#151311"/><stop offset="1" stop-color="#0a0908"/></radialGradient>
         </defs>
         <!-- rim -->
-        <path fill-rule="evenodd" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2" d="M320,800 a480,480 0 1 0 960,0 a480,480 0 1 0 -960,0 Z M382,800 a418,418 0 1 1 836,0 a418,418 0 1 1 -836,0 Z"/>
-        <path d="M789,321 L811,321 L813,384 L787,384 Z" fill="#e8a49b"/>
+        <path fill-rule="evenodd" fill="url(#whRimShade)" d="M320,800 a480,480 0 1 0 960,0 a480,480 0 1 0 -960,0 Z M382,800 a418,418 0 1 1 836,0 a418,418 0 1 1 -836,0 Z"/>
+        <!-- perforated grip zones, ten and two -->
+        <path d="M346.3,652.6 A477,477 0 0 1 590.9,371.3 L615.4,421.6 A421,421 0 0 0 399.6,669.9 Z" fill="url(#whPerf)"/>
+        <path d="M1009.1,371.3 A477,477 0 0 1 1253.7,652.6 L1200.4,669.9 A421,421 0 0 0 984.6,421.6 Z" fill="url(#whPerf)"/>
+        <!-- seams where smooth leather meets perforated -->
+        <path d="M582.1,372.3 A480,480 0 0 1 597.1,365.0 L623.3,421.2 A418,418 0 0 0 610.2,427.6 Z" fill="#050505"/><path d="M1002.9,365.0 A480,480 0 0 1 1017.9,372.3 L989.8,427.6 A418,418 0 0 0 976.7,421.2 Z" fill="#050505"/>
+        <path d="M341.0,659.7 A480,480 0 0 1 346.2,643.7 L404.8,663.9 A418,418 0 0 0 400.3,677.8 Z" fill="#050505"/><path d="M1253.8,643.7 A480,480 0 0 1 1259.0,659.7 L1199.7,677.8 A418,418 0 0 0 1195.2,663.9 Z" fill="#050505"/>
+        <!-- thumb contours -->
+        <path d="M401.6,655.0 A424,424 0 0 1 600.9,425.6" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="4"/>
+        <path d="M999.1,425.6 A424,424 0 0 1 1198.4,655.0" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="4"/>
+        <!-- bevels -->
+        <circle cx="800" cy="800" r="479" fill="none" stroke="#4a453d" stroke-width="2"/>
+        <path d="M367.7,598.4 A477,477 0 0 1 1232.3,598.4" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="3"/>
+        <circle cx="800" cy="800" r="419" fill="none" stroke="#000" stroke-opacity=".7" stroke-width="3"/>
+        <!-- baseball stitch -->
+        <circle cx="800" cy="800" r="444.0" fill="none" stroke="#e8a49b" stroke-opacity=".6" stroke-width="1.6" stroke-dasharray="6 5"/>
+        <circle cx="800" cy="800" r="454.0" fill="none" stroke="#e8a49b" stroke-opacity=".6" stroke-width="1.6" stroke-dasharray="6 5" stroke-dashoffset="5.5"/>
+        <!-- 12 o'clock marker -->
+        <path d="M774.9,320.7 A480,480 0 0 1 825.1,320.7 L821.9,382.6 A418,418 0 0 0 778.1,382.6 Z" fill="#e8a49b"/>
+        <path d="M775.0,323.7 A477,477 0 0 1 825.0,323.7" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="2"/>
         <!-- spokes -->
-        <path d="M386,772 L712,760 Q724,800 712,840 L386,828 Q380,800 386,772 Z" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2"/>
-        <path d="M1214,772 L888,760 Q876,800 888,840 L1214,828 Q1220,800 1214,772 Z" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2"/>
-        <path d="M748,880 L852,880 L880,1214 L720,1214 Z" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2"/>
-        <!-- hub with the Salt Road mark -->
-        <circle cx="800" cy="800" r="104" fill="url(#cpLeather)" stroke="#4a453d" stroke-width="3"/>
-        <circle cx="800" cy="800" r="86" fill="none" stroke="#2a2723" stroke-width="2"/>
+        <path d="M384,768 L700,752 Q722,800 700,848 L384,832 Q376,800 384,768 Z" fill="url(#whLeather)" stroke="#3a3630" stroke-width="2"/>
+        <path d="M1216,768 L900,752 Q878,800 900,848 L1216,832 Q1224,800 1216,768 Z" fill="url(#whLeather)" stroke="#3a3630" stroke-width="2"/>
+        <path d="M470,782 L690,772 L690,828 L470,818 Z" fill="url(#whMetal)" opacity=".9"/>
+        <path d="M1130,782 L910,772 L910,828 L1130,818 Z" fill="url(#whMetal)" opacity=".9"/>
+        <g fill="#0c0b0a" stroke="#5a554c" stroke-width="1.5">
+          <circle cx="545" cy="800" r="15"/><circle cx="595" cy="800" r="15"/><circle cx="645" cy="800" r="15"/>
+          <circle cx="955" cy="800" r="15"/><circle cx="1005" cy="800" r="15"/><circle cx="1055" cy="800" r="15"/>
+        </g>
+        <g fill="none" stroke="#b5afa4" stroke-width="2" stroke-linecap="round">
+          <path d="M540,800 h10 M545,795 v10"/><path d="M590,800 h10"/><path d="M640,794 l8,6 -8,6"/>
+          <path d="M950,800 h10"/><path d="M1000,800 h10 M1005,795 v10"/><circle cx="1055" cy="800" r="5"/>
+        </g>
+        <path d="M742,876 L858,876 L884,1214 L716,1214 Z" fill="url(#whLeather)" stroke="#3a3630" stroke-width="2"/>
+        <!-- horn pad -->
+        <path d="M680,728 Q800,690 920,728 Q944,800 908,872 Q800,904 692,872 Q656,800 680,728 Z" fill="url(#whPad)" stroke="#4a453d" stroke-width="3"/>
+        <path d="M700,742 Q800,710 900,742" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="3"/>
+        <path d="M706,862 Q800,888 894,862" fill="none" stroke="#050505" stroke-width="2" stroke-dasharray="3 3"/>
         <rect x="752" y="772" width="96" height="58" rx="10" fill="none" stroke="#f3efe6" stroke-width="7"/>
         <rect x="776" y="789" width="48" height="24" rx="3" fill="#e8a49b"/>
       </svg>
