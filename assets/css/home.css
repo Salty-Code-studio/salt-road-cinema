@@ -587,3 +587,73 @@ span.gb-obj.zoom{cursor:default}
 .pegboard{padding:12px 10px;gap:8px}
 .bay-chest{padding:8px 7px;gap:5px}
 .ign{width:2.3%;left:67.7%;top:71.5%}
+
+/* ---------- game-UI frames: cut corners ---------- */
+.cut{--c:16px;position:relative;clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c));
+  background:linear-gradient(135deg,#e8a49b 0 calc(var(--c) * .72),transparent calc(var(--c) * .72)) top left/ calc(var(--c) * 1.4) calc(var(--c) * 1.4) no-repeat,
+             linear-gradient(-45deg,#e8a49b 0 calc(var(--c) * .72),transparent calc(var(--c) * .72)) bottom right/ calc(var(--c) * 1.4) calc(var(--c) * 1.4) no-repeat,
+             var(--cut-bg,#121110)}
+.cut::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:5;
+  clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c),var(--c) 0,calc(var(--c) + 1px) 1px,1px calc(var(--c) + 1px),1px calc(100% - 1px),calc(100% - var(--c) - 1px) calc(100% - 1px),calc(100% - 1px) calc(100% - var(--c) - 1px),calc(100% - 1px) 1px,calc(var(--c) + 1px) 1px);
+  background:rgba(243,239,230,.16)}
+.reel-video.cut,.garage-bay.cut{border:0;border-radius:0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.sec-head h2{font-size:clamp(26px,3vw,40px);max-width:none}
+
+/* ---------- next meet (car-meet page style) ---------- */
+.meet{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;padding:18px;--cut-bg:#0f0e0d}
+@media(max-width:860px){.meet{grid-template-columns:1fr}}
+.meet-map{position:relative;aspect-ratio:16/8;overflow:hidden;background:#141414;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+#meet-map{position:absolute;inset:0;filter:hue-rotate(-12deg) saturate(1.4)}
+.meet-map-shade{position:absolute;inset:0;z-index:400;pointer-events:none;background:linear-gradient(180deg,rgba(15,14,13,0) 35%,rgba(15,14,13,.92) 100%)}
+.meet-over{position:absolute;left:18px;right:18px;bottom:16px;z-index:401}
+.meet-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.meet-tags span{font:600 11px var(--wide);padding:4px 10px;border-radius:99px;background:rgba(232,164,155,.14);border:1px solid rgba(232,164,155,.45);color:#f3d3ce}
+.meet-over h3{font-size:clamp(24px,3vw,42px);line-height:1;text-transform:uppercase}
+.meet-over p{color:var(--salt-dim);font-size:14px;margin-top:4px}
+.meet-about{margin-top:14px;color:#d9d4c8;font-size:15px;max-width:60ch}
+.meet-pin i{display:block;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,#e8a49b 0 5px,rgba(232,164,155,.35) 6px 9px,rgba(232,164,155,.12) 10px);box-shadow:0 0 18px rgba(232,164,155,.8)}
+.leaflet-container{background:#141414;font:11px var(--mono)}
+.leaflet-control-attribution{background:rgba(0,0,0,.5)!important;color:#8f897d!important}
+.leaflet-control-attribution a{color:#b9b3a7!important}
+.meet-side{display:grid;gap:10px;align-content:start}
+.meet-box{display:grid;gap:3px;padding:14px 16px;background:#161513;border:1px solid #2a2724;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.meet-box span{font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8f897d}
+.meet-box b{font-size:16px}
+.meet-box i{font-style:normal;color:var(--salt-dim);font-size:14px}
+.meet-box a{color:var(--pan);font-weight:600;font-size:14px;text-decoration:none}
+.meet-go{display:block;text-align:center;padding:15px;font:600 15px var(--wide);text-decoration:none;color:#fff;background:linear-gradient(180deg,#ef5a5f,#c8323a);box-shadow:0 8px 22px rgba(200,50,58,.35);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.meet-go:hover{filter:brightness(1.08)}
+
+/* ---------- merch: square mockups ---------- */
+.merch-sub{margin:-10px 0 22px}
+.merch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:960px){.merch-grid{grid-template-columns:repeat(2,1fr)}}
+.merch{display:block;text-decoration:none;color:inherit;--cut-bg:#121110;transition:transform .25s}
+.merch:hover{transform:translateY(-3px)}
+.mock{position:relative;aspect-ratio:1;overflow:hidden;background:#1a1816}
+.mock img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.merch:hover .mock img{transform:scale(1.04)}
+.print{position:absolute;pointer-events:none}
+.print svg{width:100%;height:auto;display:block}
+.mock-tee-black .print-chest{left:36%;top:44%;width:28%;color:#f3efe6;opacity:.88;mix-blend-mode:screen;transform:perspective(400px) rotateY(-4deg)}
+.mock-tee-sand img{filter:sepia(.45) saturate(1.3) brightness(.93) hue-rotate(-8deg)}
+.mock-tee-sand .print-hanger{left:39%;top:34%;width:24%;color:#1b1917;mix-blend-mode:multiply;opacity:.9}
+.mock-cap .print-cap{left:58%;top:56%;width:12%;transform:perspective(300px) rotateY(-24deg) rotate(-3deg);opacity:.92}
+.mock-stickers{background:linear-gradient(160deg,#c9a77a,#a7835a);display:block}
+.mock-stickers::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E")}
+.stk{position:absolute;display:block;padding:8px 10px;background:#f6f2ea;border-radius:12px;box-shadow:0 0 0 3px #fff,0 6px 14px rgba(0,0,0,.35);color:#0c0b0a}
+.stk-1{left:10%;top:14%;width:64%;transform:rotate(-7deg)}
+.stk-2{left:22%;top:50%;width:66%;transform:rotate(5deg);background:#f3efe6}
+.stk-3{left:62%;top:20%;width:22%;transform:rotate(12deg);background:#0c0b0a;box-shadow:0 0 0 3px #f6f2ea,0 6px 14px rgba(0,0,0,.35)}
+.stk-3 svg rect:first-child{stroke:#f3efe6}
+.merch-meta{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 14px}
+.merch-meta b{font-size:15px}
+.merch-price{font:600 14px var(--mono);color:var(--pan)}
+.merch-credit{margin-top:12px;font:11px var(--mono);color:#6b665e}
+
+/* dark map from standard OSM tiles: invert + tint towards the brand red */
+#meet-map{filter:none}
+.meet-tiles{filter:invert(1) grayscale(1) brightness(.62) contrast(1.35)}
+.meet-map::after{content:"";position:absolute;inset:0;z-index:399;pointer-events:none;background:#b83a40;mix-blend-mode:color;opacity:.55}
+.stk-1{left:8%;top:12%;width:62%}.stk-2{left:10%;top:50%;width:80%}.stk-3{left:70%;top:76%;width:20%;transform:rotate(-10deg)}

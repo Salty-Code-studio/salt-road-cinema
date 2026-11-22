@@ -120,3 +120,15 @@ SRC_I18N.add({
   nl: { "bay.next": "Volgende Subi video", "bay.todo": "Volgende op de to-do lijst", "bay.built": "gebouwd", "bay.drag": "Sleep om te draaien", "bay.soon": "Datum volgt", "bay.live": "Nu online" },
   pap: { "bay.next": "Siguiente video di Subi", "bay.todo": "Siguiente riba e lista", "bay.built": "trahá", "bay.drag": "Hala pa bira", "bay.soon": "Fecha ta bin", "bay.live": "Awor online" }
 });
+
+SRC_I18N.add({
+  en: { "meet.h": "Next <em>meet</em>", "merch.tee.black": "Logo tee, black", "merch.tee.sand": "Salt Road tee, sand", "merch.cap": "Logo cap", "merch.stickers": "Sticker pack",
+        "meet.about": "Meets on Bonaire pop up fast. Tell us when and where and we put it here, with a map and a route.",
+        "meet.tba": "Next meet: TBA", "meet.when": "When", "meet.where": "Where", "meet.route": "Route", "meet.going": "going", "meet.go": "I'm going", "meet.tell": "Tell us about a meet", "meet.soon": "Date soon", "meet.wa": "Hi Salt Road Cinema! I'm coming to: " },
+  nl: { "meet.h": "Volgende <em>meet</em>", "merch.tee.black": "Logo shirt, zwart", "merch.tee.sand": "Salt Road shirt, zand", "merch.cap": "Logo pet", "merch.stickers": "Stickerpakket",
+        "meet.about": "Meets op Bonaire ontstaan snel. Vertel ons wanneer en waar en we zetten hem hier, met kaart en route.",
+        "meet.tba": "Volgende meet: volgt", "meet.when": "Wanneer", "meet.where": "Waar", "meet.route": "Route", "meet.going": "gaan", "meet.go": "Ik ga", "meet.tell": "Vertel ons over een meet", "meet.soon": "Datum volgt", "meet.wa": "Hoi Salt Road Cinema! Ik kom naar: " },
+  pap: { "meet.h": "Siguiente <em>meet</em>", "merch.tee.black": "T-shirt di logo, pretu", "merch.tee.sand": "T-shirt Salt Road, santu", "merch.cap": "Pet di logo", "merch.stickers": "Pakete di sticker",
+        "meet.about": "Meets na Boneiru ta organisá lihé. Bisa nos ki dia i unda i nos ta pone e aki, ku mapa i ruta.",
+        "meet.tba": "Siguiente meet: ta bin", "meet.when": "Ki dia", "meet.where": "Unda", "meet.route": "Ruta", "meet.going": "ta bai", "meet.go": "Mi ta bai", "meet.tell": "Bisa nos di un meet", "meet.soon": "Fecha ta bin", "meet.wa": "Halo Salt Road Cinema! Mi ta bin na: " }
+});

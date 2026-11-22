@@ -211,7 +211,7 @@
      Soft navigation: internal links swap the page content in place so
      the radio never stops. Falls back to a normal load on any error.
      ------------------------------------------------------------------ */
-  const SKIP = /(assets\/(config|i18n|shell|intro)\.js|data\/radio\.js)$/;
+  const SKIP = /(assets\/(config|i18n|shell|intro)\.js|data\/radio\.js|leaflet[^/]*\/dist\/leaflet\.js)$/;
   let cleanup = [];
   const track = () => {
     const dAdd = document.addEventListener.bind(document), wAdd = window.addEventListener.bind(window);
