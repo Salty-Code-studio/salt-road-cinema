@@ -312,3 +312,9 @@ SRC_I18N.add({
     "subi.part.tune": "Protune Ecutek òf Cobb", "subi.part.tune.n": "Último paso. Mapa seguro, pull logá."
   }
 });
+
+SRC_I18N.add({
+  en: { "subi.ship.ask": "Message us on WhatsApp for the shipping address. We reply the same day." },
+  nl: { "subi.ship.ask": "Stuur ons een WhatsApp voor het verzendadres. We reageren dezelfde dag." },
+  pap: { "subi.ship.ask": "Manda nos un WhatsApp pa e adrès di manda. Nos ta kontestá e mesun dia." }
+});

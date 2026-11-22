@@ -48,7 +48,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
   .nav-links a:not(.btn){display:block;padding:14px 0;font-size:20px;font-weight:700;color:var(--salt);border-bottom:1px solid var(--line)}
   .nav-cta{margin-top:16px}
 }
-@media(max-width:420px){.logo{font-size:14px}.lang button{padding:6px 6px}}
+@media(max-width:420px){.nav .wrap,.nav-right{gap:8px}.logo{font-size:12px;letter-spacing:0;gap:7px;min-width:0;overflow:hidden}.logo i{width:18px;height:12px}.lang button{padding:6px 5px}.burger{width:36px;height:36px}.burger span{left:9px;right:9px}.burger span:first-child{top:13px}.burger span:nth-child(2){top:21px}}
+[hidden]{display:none!important}
 
 .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--wide);font-weight:700;font-size:15px;padding:14px 22px;border-radius:999px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s,background .15s,color .15s}
 .btn:hover{transform:translateY(-1px)}

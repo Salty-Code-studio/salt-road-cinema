@@ -15,6 +15,8 @@
     .slice().sort((a, b) => String(b.published).localeCompare(String(a.published)));
 
   let filter = "all";
+  const wanted = new URLSearchParams(location.search).get("series");
+  if (wanted && videos.some(v => v.series === wanted)) filter = wanted;
   const LOCALES = { en: "en-GB", nl: "nl-NL", pap: "nl-NL" };
   const fmtDate = (iso) => {
     const d = new Date(iso + "T00:00:00");

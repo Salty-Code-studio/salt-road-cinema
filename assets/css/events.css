@@ -63,3 +63,5 @@
 .ev-empty h2{max-width:16ch}
 .ev-empty .sub{margin:0}
 @media(max-width:600px){.ev-empty{padding:40px 20px}}
+
+.ev-next-label{display:none}

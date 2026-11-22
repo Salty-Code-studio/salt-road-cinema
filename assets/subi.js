@@ -149,7 +149,10 @@
 
   // ship dialog
   const dlg = $("#ship"), shipBtn = $("#ship-copy");
-  $("#ship-addr").textContent = (C.shipTo || []).join("\n");
+  const hasAddr = (C.shipTo || []).length > 0;
+  const setAddr = () => { $("#ship-addr").textContent = hasAddr ? C.shipTo.join("\n") : t("subi.ship.ask"); };
+  setAddr(); document.addEventListener("langchange", setAddr);
+  shipBtn.hidden = !hasAddr;
   list.addEventListener("click", e => {
     const b = e.target.closest("[data-ship]"); if (!b) return;
     const p = P.find(x => x.id === b.dataset.ship);

@@ -18,14 +18,11 @@ window.SRC = {
   formEndpoint: "",
 
   // Where sponsors ship parts. Most US shops ship to a Miami forwarder.
-  shipTo: [
-    "Salt Road Cinema / Save the Subi",
-    "TODO: forwarder name + suite number",
-    "Miami, FL, USA",
-    "Final stop: Kralendijk, Bonaire"
-  ],
+  // Empty = the dialog asks sponsors to get the address on WhatsApp.
+  // e.g. ["Salt Road Cinema / Save the Subi", "<forwarder> Suite 123", "Miami, FL 33xxx, USA"]
+  shipTo: [], // TODO: forwarder address from Rudo
   goalUSD: 6500,      // Subi: total the build needs
-  raisedUSD: 1150     // Subi: update as money and parts come in
+  raisedUSD: 0        // Subi: update as money and parts come in
 };
 
 // One way to take money everywhere on the site.
