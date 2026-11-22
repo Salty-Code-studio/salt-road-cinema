@@ -62,3 +62,43 @@
   document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
   document.addEventListener("click", e => { if (!gb.contains(e.target)) set(false); });
 })();
+
+// Glovebox items: hover (or first tap) brings an item to the middle of the box.
+(() => {
+  const cav = document.querySelector(".gb-cavity");
+  if (!cav) return;
+  const cap = cav.querySelector(".gb-caption");
+  const items = [...cav.querySelectorAll(".gb-obj")];
+  const zoom = el => {
+    const c = cav.getBoundingClientRect();
+    el.style.setProperty("--dx", "0px"); el.style.setProperty("--dy", "0px"); el.style.setProperty("--s", "1");
+    const w = el.offsetWidth, h = el.offsetHeight;
+    // un-transformed centre, from layout offsets
+    const ex = el.offsetLeft + w / 2, ey = el.offsetTop + h / 2;
+    const tx = c.width / 2, ty = c.height * .56;
+    const s = Math.min(2.4, (c.width * .52) / w, (c.height * .6) / h);
+    el.style.setProperty("--dx", `${tx - ex}px`); el.style.setProperty("--dy", `${ty - ey}px`); el.style.setProperty("--s", s.toFixed(2));
+    items.forEach(i => i.classList.toggle("zoom", i === el));
+    cav.classList.add("focus");
+    cap.textContent = el.getAttribute("aria-label") || "";
+  };
+  const reset = () => { items.forEach(i => i.classList.remove("zoom")); cav.classList.remove("focus"); };
+  // Hover targets stay where the items lie, so a zoomed item never "runs away" from the cursor.
+  const hits = items.map(el => {
+    const h = document.createElement("span");
+    h.className = "gb-hit"; h.setAttribute("aria-hidden", "true");
+    h.style.zIndex = getComputedStyle(el).zIndex;
+    cav.appendChild(h);
+    h.addEventListener("mouseenter", () => zoom(el));
+    h.addEventListener("mouseleave", e => { if (!e.relatedTarget || !e.relatedTarget.classList || !e.relatedTarget.classList.contains("gb-hit")) reset(); });
+    h.addEventListener("click", () => { if (el.classList.contains("zoom") && el.tagName === "A") el.click(); else zoom(el); });
+    return h;
+  });
+  const place = () => items.forEach((el, i) => Object.assign(hits[i].style, { left: el.offsetLeft + "px", top: el.offsetTop + "px", width: el.offsetWidth + "px", height: el.offsetHeight + "px" }));
+  place(); addEventListener("resize", place);
+  document.querySelector(".gb-lid")?.addEventListener("click", () => requestAnimationFrame(place));
+  items.forEach(el => {
+    el.addEventListener("focus", () => zoom(el));
+    el.addEventListener("blur", reset);
+  });
+})();
