@@ -151,17 +151,19 @@
   document.addEventListener("click", e => { if (!gb.contains(e.target)) set(false); });
 })();
 
-// Glovebox items: hover (or first tap) brings an item to the middle of the box.
+// Glovebox items. Each item reacts only on its painted shape, so every item is reachable.
+// Hover: small tilt + glow. Click: zoom to the middle. Click again: open its page.
+// Move off the zoomed item (or out of the box): it goes back into the pile.
 (() => {
   const cav = document.querySelector(".gb-cavity");
   if (!cav) return;
   const cap = cav.querySelector(".gb-caption");
   const items = [...cav.querySelectorAll(".gb-obj")];
+  let current = null, armed = false;
   const zoom = el => {
+    el.classList.remove("glow");
     const c = cav.getBoundingClientRect();
-    el.style.setProperty("--dx", "0px"); el.style.setProperty("--dy", "0px"); el.style.setProperty("--s", "1");
     const w = el.offsetWidth, h = el.offsetHeight;
-    // un-transformed centre, from layout offsets
     const ex = el.offsetLeft + w / 2, ey = el.offsetTop + h / 2;
     const tx = c.width / 2, ty = c.height * .56;
     const s = Math.min(2.4, (c.width * .52) / w, (c.height * .6) / h);
@@ -169,29 +171,24 @@
     items.forEach(i => i.classList.toggle("zoom", i === el));
     cav.classList.add("focus");
     cap.textContent = el.getAttribute("aria-label") || "";
-    // caption sits just above the zoomed item
-    const top = ty - (h * s) / 2 - 6;
-    cap.style.top = Math.max(4, top) + "px";
+    cap.style.top = Math.max(4, ty - (h * s) / 2 - 6) + "px";
+    current = el; armed = false;
   };
-  const reset = () => { items.forEach(i => i.classList.remove("zoom")); cav.classList.remove("focus"); };
-  // Hover = faint glow in place. Click = item comes to the middle (zoom + caption).
-  // Click the zoomed item to open its page; click the empty box to put it back.
-  const hits = items.map(el => {
-    const h = document.createElement("span");
-    h.className = "gb-hit"; h.setAttribute("aria-hidden", "true");
-    h.style.zIndex = 30;
-    cav.appendChild(h);
-    h.addEventListener("mouseenter", () => el.classList.add("glow"));
-    h.addEventListener("mouseleave", () => el.classList.remove("glow"));
-    h.addEventListener("click", e => { e.stopPropagation(); el.classList.remove("glow"); zoom(el); });
-    return h;
+  const reset = () => { items.forEach(i => i.classList.remove("zoom")); cav.classList.remove("focus"); current = null; };
+  items.forEach(el => {
+    el.addEventListener("mouseenter", () => { if (el === current) armed = true; else if (!current) el.classList.add("glow"); });
+    el.addEventListener("mouseleave", () => { el.classList.remove("glow"); if (el === current && armed) reset(); });
+    el.addEventListener("click", e => {
+      if (el !== current) { e.preventDefault(); e.stopPropagation(); zoom(el); }
+      // second click on the zoomed <a> follows the link (soft navigation handles it)
+    });
+    el.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && el !== current) { e.preventDefault(); zoom(el); } });
+    el.addEventListener("blur", () => { if (el === current) reset(); });
   });
-  const place = () => items.forEach((el, i) => Object.assign(hits[i].style, { left: el.offsetLeft + "px", top: el.offsetTop + "px", width: el.offsetWidth + "px", height: el.offsetHeight + "px" }));
-  place(); addEventListener("resize", place);
+  cav.addEventListener("mouseleave", reset);
+  cav.addEventListener("click", e => { if (!e.target.closest(".gb-obj")) reset(); });
   const lidBtn = document.querySelector(".gb-lid");
-  lidBtn && lidBtn.addEventListener("click", () => { reset(); requestAnimationFrame(place); });
-  cav.addEventListener("click", e => { if (!e.target.closest(".gb-obj.zoom")) reset(); });
-  items.forEach(el => el.addEventListener("keydown", e => {
-    if ((e.key === "Enter" || e.key === " ") && !el.classList.contains("zoom")) { e.preventDefault(); zoom(el); }
-  }));
+  lidBtn && lidBtn.addEventListener("click", reset);
+  // drop the old box-shaped hover targets if a previous version added them
+  cav.querySelectorAll(".gb-hit").forEach(h => h.remove());
 })();

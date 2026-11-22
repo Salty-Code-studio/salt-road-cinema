@@ -480,3 +480,13 @@ span.gb-obj.zoom{cursor:default}
 .bay-info .meter{margin:0 0 14px}
 @media(max-width:760px){.bay-info{grid-template-columns:1fr;gap:14px}}
 .bay-chest{height:24%;grid-template-rows:repeat(4,1fr)}.bay-chest i::after{margin-top:12%}
+
+/* glovebox v4: shape-accurate hit areas, hover tilt + glow */
+.gb-hit{display:none}
+.gb-obj{pointer-events:none}
+.gb-obj svg{pointer-events:none}
+.glovebox.open .gb-obj svg *{pointer-events:visiblePainted;cursor:pointer}
+.glovebox.open span.gb-obj svg *{cursor:default}
+.glovebox.open .gb-obj.glow:not(.zoom){transform:translate(0,-3px) rotate(calc(var(--r) + 5deg)) scale(1.05);
+  filter:drop-shadow(0 0 1px rgba(255,214,186,.85)) drop-shadow(0 0 7px rgba(232,164,155,.5)) drop-shadow(0 4px 4px rgba(0,0,0,.6))}
+.glovebox.open .gb-obj.zoom svg *{cursor:pointer}
