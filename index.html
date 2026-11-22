@@ -44,6 +44,8 @@
           <linearGradient id="cpBrow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e2a25"/><stop offset="1" stop-color="#0d0c0a"/></linearGradient>
           <radialGradient id="cpWell" cx=".5" cy=".35" r=".7"><stop offset="0" stop-color="#121110"/><stop offset="1" stop-color="#030303"/></radialGradient>
           <linearGradient id="cpWheel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2824"/><stop offset=".4" stop-color="#151311"/><stop offset="1" stop-color="#050505"/></linearGradient>
+          <radialGradient id="cpGlow"><stop offset="0" stop-color="#e8a49b" stop-opacity=".3"/><stop offset=".55" stop-color="#e8a49b" stop-opacity=".08"/><stop offset="1" stop-color="#e8a49b" stop-opacity="0"/></radialGradient>
+          <linearGradient id="cpRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a49b" stop-opacity="0"/><stop offset="1" stop-color="#e8a49b" stop-opacity=".16"/></linearGradient>
           <filter id="cpGrain"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
         </defs>
         <!-- dash top surface, windshield base to edges -->
@@ -52,22 +54,40 @@
         <path d="M0,214 C230,186 384,174 458,178 C548,82 1052,82 1142,178 C1228,170 1390,184 1600,218" fill="none" stroke="rgba(232,164,155,.38)" stroke-width="1.6" stroke-dasharray="7 6"/>
         <!-- instrument hood (brow) and the gauge well -->
         <path d="M470,190 C500,70 1100,70 1130,190 L1112,190 C1080,98 520,98 488,190 Z" fill="url(#cpBrow)"/>
-        <path d="M492,192 C522,104 1078,104 1108,192 L1108,330 L492,330 Z" fill="url(#cpWell)"/>
+        <path d="M492,192 C522,104 1078,104 1108,192 C1114,262 1084,326 1030,340 L570,340 C516,326 486,262 492,192 Z" fill="url(#cpWell)"/>
+        <!-- faint dash-light reflections in the hood corners -->
+        <ellipse cx="512" cy="206" rx="150" ry="62" fill="url(#cpGlow)" class="glow"/>
+        <ellipse cx="1088" cy="206" rx="150" ry="62" fill="url(#cpGlow)" class="glow"/>
+        <path d="M494,190 C524,104 1076,104 1106,190" fill="none" stroke="url(#cpRim)" stroke-width="3" class="glow"/>
         <!-- vent, left -->
         <g transform="translate(120,236)">
           <rect width="250" height="54" rx="14" fill="#0a0908" stroke="#34302b" stroke-width="2"/>
           <g stroke="#2a2723" stroke-width="3"><line x1="16" y1="12" x2="234" y2="12"/><line x1="16" y1="21" x2="234" y2="21"/><line x1="16" y1="30" x2="234" y2="30"/><line x1="16" y1="39" x2="234" y2="39"/></g>
         </g>
         <!-- centre console bezel, right -->
-        <rect x="1168" y="186" width="350" height="168" rx="16" fill="#060606" stroke="#34302b" stroke-width="2"/>
+        <rect x="1148" y="176" width="388" height="206" rx="16" fill="#060606" stroke="#34302b" stroke-width="2"/>
+        <rect x="1148" y="176" width="388" height="206" rx="16" fill="url(#cpGlow)" opacity=".5"/>
         <rect width="1600" height="420" filter="url(#cpGrain)" opacity=".5"/>
       </svg>
       <div class="pod pod-boost"><div class="g"></div><div class="dig"><b id="d-boost">-0.6</b><span>BAR</span></div></div>
       <div class="pod pod-tach"><div class="g"></div><div class="shiftlight" id="d-shift"></div></div>
       <div class="pod pod-speed"><div class="spd"><b id="d-speed">0</b><span>KM/H</span><i id="d-gear">N</i></div></div>
-      <svg class="cp-wheel" viewBox="0 0 1600 420" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M250,420 A1500,1500 0 0 1 1350,420 L1236,420 A1380,1380 0 0 0 364,420 Z" fill="url(#cpWheel)" stroke="#3a3630" stroke-width="2"/>
-        <path d="M789,320 L811,320 L813,372 L787,372 Z" fill="#e8a49b"/>
+      <svg class="cp-wheel" viewBox="0 0 1600 1000" aria-hidden="true">
+        <defs>
+          <radialGradient id="cpLeather" cx=".5" cy=".3" r=".75"><stop offset="0" stop-color="#2d2a26"/><stop offset=".6" stop-color="#151311"/><stop offset="1" stop-color="#070606"/></radialGradient>
+        </defs>
+        <!-- rim -->
+        <path fill-rule="evenodd" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2" d="M320,800 a480,480 0 1 0 960,0 a480,480 0 1 0 -960,0 Z M382,800 a418,418 0 1 1 836,0 a418,418 0 1 1 -836,0 Z"/>
+        <path d="M789,321 L811,321 L813,384 L787,384 Z" fill="#e8a49b"/>
+        <!-- spokes -->
+        <path d="M386,772 L712,760 Q724,800 712,840 L386,828 Q380,800 386,772 Z" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2"/>
+        <path d="M1214,772 L888,760 Q876,800 888,840 L1214,828 Q1220,800 1214,772 Z" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2"/>
+        <path d="M748,880 L852,880 L880,1214 L720,1214 Z" fill="url(#cpLeather)" stroke="#3a3630" stroke-width="2"/>
+        <!-- hub with the Salt Road mark -->
+        <circle cx="800" cy="800" r="104" fill="url(#cpLeather)" stroke="#4a453d" stroke-width="3"/>
+        <circle cx="800" cy="800" r="86" fill="none" stroke="#2a2723" stroke-width="2"/>
+        <rect x="752" y="772" width="96" height="58" rx="10" fill="none" stroke="#f3efe6" stroke-width="7"/>
+        <rect x="776" y="789" width="48" height="24" rx="3" fill="#e8a49b"/>
       </svg>
     </div>
     <div class="cp-console">
