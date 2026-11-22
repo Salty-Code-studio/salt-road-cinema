@@ -18,7 +18,7 @@
       "signup.contact": "WhatsApp number or email", "signup.go": "Ping me", "signup.done": "You're on the list.",
       "foot.big": "See you on<br>the salt road.", "foot.made": "Made on Bonaire",
       "common.watch": "Watch", "common.more": "See all", "common.soon": "Coming soon",
-      "common.send": "Send it", "common.retry": "Try again", "radio.btn": "Radio", "common.sent": "Sent. We'll get back to you within a day."
+      "common.send": "Send it", "common.retry": "Try again", "radio.btn": "Radio", "radio.idle": "Soundtrack radio · press play", "radio.full": "Full songs", "radio.previews": "Back to previews", "radio.spnote": "Logged in to Spotify? Every song plays in full.", "common.sent": "Sent. We'll get back to you within a day."
     },
     nl: {
       "nav.films": "Films", "nav.garage": "De Garage", "nav.events": "Events", "nav.shop": "Shop",
@@ -29,7 +29,7 @@
       "signup.contact": "WhatsApp-nummer of e-mail", "signup.go": "Hou me op de hoogte", "signup.done": "Je staat op de lijst.",
       "foot.big": "Tot op de<br>salt road.", "foot.made": "Gemaakt op Bonaire",
       "common.watch": "Kijk", "common.more": "Bekijk alles", "common.soon": "Binnenkort",
-      "common.send": "Versturen", "common.retry": "Probeer opnieuw", "radio.btn": "Radio", "common.sent": "Verstuurd. We reageren binnen een dag."
+      "common.send": "Versturen", "common.retry": "Probeer opnieuw", "radio.btn": "Radio", "radio.idle": "Soundtrack radio · druk op play", "radio.full": "Hele nummers", "radio.previews": "Terug naar previews", "radio.spnote": "Ingelogd op Spotify? Elk nummer speelt helemaal af.", "common.sent": "Verstuurd. We reageren binnen een dag."
     },
     pap: {
       "nav.films": "Pelíkula", "nav.garage": "E Garashi", "nav.events": "Evento", "nav.shop": "Tienda",
@@ -40,19 +40,23 @@
       "signup.contact": "Number di WhatsApp òf email", "signup.go": "Avisá mi", "signup.done": "Bo ta riba e lista.",
       "foot.big": "Te riba<br>e salt road.", "foot.made": "Hasí na Boneiru",
       "common.watch": "Wak", "common.more": "Wak tur", "common.soon": "Ta bin pronto",
-      "common.send": "Manda", "common.retry": "Purba atrobe", "radio.btn": "Radio", "common.sent": "Mandá. Nos ta kontestá bo den un dia."
+      "common.send": "Manda", "common.retry": "Purba atrobe", "radio.btn": "Radio", "radio.idle": "Radio di soundtrack · primi play", "radio.full": "Kantika kompleto", "radio.previews": "Bèk na preview", "radio.spnote": "Bo ta login na Spotify? Tur kantika ta toka kompleto.", "common.sent": "Mandá. Nos ta kontestá bo den un dia."
     }
   });
 
-  const page = document.body.dataset.page || "";
   const links = [
     ["films", "films.html"], ["garage", "garage.html"], ["events", "events.html"],
     ["shop", "shop.html"], ["partners", "partners.html"]
   ];
   const langBtns = I.LANGS.map(l => `<button type="button" data-lang-btn="${l}">${l.toUpperCase()}</button>`).join("");
+  const IM = () => (window.DATA && window.DATA.images) || {};
+  const imgUrl = (im, w) => im.src ? new URL(im.src, location.href).href : `https://images.unsplash.com/photo-${im.unsplash}?w=${w}&q=70&auto=format&fit=crop`;
 
-  const nav = document.querySelector('[data-shell="nav"]');
-  if (nav) nav.outerHTML = `
+  // Renders nav, sign-up band, footer and mood images into the current page, and binds them.
+  function render() {
+    const page = document.body.dataset.page || "";
+    const nav = document.querySelector('[data-shell="nav"]');
+    if (nav) nav.outerHTML = `
   <nav class="nav"><div class="wrap">
     <a class="logo" href="index.html"><i></i>SALT ROAD CINEMA</a>
     <ul class="nav-links" id="nav-links">
@@ -65,8 +69,8 @@
     </div>
   </div></nav>`;
 
-  const signup = document.querySelector('[data-shell="signup"]');
-  if (signup) signup.outerHTML = `
+    const signup = document.querySelector('[data-shell="signup"]');
+    if (signup) signup.outerHTML = `
   <section class="signup" data-bg="coast"><div class="wrap signup-grid">
     <h2 data-i18n-html="signup.title"></h2>
     <div>
@@ -79,8 +83,8 @@
     </div>
   </div></section>`;
 
-  const foot = document.querySelector('[data-shell="footer"]');
-  if (foot) foot.outerHTML = `
+    const foot = document.querySelector('[data-shell="footer"]');
+    if (foot) foot.outerHTML = `
   <footer><div class="wrap">
     <div class="big" data-i18n-html="foot.big"></div>
     <div class="row">
@@ -100,52 +104,195 @@
     </div>
   </div></footer>`;
 
-  // mood images: data-bg="key" -> graded background from DATA.images
-  const IM = (window.DATA && window.DATA.images) || {};
-  const imgUrl = (im, w) => im.src ? new URL(im.src, location.href).href : `https://images.unsplash.com/photo-${im.unsplash}?w=${w}&q=70&auto=format&fit=crop`;
-  document.querySelectorAll("[data-bg]").forEach(el => {
-    const im = IM[el.dataset.bg]; if (!im) return;
-    el.classList.add("has-bg");
-    el.style.setProperty("--bg-l", `url("${imgUrl(im, 2000)}")`);
-    el.style.setProperty("--bg-s", `url("${imgUrl(im, 900)}")`);
-    if (im.stock) el.dataset.credit = `Photo: ${im.by} / Unsplash`;
-  });
+    // mood images: data-bg="key" -> graded background from DATA.images
+    document.querySelectorAll("[data-bg]:not(.has-bg)").forEach(el => {
+      const im = IM()[el.dataset.bg]; if (!im) return;
+      el.classList.add("has-bg");
+      el.style.setProperty("--bg-l", `url("${imgUrl(im, 2000)}")`);
+      el.style.setProperty("--bg-s", `url("${imgUrl(im, 900)}")`);
+    });
 
-  // Salt Road Radio: a floating button that opens radio.html in a small window,
-  // so the music keeps playing while people browse between pages.
-  const radioBtn = document.createElement("button");
-  radioBtn.type = "button"; radioBtn.className = "radio-btn";
-  radioBtn.innerHTML = `<span class="eq"><i></i><i></i><i></i></span><span data-i18n="radio.btn"></span>`;
-  document.body.appendChild(radioBtn);
-  radioBtn.addEventListener("click", () => {
-    const w = 380, h = 520, left = screen.availWidth - w - 24, top = 80;
-    const win = window.open("radio.html", "srcRadio", `popup=yes,width=${w},height=${h},left=${left},top=${top}`);
-    if (!win) location.href = "radio.html"; else win.focus();
-    radioBtn.classList.add("on");
-  });
-
-  // behaviour
-  document.querySelectorAll("[data-lang-btn]").forEach(b => b.addEventListener("click", () => I.set(b.dataset.langBtn)));
-  const burger = document.querySelector(".burger");
-  burger && burger.addEventListener("click", () => {
-    const open = burger.getAttribute("aria-expanded") !== "true";
-    burger.setAttribute("aria-expanded", open);
-    document.body.classList.toggle("menu-open", open);
-  });
-  const sf = document.getElementById("signup-form");
-  sf && sf.addEventListener("submit", async e => {
-    e.preventDefault();
-    const contact = new FormData(sf).get("contact");
-    try {
-      const r = await C.sendForm("Sign-up: drops list", { contact, lang: I.lang, page: location.pathname });
-      if (r === "sent") { sf.hidden = true; sf.nextElementSibling.hidden = false; }
-    } catch { sf.querySelector("button").textContent = I.t("common.retry"); }
-  });
+    document.querySelectorAll("[data-lang-btn]").forEach(b => b.addEventListener("click", () => I.set(b.dataset.langBtn)));
+    const burger = document.querySelector(".burger");
+    burger && burger.addEventListener("click", () => {
+      const open = burger.getAttribute("aria-expanded") !== "true";
+      burger.setAttribute("aria-expanded", open);
+      document.body.classList.toggle("menu-open", open);
+    });
+    const sf = document.getElementById("signup-form");
+    sf && sf.addEventListener("submit", async e => {
+      e.preventDefault();
+      const contact = new FormData(sf).get("contact");
+      try {
+        const r = await C.sendForm("Sign-up: drops list", { contact, lang: I.lang, page: location.pathname });
+        if (r === "sent") { sf.hidden = true; sf.nextElementSibling.hidden = false; }
+      } catch { sf.querySelector("button").textContent = I.t("common.retry"); }
+    });
+  }
 
   // reveal on scroll, shared
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))), { threshold: .12 });
   const watch = () => document.querySelectorAll(".reveal:not(.in)").forEach(el => io.observe(el));
   window.SRC_REVEAL = watch;
 
+  render();
   document.addEventListener("DOMContentLoaded", () => { I.apply(); watch(); });
+
+  /* ------------------------------------------------------------------
+     Salt Road Radio: docked audio player (NFSU2 soundtrack previews).
+     Lives outside the swapped page content, so it keeps playing.
+     ------------------------------------------------------------------ */
+  const dock = document.createElement("div");
+  dock.className = "dock";
+  dock.innerHTML = `
+    <img class="dock-cover" alt="" src="favicon.svg">
+    <button class="dock-btn dock-pp" type="button" aria-label="Play radio">▶</button>
+    <div class="dock-info">
+      <span class="dock-label"><span class="eq"><i></i><i></i><i></i></span>Salt Road <em>Radio</em></span>
+      <b class="dock-title">Need for Speed Underground 2</b>
+      <span class="dock-by" data-i18n="radio.idle"></span>
+      <div class="dock-bar"><i></i></div>
+    </div>
+    <button class="dock-btn dock-prev" type="button" aria-label="Previous track">⏮</button>
+    <button class="dock-btn dock-next" type="button" aria-label="Next track">⏭</button>
+    <a class="dock-btn dock-link" href="#" target="_blank" rel="noopener" aria-label="Full song on Apple Music" hidden>↗</a>
+    <button class="dock-full" type="button" data-i18n="radio.full"></button>
+    <div class="dock-sp" hidden>
+      <div class="dock-sp-head"><span class="dock-label"><span class="eq"><i></i><i></i><i></i></span>Salt Road <em>Radio</em> · Spotify</span><button class="dock-back" type="button" data-i18n="radio.previews"></button></div>
+      <div class="dock-sp-frame"></div>
+      <p class="dock-sp-note" data-i18n="radio.spnote"></p>
+    </div>`;
+  document.body.appendChild(dock);
+  const audio = new Audio(); audio.preload = "none"; audio.volume = .5;
+  let list = [], idx = -1;
+  const D$ = s => dock.querySelector(s);
+  const loadList = () => new Promise(res => {
+    if (window.SRC_RADIO) return res(list = window.SRC_RADIO);
+    const sc = document.createElement("script"); sc.src = "data/radio.js";
+    sc.onload = () => res(list = window.SRC_RADIO || []); sc.onerror = () => res([]);
+    document.head.appendChild(sc);
+  });
+  const sync = () => {
+    const on = !audio.paused && !audio.ended;
+    dock.classList.toggle("on", on);
+    D$(".dock-pp").textContent = on ? "❚❚" : "▶";
+    D$(".dock-pp").setAttribute("aria-label", on ? "Pause radio" : "Play radio");
+  };
+  const playAt = async i => {
+    if (!list.length) await loadList();
+    if (!list.length) return;
+    idx = (i + list.length) % list.length;
+    const t = list[idx];
+    audio.src = t.src; audio.play().catch(() => {});
+    D$(".dock-cover").src = t.cover; D$(".dock-title").textContent = t.t;
+    const by = D$(".dock-by"); by.removeAttribute("data-i18n"); by.textContent = t.by;
+    const ln = D$(".dock-link"); ln.href = t.link; ln.hidden = false;
+    dock.classList.add("started");
+    try { sessionStorage.setItem("src-radio", idx); } catch {}
+  };
+  D$(".dock-pp").addEventListener("click", () => idx < 0 ? playAt(0) : (audio.paused ? audio.play() : audio.pause()));
+  D$(".dock-next").addEventListener("click", () => playAt(idx + 1));
+  D$(".dock-prev").addEventListener("click", () => playAt(idx - 1));
+  D$(".dock-bar").addEventListener("click", e => {
+    if (!audio.duration) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+  });
+  // Full songs: official NFSU2 playlist in Spotify's player (full tracks when logged in to Spotify).
+  const SPOTIFY = C.radioSpotify || "2KYnOjOMzSCeQs97ZJiMe1";
+  const spMode = on => {
+    dock.classList.toggle("sp", on);
+    D$(".dock-sp").hidden = !on;
+    if (on) {
+      audio.pause();
+      const fr = D$(".dock-sp-frame");
+      if (!fr.firstChild) fr.innerHTML = `<iframe src="https://open.spotify.com/embed/playlist/${SPOTIFY}?theme=0" title="Need for Speed Underground 2 on Spotify" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`;
+    }
+    try { sessionStorage.setItem("src-radio-sp", on ? "1" : "0"); } catch {}
+  };
+  D$(".dock-full").addEventListener("click", () => spMode(true));
+  D$(".dock-back").addEventListener("click", () => spMode(false));
+
+  audio.addEventListener("play", sync); audio.addEventListener("pause", sync);
+  audio.addEventListener("ended", () => playAt(idx + 1));
+  audio.addEventListener("timeupdate", () => { D$(".dock-bar i").style.width = (audio.currentTime / (audio.duration || 30) * 100) + "%"; });
+
+  /* ------------------------------------------------------------------
+     Soft navigation: internal links swap the page content in place so
+     the radio never stops. Falls back to a normal load on any error.
+     ------------------------------------------------------------------ */
+  const SKIP = /(assets\/(config|i18n|shell|intro)\.js|data\/radio\.js)$/;
+  let cleanup = [];
+  const track = () => {
+    const dAdd = document.addEventListener.bind(document), wAdd = window.addEventListener.bind(window);
+    const si = window.setInterval, st = window.setTimeout;
+    document.addEventListener = (t, f, o) => { cleanup.push(() => document.removeEventListener(t, f, o)); return dAdd(t, f, o); };
+    window.addEventListener = (t, f, o) => { cleanup.push(() => window.removeEventListener(t, f, o)); return wAdd(t, f, o); };
+    window.setInterval = (f, ms, ...a) => { const id = si(f, ms, ...a); cleanup.push(() => clearInterval(id)); return id; };
+    return () => { document.addEventListener = dAdd; window.addEventListener = wAdd; window.setInterval = si; window.setTimeout = st; };
+  };
+  const isInternal = a => {
+    if (!a || a.target || a.hasAttribute("download")) return false;
+    const href = a.getAttribute("href") || "";
+    if (!href || href.startsWith("#") || /^(mailto|tel|https?:\/\/(?!$))/.test(href) && new URL(a.href).origin !== location.origin) return false;
+    const u = new URL(a.href, location.href);
+    if (u.origin !== location.origin) return false;
+    if (!/(\.html|\/)$/.test(u.pathname) || /radio\.html$/.test(u.pathname)) return false;
+    if (u.pathname === location.pathname && u.hash) return false;
+    return true;
+  };
+  async function go(url, push = true) {
+    try {
+      const res = await fetch(url, { credentials: "same-origin" });
+      if (!res.ok) throw 0;
+      const doc = new DOMParser().parseFromString(await res.text(), "text/html");
+      // stylesheets first, wait for new ones to load
+      const have = new Set([...document.querySelectorAll('link[rel="stylesheet"]')].map(l => l.href));
+      await Promise.all([...doc.querySelectorAll('link[rel="stylesheet"]')].map(l => {
+        const href = new URL(l.getAttribute("href"), url).href;
+        if (have.has(href)) return null;
+        const n = document.createElement("link"); n.rel = "stylesheet"; n.href = href; document.head.appendChild(n);
+        return new Promise(r => { n.onload = n.onerror = r; });
+      }));
+      cleanup.forEach(f => { try { f(); } catch {} }); cleanup = [];
+      if (push) history.pushState({}, "", url);
+      document.title = doc.title;
+      document.body.className = ""; document.documentElement.classList.remove("intro-on");
+      document.body.dataset.page = doc.body.dataset.page || "";
+      [...document.body.children].forEach(n => { if (n !== dock) n.remove(); });
+      const frag = document.createDocumentFragment();
+      [...doc.body.children].forEach(n => { if (n.tagName !== "SCRIPT" && n.id !== "intro") frag.appendChild(document.importNode(n, true)); });
+      document.body.insertBefore(frag, dock);
+      render();
+      // run the page's own scripts (data, dictionaries, page logic), scoped
+      const restore = track();
+      try {
+        for (const sc of doc.querySelectorAll("script[src]")) {
+          const src = new URL(sc.getAttribute("src"), url).href;
+          if (SKIP.test(src)) continue;
+          const code = await (await fetch(src)).text();
+          try { new Function(code)(); } catch (e) { console.error("[nav]", src, e); }
+        }
+      } finally { restore(); }
+      I.apply(); watch();
+      const u = new URL(url);
+      if (u.hash && document.querySelector(u.hash)) document.querySelector(u.hash).scrollIntoView();
+      else window.scrollTo(0, 0);
+      document.dispatchEvent(new CustomEvent("pagechange"));
+    } catch { location.href = url; }
+  }
+  document.addEventListener("click", e => {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest("a");
+    if (!isInternal(a)) return;
+    e.preventDefault();
+    document.body.classList.remove("menu-open");
+    go(new URL(a.href, location.href).href);
+  });
+  addEventListener("popstate", () => go(location.href, false));
+
+  // Track listeners/intervals of the first page's own scripts too, so they
+  // are removed when we soft-navigate away (they run right after shell.js).
+  const restoreInit = track();
+  document.addEventListener("DOMContentLoaded", () => restoreInit(), { once: true });
 })();
