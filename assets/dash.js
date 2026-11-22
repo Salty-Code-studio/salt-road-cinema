@@ -158,16 +158,15 @@
   document.addEventListener("click", e => { if (!gb.contains(e.target)) set(false); });
 })();
 
-// Glovebox items. Hover ~0.5s: the item zooms to the middle. Hover away: it goes back.
-// An invisible copy of each item stays where it lies, so the zoomed item doesn't
-// "run away" from the cursor. Click the zoomed item to open its page.
+// Glovebox items. Hover: the item comes to the middle. Click: go to its page. Stop hovering: it goes back.
+// Invisible copies stay where the items lie, so every item can be hovered and nothing runs away from the cursor.
 (() => {
   const cav = document.querySelector(".gb-cavity");
   if (!cav) return;
-  cav.querySelectorAll(".gb-hit").forEach(h => h.remove());
+  cav.querySelectorAll(".gb-hit,.gb-ghost").forEach(h => h.remove());
   const cap = cav.querySelector(".gb-caption");
-  const items = [...cav.querySelectorAll(".gb-obj:not(.gb-ghost)")];
-  let current = null, dwell = null, back = null;
+  const items = [...cav.querySelectorAll(".gb-obj")];
+  let current = null, enterT = null, backT = null;
   const ghosts = items.map(el => {
     const g = el.cloneNode(true);
     g.classList.add("gb-ghost"); g.removeAttribute("href"); g.setAttribute("aria-hidden", "true"); g.tabIndex = -1;
@@ -176,44 +175,40 @@
     cav.insertBefore(g, cap);
     return g;
   });
-  const zoom = el => {
-    clearTimeout(back);
+  const show = el => {
+    clearTimeout(backT);
     const c = cav.getBoundingClientRect();
     const w = el.offsetWidth, h = el.offsetHeight;
     const ex = el.offsetLeft + w / 2, ey = el.offsetTop + h / 2;
-    const tx = c.width / 2, ty = c.height * .56;
-    const s = Math.min(2.4, (c.width * .52) / w, (c.height * .6) / h);
+    const tx = c.width / 2, ty = c.height * .4;
+    const s = Math.min(2.2, (c.width * .46) / w, (c.height * .42) / h);
     el.style.setProperty("--dx", `${tx - ex}px`); el.style.setProperty("--dy", `${ty - ey}px`); el.style.setProperty("--s", s.toFixed(2));
-    items.forEach(i => { i.classList.toggle("zoom", i === el); i.classList.remove("glow"); });
+    items.forEach(i => i.classList.toggle("zoom", i === el));
     cav.classList.add("focus");
     cap.textContent = el.getAttribute("aria-label") || "";
     cap.style.top = Math.max(4, ty - (h * s) / 2 - 6) + "px";
     current = el;
   };
-  const reset = () => { clearTimeout(dwell); clearTimeout(back); items.forEach(i => i.classList.remove("zoom", "glow")); cav.classList.remove("focus"); current = null; };
-  const goBackSoon = () => { clearTimeout(back); back = setTimeout(reset, 180); };
-  const stay = () => clearTimeout(back);
+  const hide = () => { clearTimeout(enterT); clearTimeout(backT); items.forEach(i => i.classList.remove("zoom", "glow")); cav.classList.remove("focus"); current = null; };
+  const backSoon = () => { clearTimeout(backT); backT = setTimeout(hide, 220); };
+  const stay = () => clearTimeout(backT);
+  const go = el => { if (el.tagName === "A") el.click(); };
 
   items.forEach((el, i) => {
     const g = ghosts[i];
     g.addEventListener("mouseenter", () => {
       if (current === el) return stay();
-      clearTimeout(dwell);
-      if (!current) el.classList.add("glow");
-      dwell = setTimeout(() => zoom(el), 500);
+      clearTimeout(enterT);
+      enterT = setTimeout(() => show(el), 90); // tiny delay so sweeping across the pile doesn't flicker
     });
-    g.addEventListener("mouseleave", () => {
-      clearTimeout(dwell); el.classList.remove("glow");
-      if (current === el) goBackSoon();
-    });
-    g.addEventListener("click", e => { e.preventDefault(); if (current === el) el.click(); else zoom(el); });
+    g.addEventListener("mouseleave", () => { clearTimeout(enterT); if (current === el) backSoon(); });
+    g.addEventListener("click", e => { e.preventDefault(); go(el); });
     el.addEventListener("mouseenter", () => { if (current === el) stay(); });
-    el.addEventListener("mouseleave", () => { if (current === el) goBackSoon(); });
-    el.addEventListener("click", e => { if (current !== el) { e.preventDefault(); zoom(el); } });
-    el.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && current !== el) { e.preventDefault(); zoom(el); } });
-    el.addEventListener("blur", () => { if (current === el) reset(); });
+    el.addEventListener("mouseleave", () => { if (current === el) backSoon(); });
+    el.addEventListener("focus", () => show(el));
+    el.addEventListener("blur", () => { if (current === el) hide(); });
   });
-  cav.addEventListener("mouseleave", reset);
+  cav.addEventListener("mouseleave", hide);
   const lidBtn = document.querySelector(".gb-lid");
-  lidBtn && lidBtn.addEventListener("click", reset);
+  lidBtn && lidBtn.addEventListener("click", hide);
 })();
