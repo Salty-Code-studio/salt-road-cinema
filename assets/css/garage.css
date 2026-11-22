@@ -1,0 +1,33 @@
+/* Garage index */
+.garage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:960px){.garage-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.garage-grid{grid-template-columns:1fr}}
+.gcard{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--asphalt-2);text-decoration:none;display:flex;flex-direction:column;transition:border-color .2s,transform .2s;color:inherit}
+a.gcard:hover{border-color:var(--pan);transform:translateY(-2px)}
+.gcard .media{aspect-ratio:16/10;position:relative;overflow:hidden;background:linear-gradient(160deg,#1d1a18,#0f0e0d)}
+.gcard .media img{width:100%;height:100%;object-fit:cover}
+.gcard .ph{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;font-weight:900;font-stretch:125%;font-size:clamp(26px,4vw,40px);line-height:.95;text-transform:uppercase;letter-spacing:-.02em;color:var(--salt);background:radial-gradient(90% 90% at 80% 10%,rgba(232,164,155,.18),transparent 60%)}
+.gcard .body{padding:18px 20px 22px;display:grid;gap:10px}
+.gcard h3{font-size:22px;font-weight:800;font-stretch:115%;line-height:1.1}
+.gcard .meta{font-family:var(--mono);font-size:13px;color:var(--salt-dim)}
+.gcard .go{font-weight:700;color:var(--pan)}
+.gcard .bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.gcard .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--rally),var(--pan));border-radius:99px}
+.gcard.feat{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr}
+.gcard.feat .media{aspect-ratio:auto;min-height:320px}
+.gcard.feat .ph{font-size:clamp(40px,7vw,96px)}
+.gcard.feat .body{padding:32px;align-content:center;gap:14px}
+.gcard.feat h3{font-size:clamp(26px,3.4vw,40px)}
+@media(max-width:860px){.gcard.feat{grid-template-columns:1fr}.gcard.feat .media{min-height:0;aspect-ratio:16/10}.gcard.feat .body{padding:20px}}
+.tag.st-project{color:var(--gold)}
+.tag.st-finished{color:var(--ok)}
+
+.g-sections{display:grid;gap:16px}
+.g-sec{border:1px solid var(--line);border-radius:8px;padding:28px;background:var(--asphalt-2);scroll-margin-top:84px}
+@media(max-width:600px){.g-sec{padding:20px}}
+.g-sec h3{font-size:clamp(24px,3vw,34px);font-weight:900;font-stretch:120%;text-transform:uppercase;line-height:1}
+.g-sec .spec{margin-top:20px}
+.g-sec ul{margin:18px 0 0 20px;color:#d9d4c8}
+.g-sec li{margin-bottom:6px}
+.g-sec p.muted{color:var(--salt-dim);margin-top:18px}
+.g-cta .btn{margin-top:26px}

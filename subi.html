@@ -4,51 +4,54 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Save the Subi | Salt Road Cinema</title>
-<meta name="description" content="Help bring a Subaru WRX EJ205 back to life on Bonaire. Send a part, fund a part, or put your brand on the car.">
+<meta name="description" content="Help bring a 2003 Subaru Impreza WRX back to life on Bonaire. Send a part, fund a part, or put your brand on the car.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/css/subi.css">
 </head>
-<body>
-<nav class="nav"><div class="wrap">
-  <a class="logo" href="./"><i></i>SALT ROAD CINEMA</a>
-  <ul>
-    <li class="hide-s"><a href="#parts-sec">Parts</a></li>
-    <li class="hide-s"><a href="#sponsor">Sponsor</a></li>
-    <li><a href="subi.html" aria-current="page">Save the Subi</a></li>
-    <li><a data-yt href="#" target="_blank" rel="noopener">YouTube</a></li>
-  </ul>
-</div></nav>
+<body data-page="garage">
+<div data-shell="nav"></div>
 
-<header class="subi-hero"><div class="wrap grid">
-  <div>
-    <h1>Save<br>the <span>Subi.</span></h1>
-  </div>
-  <div>
-    <p class="sub" style="margin-top:0;font-size:20px;color:#d9d4c8">One WRX. One tired EJ205. One island with no Subaru dealer. We rebuild it on camera, and you can put a part in it.</p>
-    <div class="meter"><div class="bar"><div class="fill"></div></div><div class="nums"></div></div>
-    <div class="spec">
-      <div><span>Car</span><b>Subaru Impreza WRX</b></div>
-      <div><span>Engine</span><b>EJ205T, 2.0 turbo</b></div>
-      <div><span>Problem</span><b>Head gasket, sat for months</b></div>
-      <div><span>Parts still needed</span><b id="parts-left">–</b></div>
+<header class="subi-hero"><div class="wrap">
+  <a class="back" href="garage.html" data-i18n="subi.back"></a>
+  <div class="grid">
+    <div><h1 data-i18n-html="subi.h1"></h1></div>
+    <div>
+      <p class="sub lead" data-i18n="subi.lead"></p>
+      <div class="meter"><div class="bar"><div class="fill"></div></div><div class="nums"></div></div>
+      <div class="spec">
+        <div><span data-i18n="subi.spec.car"></span><b><span id="spec-year"></span> <span data-i18n="subi.spec.carv"></span></b></div>
+        <div><span data-i18n="subi.spec.engine"></span><b id="spec-engine"></b></div>
+        <!-- TODO confirm with Rudo: is it really the head gasket? -->
+        <div><span data-i18n="subi.spec.problem"></span><b data-i18n="subi.spec.problemv"></b></div>
+        <div><span data-i18n="subi.spec.left"></span><b id="parts-left">–</b></div>
+      </div>
     </div>
   </div>
 </div></header>
 
+<section class="ba-sec"><div class="wrap">
+  <div class="head reveal"><h2 data-i18n-html="subi.ba.title"></h2></div>
+  <div class="ba">
+    <figure class="ba-frame reveal" id="ba-now"><div class="ba-media"></div><figcaption data-i18n="subi.ba.now"></figcaption></figure>
+    <figure class="ba-frame reveal" id="ba-goal"><div class="ba-media"></div><figcaption data-i18n="subi.ba.goal"></figcaption></figure>
+  </div>
+</div></section>
+
 <section><div class="wrap">
-  <div class="head reveal"><h2>Three ways <em>in</em></h2></div>
+  <div class="head reveal"><h2 data-i18n-html="subi.ways.title"></h2></div>
   <div class="ways">
-    <a class="way reveal" href="#parts-sec"><h3>Send a part</h3><p>Pick a part from the list. Ship it to us. Your name goes in the episode where it goes in the car.</p><span class="go">See the parts ↓</span></a>
-    <a class="way reveal" href="#sponsor"><h3>Put your brand on it</h3><p>Pick a spot on the car. Your sticker rides in every video, every meet, every reel.</p><span class="go">Pick a spot ↓</span></a>
-    <a class="way reveal" href="#chip"><h3>Chip in money</h3><p>Ten dollars buys a spark plug. A hundred buys half a head gasket set. It all counts.</p><span class="go">Chip in ↓</span></a>
+    <a class="way reveal" href="#parts-sec"><h3 data-i18n="subi.way1.h"></h3><p data-i18n="subi.way1.p"></p><span class="go" data-i18n="subi.way1.go"></span></a>
+    <a class="way reveal" href="#sponsor"><h3 data-i18n="subi.way2.h"></h3><p data-i18n="subi.way2.p"></p><span class="go" data-i18n="subi.way2.go"></span></a>
+    <a class="way reveal" href="#chip"><h3 data-i18n="subi.way3.h"></h3><p data-i18n="subi.way3.p"></p><span class="go" data-i18n="subi.way3.go"></span></a>
   </div>
 </div></section>
 
 <section id="parts-sec"><div class="wrap">
   <div class="head reveal">
-    <div><h2>What she <em>needs</em></h2><p class="sub">Prices are rough, so you know the size of the ask. Send the exact part, or fund it and we buy it.</p></div>
+    <div><h2 data-i18n-html="subi.parts.title"></h2><p class="sub" data-i18n="subi.parts.sub"></p></div>
   </div>
   <div id="filters" class="filters"></div>
   <div id="parts" class="parts"></div>
@@ -56,69 +59,70 @@
 
 <section id="sponsor"><div class="wrap">
   <div class="head reveal">
-    <div><h2>Pick your <em>spot</em></h2><p class="sub">Tap a spot on the car or a package. Every sponsor gets the sticker, a shout in the episode and a tag on every post.</p></div>
+    <div><h2 data-i18n-html="subi.spot.title"></h2><p class="sub" data-i18n="subi.spot.sub"></p></div>
   </div>
   <div class="decal">
     <div class="car-frame reveal" data-car></div>
-    <div class="tiers reveal">
-      <button class="tier" data-zone="hood"><div class="top"><h4>Title sponsor</h4><span class="amt">$2,500</span></div><p>Hood logo. "Save the Subi, presented by you" on every episode card.</p></button>
-      <button class="tier" data-zone="banner"><div class="top"><h4>Windshield banner</h4><span class="amt">$1,200</span></div><p>The top strip. In every front shot and every thumbnail.</p></button>
-      <button class="tier" data-zone="fdoor"><div class="top"><h4>Front doors</h4><span class="amt">$750</span></div><p>Both sides. Big, clean, readable in a rolling shot.</p></button>
-      <button class="tier" data-zone="rdoor"><div class="top"><h4>Rear doors</h4><span class="amt">$500</span></div><p>Both sides. Perfect for a local shop or garage.</p></button>
-      <button class="tier" data-zone="quarter"><div class="top"><h4>Rear quarter</h4><span class="amt">$300</span></div><p>Sits right over the exhaust. Very on camera.</p></button>
-      <button class="tier" data-zone="skirt"><div class="top"><h4>Side skirt</h4><span class="amt">$150</span></div><p>Small sticker, real support. Great for friends of the channel.</p></button>
+    <div>
+      <div class="tiers reveal" id="tiers"></div>
+      <div class="paybar reveal"><span id="pay-what" class="what-buys"></span><a id="pay-go" class="btn btn-pan" href="#" target="_blank" rel="noopener" hidden></a></div>
     </div>
   </div>
 </div></section>
 
 <section id="chip"><div class="wrap chipin">
-  <div class="reveal"><h2>Chip <em>in</em></h2><p class="sub">No sticker needed. Every dollar goes into parts, and every part shows up on camera.</p></div>
+  <div class="reveal"><h2 data-i18n-html="subi.chip.title"></h2><p class="sub" data-i18n="subi.chip.sub"></p></div>
   <div class="reveal">
     <div id="amounts" class="amounts"><button data-a="10">$10</button><button data-a="25">$25</button><button data-a="50">$50</button><button data-a="100">$100</button></div>
     <p id="what-buys" class="what-buys"></p>
-    <p style="margin-top:22px"><a id="chip-go" class="btn btn-pan" href="#" target="_blank" rel="noopener">Chip in</a></p>
+    <p style="margin-top:22px"><a id="chip-go" class="btn btn-pan" href="#" target="_blank" rel="noopener"></a></p>
   </div>
 </div></section>
 
 <section id="talk"><div class="wrap chipin">
   <div class="reveal">
-    <h2>Talk <em>deals</em></h2>
-    <p class="sub">Shop, brand or garage? Tell us what you want on the car. We answer within a day.</p>
-    <h3 style="margin:40px 0 14px;font-size:14px;color:var(--salt-dim);font-weight:600">Already on the car</h3>
-    <div class="wall"><span class="empty">Your name here</span><span class="empty">Your shop here</span></div>
+    <h2 data-i18n-html="subi.talk.title"></h2>
+    <p class="sub" data-i18n="subi.talk.sub"></p>
+    <h3 class="wall-h" data-i18n="subi.talk.wall"></h3>
+    <div class="wall"><span class="empty" data-i18n="subi.talk.wall1"></span><span class="empty" data-i18n="subi.talk.wall2"></span></div>
   </div>
   <form id="sponsor-form" class="sponsor reveal">
-    <label>Your name<input name="name" required autocomplete="name"></label>
-    <label>Company<input name="company" autocomplete="organization"></label>
-    <label class="full">Email<input name="email" type="email" required autocomplete="email"></label>
-    <label class="full">I'm interested in<select id="f-what" name="what"></select></label>
-    <label class="full">Anything else<textarea name="msg" placeholder="Parts you can supply, budget, ideas"></textarea></label>
-    <div class="full"><button class="btn btn-salt" type="submit">Send it</button> <a class="btn btn-ghost" data-wa href="#" target="_blank" rel="noopener">WhatsApp us</a></div>
+    <label><span data-i18n="subi.form.name"></span><input name="name" required autocomplete="name"></label>
+    <label><span data-i18n="subi.form.company"></span><input name="company" autocomplete="organization"></label>
+    <label class="full"><span data-i18n="subi.form.email"></span><input name="email" type="email" required autocomplete="email"></label>
+    <label class="full"><span data-i18n="subi.form.what"></span><select id="f-what" name="what"></select></label>
+    <label class="full"><span data-i18n="subi.form.msg"></span><textarea name="msg" data-i18n-ph="subi.form.msg.ph"></textarea></label>
+    <div class="full">
+      <button class="btn btn-salt" type="submit" data-i18n="common.send"></button>
+      <a class="btn btn-ghost" id="wa-link" href="#" target="_blank" rel="noopener" data-i18n="subi.form.wa"></a>
+      <p class="form-ok" id="form-ok" hidden data-i18n="common.sent"></p>
+      <p class="form-err" id="form-err" hidden data-i18n="subi.form.retry"></p>
+    </div>
   </form>
 </div></section>
 
-<footer><div class="wrap">
-  <div class="big">Every bolt<br>on camera.</div>
-  <div class="row">
-    <div><a href="./">Home</a><a data-yt href="#" target="_blank" rel="noopener">YouTube</a><a data-ig href="#" target="_blank" rel="noopener">Instagram</a><a data-mail href="#">Email</a></div>
-    <div>© 2026 Salt Road Cinema · Bonaire</div>
-  </div>
-</div></footer>
+<div data-shell="signup"></div>
+<div data-shell="footer"></div>
 
 <dialog id="ship">
-  <h3>Send it here</h3>
-  <p>You're sending: <b id="ship-part"></b></p>
+  <h3 data-i18n="subi.ship.title"></h3>
+  <p><span data-i18n="subi.ship.sending"></span> <b id="ship-part"></b></p>
   <pre id="ship-addr"></pre>
-  <p style="color:var(--salt-dim);font-size:14px;margin-bottom:18px">Then tell us it's coming, with the tracking number. We mark it pledged and thank you on camera.</p>
+  <p class="ship-note" data-i18n="subi.ship.note"></p>
   <div class="row">
-    <button id="ship-copy" class="btn btn-ghost btn-sm">Copy address</button>
-    <a id="ship-tell" class="btn btn-pan btn-sm" href="#">Tell us it's coming</a>
-    <button id="ship-close" class="btn btn-ghost btn-sm">Close</button>
+    <button id="ship-copy" class="btn btn-ghost btn-sm" data-i18n="subi.ship.copy"></button>
+    <a id="ship-tell" class="btn btn-pan btn-sm" href="#" data-i18n="subi.ship.tell"></a>
+    <button id="ship-close" class="btn btn-ghost btn-sm" data-i18n="subi.ship.close"></button>
   </div>
 </dialog>
 
 <script src="assets/config.js"></script>
-<script src="assets/parts.js"></script>
-<script src="assets/site.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n/subi.js"></script>
+<script src="data/cars.js"></script>
+<script src="data/subi-parts.js"></script>
+<script src="assets/shell.js"></script>
+<script src="assets/car.js"></script>
+<script src="assets/subi.js"></script>
 </body>
 </html>
