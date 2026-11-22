@@ -1,7 +1,7 @@
 SRC_I18N.add({
   en: {
     "bts.h1": "How we <em>shoot</em>.",
-    "bts.sub": "Salt, sun and a lot of gaffer tape. Here's the kit and the shoots behind the films.",
+    "bts.sub": "Salt, sun and a lot of gaffer tape. Here's **the kit** and **the shoots** behind the films.",
     "bts.gear.h": "The <em>kit</em>",
     "bts.gear.empty": "Kit list coming soon.",
     "bts.gear.empty.sub": "We're writing down every camera, lens and cable. It lands here soon.",
@@ -24,7 +24,7 @@ SRC_I18N.add({
   },
   nl: {
     "bts.h1": "Zo <em>filmen</em> we.",
-    "bts.sub": "Zout, zon en veel gaffertape. Dit is de kit en de shoots achter de films.",
+    "bts.sub": "Zout, zon en veel gaffertape. Dit is **de kit** en **de shoots** achter de films.",
     "bts.gear.h": "De <em>kit</em>",
     "bts.gear.empty": "Kitlijst komt eraan.",
     "bts.gear.empty.sub": "We schrijven elke camera, lens en kabel op. Het staat hier binnenkort.",
@@ -47,7 +47,7 @@ SRC_I18N.add({
   },
   pap: {
     "bts.h1": "Asina nos ta <em>filma</em>.",
-    "bts.sub": "Salu, solo i hopi gaffer tape. Esaki ta e kit i e shoots tras di e pelíkulanan.",
+    "bts.sub": "Salu, solo i hopi gaffer tape. Esaki ta **e kit** i **e shoots** tras di e pelíkulanan.",
     "bts.gear.h": "E <em>kit</em>",
     "bts.gear.empty": "Lista di kit ta bin pronto.",
     "bts.gear.empty.sub": "Nos ta skirbi kada kámara, lente i kabel. E ta aparesé aki pronto.",

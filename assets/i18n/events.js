@@ -1,7 +1,7 @@
 SRC_I18N.add({
   en: {
     "events.title": "Events on <em>Bonaire</em>",
-    "events.sub": "Meets, races, shows and where we film next. Come find us with a camera in our face.",
+    "events.sub": "Meets, races, shows and **where we film next**. Come find us with a camera in our face.",
     "events.next": "Next up",
     "events.upcoming": "On the calendar",
     "events.days": "days", "events.day": "day", "events.hours": "hours", "events.hour": "hour", "events.mins": "min",
@@ -20,7 +20,7 @@ SRC_I18N.add({
   },
   nl: {
     "events.title": "Events op <em>Bonaire</em>",
-    "events.sub": "Meets, races, shows en waar we als volgende filmen. Kom ons vinden, de camera loopt.",
+    "events.sub": "Meets, races, shows en **waar we als volgende filmen**. Kom ons vinden, de camera loopt.",
     "events.next": "Eerstvolgende",
     "events.upcoming": "In de agenda",
     "events.days": "dagen", "events.day": "dag", "events.hours": "uur", "events.hour": "uur", "events.mins": "min",
@@ -39,7 +39,7 @@ SRC_I18N.add({
   },
   pap: {
     "events.title": "Evento na <em>Boneiru</em>",
-    "events.sub": "Meet, kaminda di outo, show i unda nos ta filma despues. Bin buskà nos ku kámara na man.",
+    "events.sub": "Meet, kaminda di outo, show i **unda nos ta filma despues**. Bin buskà nos ku kámara na man.",
     "events.next": "Siguiente",
     "events.upcoming": "Riba e kalènder",
     "events.days": "dia", "events.day": "dia", "events.hours": "ora", "events.hour": "ora", "events.mins": "min",
