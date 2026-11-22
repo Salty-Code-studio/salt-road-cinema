@@ -66,7 +66,7 @@
       state = "run"; setKey("on"); root.classList.remove("cranking"); sound.crank(false); sound.run(true);
       rpm = 1.9;
       ["battery", "oil", "engine", "belt"].forEach(k => L(k).classList.remove("on"));
-      L("fuel").classList.add("on", "blink"); L("lights").classList.add("on");
+      L("fuel").classList.add("on"); L("lights").classList.add("on");
       root.classList.add("running");
       $("d-rev").classList.remove("locked");
     }, reduce ? 300 : 950);
@@ -79,7 +79,14 @@
     sound.stop(); $("d-rev").classList.add("locked");
   };
   key.addEventListener("click", () => (state === "off" ? turnOn() : turnOff()));
-  $("d-rev").classList.add("locked");
+  // The car is already running when the page loads (warm engine, dash lit).
+  const startRunning = () => {
+    state = "run"; setKey("on"); rpm = 0.85; temp = 5;
+    root.classList.add("lit", "running");
+    lampsAll(false); L("fuel").classList.add("on"); L("lights").classList.add("on");
+    setArc(fuelSegs, 1, "low"); setArc(tempSegs, 5, "cold"); tempSegs.forEach(s => s.classList.remove("cold"));
+  };
+  startRunning();
 
   /* ---- rev button ---- */
   const rev = $("d-rev");
