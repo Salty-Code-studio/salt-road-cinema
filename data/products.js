@@ -17,7 +17,7 @@ window.DATA.products = [
   {
     id: "tee-logo-black", kind: "tee", price: 87, sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Black"], photo: "media/merch-tee-hopi-gazzz.jpg",
     name: { en: "HOPI GAZZZ tee", nl: "HOPI GAZZZ shirt", pap: "T-shirt HOPI GAZZZ" },
-    desc: { en: "Heavy cotton. Pink frame logo on the chest.", nl: "Zwaar katoen. Roze framelogo op de borst.", pap: "Algodon pisá. Logo ruman riba pecho." }
+    desc: { en: "Heavy washed black tee. Salt Road chest logo, HOPI GAZZZ tach print on the back. Built for higher revs.", nl: "Zwaar washed zwart shirt. Salt Road logo op de borst, HOPI GAZZZ toerenteller op de rug.", pap: "T-shirt pretu pisá. Logo di Salt Road riba pechu, HOPI GAZZZ tach na lomba." }
   },
   {
     id: "tee-saltroad-sand", kind: "tee", price: 87, sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Sand"], photo: "",
