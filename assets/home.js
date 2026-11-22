@@ -17,6 +17,21 @@
   };
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) tick();
 
+  // hero media
+  const hv = document.querySelector(".hero-video"), hb = document.querySelector(".hero-bg");
+  if (C.heroImage) { hb.classList.add("photo"); hb.style.setProperty("--hero-img", `url(${C.heroImage})`); }
+  if (C.heroVideo && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    hv.src = C.heroVideo; if (C.heroImage) hv.poster = C.heroImage;
+    hv.hidden = false; hv.play().catch(() => {});
+  }
+
+  // only show home sections that have real content
+  const hasVideos = (D.videos || []).some(v => !v.short);
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const hasEvent = (D.events || []).some(e => e.date >= todayISO);
+  if (!hasVideos) document.getElementById("films-sec").hidden = true;
+  if (!hasEvent) { document.getElementById("event-col").hidden = true; document.querySelector(".duo-grid").classList.add("solo"); }
+
   // Subi car + meter
   const subi = (D.cars || []).find(c => c.slug === "subi") || {};
   document.querySelectorAll("[data-car]").forEach(el => window.SRC_CAR.render(el, subi));

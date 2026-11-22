@@ -16,8 +16,10 @@
 <div data-shell="nav"></div>
 
 <header class="hero letterbox">
-  <!-- Drop a still at photos/hero.jpg, then: class="hero-bg photo" style="--hero-img:url(photos/hero.jpg)" -->
+  <!-- Hero media comes from SRC.heroVideo / SRC.heroImage in assets/config.js -->
   <div class="hero-bg"></div>
+  <video class="hero-video" muted loop playsinline preload="none" hidden></video>
+  <div class="hero-shade"></div>
   <div class="timecode"><b></b>REC <span id="tc">00:00:00:00</span> · 12.15°N 68.27°W</div>
   <div class="wrap">
     <h1 data-i18n-html="home.h1"></h1>
@@ -29,7 +31,7 @@
   </div>
 </header>
 
-<section><div class="wrap">
+<section id="films-sec"><div class="wrap">
   <div class="head reveal">
     <div><h2 data-i18n-html="home.films.h"></h2><p class="sub" data-i18n="home.films.sub"></p></div>
     <a class="btn btn-ghost" href="films.html" data-i18n="common.more"></a>
@@ -55,7 +57,7 @@
 </div></section>
 
 <section class="duo"><div class="wrap duo-grid">
-  <div class="reveal">
+  <div class="reveal" id="event-col">
     <h2 data-i18n-html="home.events.h"></h2>
     <div id="next-event" class="next-event"></div>
     <a class="btn btn-ghost" href="events.html" data-i18n="home.events.all"></a>

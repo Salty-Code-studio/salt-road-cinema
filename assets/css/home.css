@@ -41,3 +41,10 @@ a.vid:hover{border-color:var(--pan)}
 .submit-band h2{max-width:16ch}
 .subi-band .zones{display:none}
 .hero h1{font-size:min(clamp(46px,9vw,136px),13.5vh)}
+
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,12,11,.2) 0%,rgba(12,12,11,.35) 50%,var(--asphalt) 100%);pointer-events:none}
+.hero-bg.photo{background-image:var(--hero-img);background-size:cover;background-position:center}
+.duo-grid.solo{grid-template-columns:1fr}
+.duo-grid.solo .shop-strip{grid-template-columns:repeat(3,1fr)}
+@media(max-width:700px){.duo-grid.solo .shop-strip{grid-template-columns:1fr}}
