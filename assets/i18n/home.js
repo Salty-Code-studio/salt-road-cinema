@@ -108,3 +108,9 @@ SRC_I18N.add({
   nl: { "glove.pack": "Merch", "glove.lighter": "Naar een meet", "glove.shades": "Kijk de films", "glove.driver": "Fix de Subi", "glove.bra": "Niet van ons. Denk ik." },
   pap: { "glove.pack": "Merch", "glove.lighter": "Bai un meet", "glove.shades": "Wak e pelíkulanan", "glove.driver": "Drecha e Subi", "glove.bra": "No ta di nos. Kisas." }
 });
+
+SRC_I18N.add({
+  en: { "mirror.label": "Behind the scenes" },
+  nl: { "mirror.label": "Achter de schermen" },
+  pap: { "mirror.label": "Tras di kámara" }
+});

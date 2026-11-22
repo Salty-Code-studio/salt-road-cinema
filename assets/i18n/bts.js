@@ -69,3 +69,9 @@ SRC_I18N.add({
     "bts.demo": "Layout di demo. No ta ekipo òf potrèt real."
   }
 });
+
+SRC_I18N.add({
+  en: { "bts.crew.h": "Who's behind <em>the wheel</em>", "bts.crew.sub": "The people who **shoot, edit and wrench** on every Salt Road film.", "bts.crew.empty": "Crew profiles are being shot. Check back soon." },
+  nl: { "bts.crew.h": "Wie zit er <em>achter het stuur</em>", "bts.crew.sub": "De mensen die elke Salt Road film **filmen, monteren en sleutelen**.", "bts.crew.empty": "De crewfoto's worden nog geschoten. Kom snel terug." },
+  pap: { "bts.crew.h": "Ken ta <em>tras di stür</em>", "bts.crew.sub": "E hendenan ku ta **filma, edita i traha** riba tur pelíkula di Salt Road.", "bts.crew.empty": "Nos ta saka potrèt di e krew ainda. Bin bèk pronto." }
+});

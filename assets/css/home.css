@@ -352,3 +352,14 @@ a.vid:hover{border-color:var(--pan)}
 .glovebox.open .gb-obj.glow:not(.zoom){filter:drop-shadow(0 0 1px rgba(255,214,186,.8)) drop-shadow(0 0 6px rgba(232,164,155,.45)) drop-shadow(0 3px 3px rgba(0,0,0,.6))}
 .glovebox.open .gb-obj.zoom{pointer-events:auto;z-index:40;cursor:pointer}
 span.gb-obj.zoom{cursor:default}
+
+/* mirror is a link to Behind the scenes */
+.hero .wrap{pointer-events:none}
+.mirror{pointer-events:auto;cursor:pointer;text-decoration:none;display:block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.mirror-body,.mirror-glass{display:block}
+.mirror-glass{transition:filter .3s}
+.mirror:hover .mirror-body,.mirror:focus-visible .mirror-body{box-shadow:0 8px 20px rgba(0,0,0,.6),0 0 0 1px rgba(255,214,186,.5),0 0 14px rgba(232,164,155,.45)}
+.mirror:hover .mirror-glass,.mirror:focus-visible .mirror-glass{filter:brightness(1.05) saturate(1.6) contrast(1.05)}
+.mirror:hover{transform:translateX(-50%) rotate(-2deg)}
+.mirror-cap{position:absolute;left:50%;top:100%;transform:translate(-50%,6px);white-space:nowrap;font:400 clamp(9px,.62cqw,12px) "Bruno Ace SC",sans-serif;color:#f3efe6;background:rgba(12,11,10,.8);border:1px solid rgba(232,164,155,.35);border-radius:6px;padding:3px 9px;opacity:0;transition:opacity .2s;pointer-events:none;box-shadow:0 0 12px rgba(232,164,155,.18)}
+.mirror:hover .mirror-cap,.mirror:focus-visible .mirror-cap{opacity:1}

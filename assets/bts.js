@@ -99,7 +99,21 @@
     if (Math.abs(dx) > 50) { cur.p += dx < 0 ? 1 : -1; show(); }
   });
 
-  const render = () => { renderGear(); renderShoots(); if (lb.open) show(); };
+  const renderCrew = () => {
+    const box = document.getElementById("crew-body"); if (!box) return;
+    const L = SRC_I18N.lang, crew = (window.DATA && window.DATA.crew) || [];
+    const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    box.innerHTML = crew.length ? crew.map(p => `
+      <article class="crew-card reveal">
+        <div class="crew-photo">${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">` : `<span>${esc(p.name.split(" ").map(w => w[0]).join("").slice(0, 2))}</span>`}</div>
+        <h3>${esc(p.name)}</h3>
+        <p class="crew-role">${esc((p.role || {})[L] || (p.role || {}).en || "")}</p>
+        <p>${esc((p.bio || {})[L] || (p.bio || {}).en || "")}</p>
+        ${p.instagram ? `<a href="https://www.instagram.com/${esc(p.instagram)}/" target="_blank" rel="noopener">@${esc(p.instagram)}</a>` : ""}
+      </article>`).join("") : `<p class="sub crew-empty">${SRC_I18N.t("bts.crew.empty")}</p>`;
+    window.SRC_REVEAL && SRC_REVEAL();
+  };
+  const render = () => { renderCrew(); renderGear(); renderShoots(); if (lb.open) show(); };
   render();
   document.addEventListener("langchange", render);
 })();

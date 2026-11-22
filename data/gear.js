@@ -5,3 +5,7 @@
 window.DATA = window.DATA || {};
 window.DATA.gear = [];      // TODO: Rudo's real kit
 window.DATA.galleries = [];
+
+// The people behind Salt Road Cinema. photo optional (initials shown if empty).
+// { name, role: {en,nl,pap}, bio: {en,nl,pap}, photo: "media/crew-xyz.jpg", instagram: "handle" }
+window.DATA.crew = window.DATA.crew || []; // TODO: names, roles, photos from Rudo
