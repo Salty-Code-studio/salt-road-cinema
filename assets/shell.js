@@ -177,9 +177,9 @@
     const make = () => {
       yt = new YT.Player("dock-yt", {
         width: 96, height: 54,
-        playerVars: { listType: "playlist", list: PLAYLIST, index: 1, autoplay: 1, playsinline: 1, controls: 0, rel: 0, iv_load_policy: 3, disablekb: 1 },
+        playerVars: { autoplay: 1, playsinline: 1, controls: 0, rel: 0, iv_load_policy: 3, disablekb: 1 },
         events: {
-          onReady: e => { e.target.setVolume(60); e.target.playVideo(); res(); },
+          onReady: e => { e.target.setVolume(60); e.target.loadPlaylist({ listType: "playlist", list: PLAYLIST, index: C.radioStart ?? 1 }); res(); }, // 1 = Riders on the Storm
           onStateChange: e => { playing = e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING; sync(); },
           onError: () => yt.nextVideo() // skip anything that refuses to embed
         }
