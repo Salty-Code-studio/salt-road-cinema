@@ -1,7 +1,7 @@
 SRC_I18N.add({
   en: {
     "garage.title": "The <em>Garage</em>",
-    "garage.sub": "Every car we film gets a page. Builds, daily drivers, island legends.",
+    "garage.sub": "Every car we film **gets a page**. Builds, daily drivers, island legends.",
     "garage.featured": "Featured project",
     "garage.open": "Open the build",
     "garage.status.project": "Project",
@@ -16,12 +16,12 @@ SRC_I18N.add({
     "garage.progress": "Build progress",
     "garage.empty": "No cars yet. Be the first.",
     "garage.cta.title": "Want your car in the <em>Garage</em>?",
-    "garage.cta.sub": "Tell us about it. The best ones get filmed.",
+    "garage.cta.sub": "Tell us about it. The **best ones get filmed**.",
     "garage.cta.go": "Submit your car"
   },
   nl: {
     "garage.title": "De <em>Garage</em>",
-    "garage.sub": "Elke auto die we filmen krijgt een pagina. Projecten, dagelijkse bakken, eilandlegendes.",
+    "garage.sub": "Elke auto die we filmen **krijgt een pagina**. Projecten, dagelijkse bakken, eilandlegendes.",
     "garage.featured": "Uitgelicht project",
     "garage.open": "Bekijk de build",
     "garage.status.project": "Project",
@@ -36,12 +36,12 @@ SRC_I18N.add({
     "garage.progress": "Voortgang van de build",
     "garage.empty": "Nog geen auto's. Wees de eerste.",
     "garage.cta.title": "Jouw auto in de <em>Garage</em>?",
-    "garage.cta.sub": "Vertel ons erover. De beste worden gefilmd.",
+    "garage.cta.sub": "Vertel ons erover. De **beste worden gefilmd**.",
     "garage.cta.go": "Stuur je auto in"
   },
   pap: {
     "garage.title": "E <em>Garashi</em>",
-    "garage.sub": "Kada outo ku nos filma ta haña su propio página. Proyekto, outo di tur dia, lender di isla.",
+    "garage.sub": "Kada outo ku nos filma ta haña **su propio página**. Proyekto, outo di tur dia, lender di isla.",
     "garage.featured": "Proyekto destaká",
     "garage.open": "Wak e build",
     "garage.status.project": "Proyekto",
@@ -56,7 +56,7 @@ SRC_I18N.add({
     "garage.progress": "Progreso di e build",
     "garage.empty": "Ainda no tin outo. Sea e promé.",
     "garage.cta.title": "Bo outo den e <em>Garashi</em>?",
-    "garage.cta.sub": "Konta nos tokante dje. Esnan mihó nos ta filma.",
+    "garage.cta.sub": "Konta nos tokante dje. Esnan **mihó nos ta filma**.",
     "garage.cta.go": "Manda bo outo"
   }
 });
