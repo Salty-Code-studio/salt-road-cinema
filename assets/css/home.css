@@ -56,3 +56,53 @@ a.vid:hover{border-color:var(--pan)}
 .credit{font-family:var(--mono);font-size:12px;color:var(--salt-dim);margin-top:18px}
 .credit a{color:var(--salt-dim)}
 .hero h1{font-size:min(clamp(52px,11vw,170px),17vh)}
+
+/* intro tachometer */
+.intro-on body{overflow:hidden}
+.intro{position:fixed;inset:0;z-index:200;background:radial-gradient(60% 60% at 50% 45%,#1a1715 0%,#0a0a09 70%);display:grid;place-items:center;transition:opacity .6s ease,visibility .6s}
+.intro.out{opacity:0;visibility:hidden}
+.intro-inner{display:grid;justify-items:center;gap:6px;transform:translateY(-2vh)}
+.tach{width:min(78vw,440px);aspect-ratio:1}
+.tach svg{width:100%;height:100%;overflow:visible}
+.tach .rim{fill:none;stroke:#2a2a26;stroke-width:3}
+.tach .redzone{fill:none;stroke:#c8323a;stroke-width:8;opacity:.85}
+.tach .ticks line{stroke:#8f8a7e;stroke-width:2}
+.tach .ticks line.major{stroke:#f3efe6;stroke-width:3}
+.tach .ticks line.red{stroke:#e5484d}
+.tach .nums text{fill:#f3efe6;font:400 20px "Bruno Ace SC",sans-serif;text-anchor:middle}
+.tach .nums text.red{fill:#e5484d}
+.tach .unit{fill:#8f8a7e;font:400 10px "Kode Mono",monospace;text-anchor:middle;letter-spacing:.15em}
+.tach .needle{transform-origin:160px 160px;transform:rotate(-210deg)}
+.tach .needle line{stroke:#e8a49b;stroke-width:4;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(232,164,155,.6))}
+.tach .needle circle{fill:#0c0c0b;stroke:#e8a49b;stroke-width:3}
+.intro.limiter .tach .needle line{stroke:#ff5a5f;filter:drop-shadow(0 0 10px rgba(255,90,95,.9))}
+.rpm{display:flex;align-items:baseline;gap:8px;margin-top:-84px;font-family:"Kode Mono",monospace;color:#f3efe6}
+.rpm b{font-size:34px;font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.rpm span{font-size:11px;color:#8f8a7e;letter-spacing:.15em}
+.intro.limiter .rpm b{color:#ff5a5f}
+.shift{width:120px;height:8px;border-radius:99px;background:#2a2a26;margin-bottom:8px;transition:background .05s,box-shadow .05s}
+.shift.on{background:#ff5a5f;box-shadow:0 0 18px #ff5a5f}
+.intro-brand{margin-top:34px;font-family:"Bruno Ace SC",sans-serif;font-size:clamp(18px,3.2vw,26px);letter-spacing:-.02em;color:#f3efe6;opacity:0;animation:introBrand .8s .35s forwards}
+.intro-brand em{font-style:normal;color:var(--pan)}
+@keyframes introBrand{to{opacity:1}}
+
+.cluster{display:flex;align-items:flex-end;gap:clamp(8px,3vw,36px)}
+.g-tach,.g-boost{display:grid;justify-items:center}
+.boost{width:min(52vw,300px);aspect-ratio:1}
+.boost svg{width:100%;height:100%;overflow:visible}
+.boost .rim{fill:none;stroke:#2a2a26;stroke-width:3}
+.boost .boostzone{fill:none;stroke:#2346b8;stroke-width:6;opacity:.9}
+.boost .ticks line{stroke:#8f8a7e;stroke-width:1.6}
+.boost .ticks line.major{stroke:#f3efe6;stroke-width:2.4}
+.boost .ticks line.pos{stroke:#6f8ff0}
+.boost .nums text{fill:#f3efe6;font:400 13px "Bruno Ace SC",sans-serif;text-anchor:middle}
+.boost .unit{fill:#8f8a7e;font:400 9px "Kode Mono",monospace;text-anchor:middle;letter-spacing:.2em}
+.boost .needle{transform-origin:115px 115px;transform:rotate(-210deg)}
+.boost .needle line{stroke:#6f8ff0;stroke-width:3.5;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(111,143,240,.6))}
+.boost .needle circle{fill:#0c0c0b;stroke:#6f8ff0;stroke-width:2.5}
+.intro.spooled .boost .needle line{stroke:#a9bcff;filter:drop-shadow(0 0 12px rgba(111,143,240,1))}
+.psi{display:flex;align-items:baseline;gap:6px;margin-top:-66px;font-family:"Kode Mono",monospace;color:#f3efe6}
+.psi b{font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;min-width:3.2ch;text-align:right}
+.psi span{font-size:10px;color:#8f8a7e;letter-spacing:.15em}
+.intro.spooled .psi b{color:#a9bcff}
+@media(max-width:560px){.cluster{flex-direction:column;align-items:center;gap:0}.boost{width:min(48vw,190px)}.tach{width:min(70vw,300px)}}

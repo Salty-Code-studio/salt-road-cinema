@@ -12,6 +12,17 @@
 <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body data-page="home">
+<script>document.documentElement.classList.add("intro-on")</script>
+<div id="intro" class="intro" aria-hidden="true">
+  <div class="intro-inner">
+    <div class="shift"></div>
+    <div class="cluster">
+      <div class="g-tach"><div class="tach"></div><div class="rpm"><b>0000</b><span>RPM</span></div></div>
+      <div class="g-boost"><div class="boost"></div><div class="psi"><b>-0.6</b><span>BAR</span></div></div>
+    </div>
+    <div class="intro-brand">Salt <em>Road</em> Cinema</div>
+  </div>
+</div>
 <div data-shell="nav"></div>
 
 <header class="hero letterbox">
@@ -109,5 +120,6 @@
 <script src="assets/shell.js"></script>
 <script src="assets/car.js"></script>
 <script src="assets/home.js"></script>
+<script src="assets/intro.js"></script>
 </body>
 </html>
