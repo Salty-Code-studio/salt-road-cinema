@@ -129,7 +129,7 @@ footer .row a:hover{color:var(--salt)}
 .subi-hero .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
 @media(max-width:860px){.subi-hero .grid{grid-template-columns:1fr}}
 .subi-hero h1{font-weight:900;font-stretch:125%;font-size:clamp(52px,10vw,150px);line-height:.88;letter-spacing:-.03em;text-transform:uppercase}
-.subi-hero h1 span{color:var(--rally);-webkit-text-stroke:1px #4f6fe0}
+.subi-hero h1 span{color:#d8443e;-webkit-text-stroke:1px #ef6a60}
 .spec{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:28px}
 .spec div{background:var(--asphalt);padding:14px 16px}
 .spec span{display:block;font-family:var(--mono);font-size:11px;color:var(--salt-dim);text-transform:uppercase;letter-spacing:.06em}
@@ -333,3 +333,6 @@ strong{font-weight:700;color:var(--salt)}
 .dock-video .dock-cover{position:absolute;inset:0;width:100%;height:100%;border-radius:0}
 .dock.started .dock-video .dock-cover{display:none}
 @media(max-width:480px){.dock-video{width:80px;height:45px}}
+.car-photo .zone{fill:rgba(243,239,230,.06);stroke:rgba(243,239,230,.75)}
+.car-photo .zone:hover,.car-photo .zone.on{fill:rgba(243,239,230,.32);stroke:#fff;stroke-dasharray:0}
+.car-photo .zone.taken{fill:rgba(212,167,44,.35);stroke:var(--gold)}

@@ -13,6 +13,6 @@ window.DATA.cars = [
     mods: [], photo: "", page: "subi.html",
     stats: null, // TODO from Rudo: { power, grip, style } 0-100
 
-    sideCutout: "", photoNow: "", photoGoal: ""
+    sideCutout: "media/subi-side.png", photoNow: "media/subi-34-front.jpg", photoGoal: "" // renders from the photo scan of the real car (red, 2003)
   }
 ];

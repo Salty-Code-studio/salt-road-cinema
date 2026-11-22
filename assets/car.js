@@ -5,7 +5,7 @@
   const SVG = `<svg viewBox="0 0 800 300" role="img" aria-label="Subaru WRX side profile with sponsor spots">
     <defs>
       <linearGradient id="paint" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#3a5fd6"/><stop offset="1" stop-color="#1b338a"/>
+        <stop offset="0" stop-color="#d8443e"/><stop offset="1" stop-color="#8e1f1c"/>
       </linearGradient>
     </defs>
     <ellipse cx="400" cy="268" rx="360" ry="10" fill="#000" opacity=".55"/>
@@ -18,8 +18,8 @@
     <rect x="44" y="176" width="26" height="12" rx="3" fill="#f3efe6" opacity=".85"/>
     <rect x="742" y="148" width="16" height="16" rx="3" fill="#b8323a"/>
     <g fill="#16161a"><circle cx="170" cy="215" r="46"/><circle cx="620" cy="215" r="46"/></g>
-    <g fill="none" stroke="#d4a72c" stroke-width="7"><circle cx="170" cy="215" r="27"/><circle cx="620" cy="215" r="27"/></g>
-    <g fill="#d4a72c"><circle cx="170" cy="215" r="6"/><circle cx="620" cy="215" r="6"/></g>
+    <g fill="none" stroke="#2a2a2a" stroke-width="7"><circle cx="170" cy="215" r="27"/><circle cx="620" cy="215" r="27"/></g>
+    <g fill="#3a3a3a"><circle cx="170" cy="215" r="6"/><circle cx="620" cy="215" r="6"/></g>
     <g class="zones">
       <path class="zone" data-zone="hood" d="M88,150 L262,133 L266,160 L96,176 Z"/>
       <path class="zone" data-zone="banner" d="M334,98 L366,78 Q382,70 420,69 L470,69 L470,80 L352,88 Z"/>
@@ -29,7 +29,17 @@
       <rect class="zone" data-zone="skirt" x="228" y="198" width="334" height="13" rx="3"/>
     </g>
   </svg>`;
-  const zonesOnly = () => {
+  // Sponsor zones placed on the scanned side render (media/subi-side.png, 8:3 like the viewBox).
+  const CUT_ZONES = `<svg viewBox="0 0 800 300" preserveAspectRatio="none" class="zones-overlay"><g class="zones">
+      <path class="zone" data-zone="hood" d="M64,146 L222,124 L236,164 L74,174 Z"/>
+      <path class="zone" data-zone="banner" d="M318,74 L346,55 L428,53 L428,66 L342,78 Z"/>
+      <rect class="zone" data-zone="fdoor" x="256" y="132" width="174" height="68" rx="4"/>
+      <rect class="zone" data-zone="rdoor" x="440" y="132" width="122" height="64" rx="4"/>
+      <path class="zone" data-zone="quarter" d="M576,128 L704,118 L712,168 L590,176 Z"/>
+      <rect class="zone" data-zone="skirt" x="262" y="220" width="296" height="12" rx="3"/>
+    </g></svg>`;
+  const zonesOnly = () => CUT_ZONES;
+  const zonesFromDrawing = () => {
     const d = document.createElement("div"); d.innerHTML = SVG;
     const svg = d.querySelector("svg");
     [...svg.children].forEach(c => { if (!c.classList.contains("zones")) c.remove(); });
