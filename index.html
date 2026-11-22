@@ -46,12 +46,14 @@
           <linearGradient id="cpWheel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2824"/><stop offset=".4" stop-color="#151311"/><stop offset="1" stop-color="#050505"/></linearGradient>
           <radialGradient id="cpGlow"><stop offset="0" stop-color="#e8a49b" stop-opacity=".3"/><stop offset=".55" stop-color="#e8a49b" stop-opacity=".08"/><stop offset="1" stop-color="#e8a49b" stop-opacity="0"/></radialGradient>
           <linearGradient id="cpRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a49b" stop-opacity="0"/><stop offset="1" stop-color="#e8a49b" stop-opacity=".16"/></linearGradient>
+          <filter id="cpBlur" x="-10%" y="-200%" width="120%" height="500%"><feGaussianBlur stdDeviation="22"/></filter>
           <filter id="cpGrain"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
         </defs>
         <!-- dash light reflecting on the windshield: sits behind the dash, shows only above its edge -->
         <ellipse cx="462" cy="170" rx="210" ry="110" fill="url(#cpGlow)"/>
         <ellipse cx="1138" cy="170" rx="210" ry="110" fill="url(#cpGlow)"/>
         <ellipse cx="800" cy="96" rx="330" ry="60" fill="url(#cpGlow)" opacity=".45"/>
+        <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200" fill="none" stroke="#e8a49b" stroke-opacity=".32" stroke-width="46" filter="url(#cpBlur)"/>
         <!-- dash top surface, windshield base to edges -->
         <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200 L1600,420 L0,420 Z" fill="url(#cpDash)"/>
         <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="2"/>
