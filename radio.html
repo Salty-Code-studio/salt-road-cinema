@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Salt Road Radio</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="fonts/site-fonts.css" rel="stylesheet">
+<style>
+:root{--asphalt:#0c0c0b;--line:#2a2a26;--salt:#f3efe6;--dim:#a9a497;--pan:#e8a49b}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:radial-gradient(80% 60% at 50% 0%,#1d1715 0%,var(--asphalt) 70%);color:var(--salt);font-family:"Bai Jamjuree",system-ui,sans-serif;display:flex;flex-direction:column;gap:14px;padding:18px}
+h1{font-family:"Bruno Ace SC",sans-serif;font-weight:400;font-size:22px;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
+h1 em{font-style:normal;color:var(--pan)}
+.live{width:9px;height:9px;border-radius:50%;background:#e5484d;box-shadow:0 0 10px #e5484d;animation:b 1.2s infinite}
+@keyframes b{50%{opacity:.25}}
+.player{flex:1;min-height:200px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#000}
+.player iframe{width:100%;height:100%;border:0;display:block}
+p{font-size:13px;color:var(--dim);line-height:1.4}
+p b{color:var(--salt)}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center;font-family:"Kode Mono",monospace;font-size:11px;color:var(--dim)}
+.row a{color:var(--dim)}
+</style>
+</head>
+<body>
+<h1><span class="live"></span>Salt Road <em>Radio</em></h1>
+<div class="player">
+  <!-- Need for Speed Underground 2 soundtrack playlist (YouTube). Change the list id to swap playlists. -->
+  <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PL8JNJBL95furpHQEw8psHiU-zdVlummlj&autoplay=1&loop=1"
+          title="Salt Road Radio: Need for Speed Underground 2 soundtrack"
+          allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>
+<p><b>Keep this window open</b> and browse the site. The music keeps playing.</p>
+<div class="row"><span>NFS Underground 2 soundtrack via YouTube</span><a href="https://www.youtube.com/playlist?list=PL8JNJBL95furpHQEw8psHiU-zdVlummlj" target="_blank" rel="noopener">Open on YouTube</a></div>
+</body>
+</html>

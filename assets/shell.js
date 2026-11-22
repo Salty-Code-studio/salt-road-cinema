@@ -18,7 +18,7 @@
       "signup.contact": "WhatsApp number or email", "signup.go": "Ping me", "signup.done": "You're on the list.",
       "foot.big": "See you on<br>the salt road.", "foot.made": "Made on Bonaire",
       "common.watch": "Watch", "common.more": "See all", "common.soon": "Coming soon",
-      "common.send": "Send it", "common.retry": "Try again", "common.sent": "Sent. We'll get back to you within a day."
+      "common.send": "Send it", "common.retry": "Try again", "radio.btn": "Radio", "common.sent": "Sent. We'll get back to you within a day."
     },
     nl: {
       "nav.films": "Films", "nav.garage": "De Garage", "nav.events": "Events", "nav.shop": "Shop",
@@ -29,7 +29,7 @@
       "signup.contact": "WhatsApp-nummer of e-mail", "signup.go": "Hou me op de hoogte", "signup.done": "Je staat op de lijst.",
       "foot.big": "Tot op de<br>salt road.", "foot.made": "Gemaakt op Bonaire",
       "common.watch": "Kijk", "common.more": "Bekijk alles", "common.soon": "Binnenkort",
-      "common.send": "Versturen", "common.retry": "Probeer opnieuw", "common.sent": "Verstuurd. We reageren binnen een dag."
+      "common.send": "Versturen", "common.retry": "Probeer opnieuw", "radio.btn": "Radio", "common.sent": "Verstuurd. We reageren binnen een dag."
     },
     pap: {
       "nav.films": "Pelíkula", "nav.garage": "E Garashi", "nav.events": "Evento", "nav.shop": "Tienda",
@@ -40,7 +40,7 @@
       "signup.contact": "Number di WhatsApp òf email", "signup.go": "Avisá mi", "signup.done": "Bo ta riba e lista.",
       "foot.big": "Te riba<br>e salt road.", "foot.made": "Hasí na Boneiru",
       "common.watch": "Wak", "common.more": "Wak tur", "common.soon": "Ta bin pronto",
-      "common.send": "Manda", "common.retry": "Purba atrobe", "common.sent": "Mandá. Nos ta kontestá bo den un dia."
+      "common.send": "Manda", "common.retry": "Purba atrobe", "radio.btn": "Radio", "common.sent": "Mandá. Nos ta kontestá bo den un dia."
     }
   });
 
@@ -109,6 +109,19 @@
     el.style.setProperty("--bg-l", `url("${imgUrl(im, 2000)}")`);
     el.style.setProperty("--bg-s", `url("${imgUrl(im, 900)}")`);
     if (im.stock) el.dataset.credit = `Photo: ${im.by} / Unsplash`;
+  });
+
+  // Salt Road Radio: a floating button that opens radio.html in a small window,
+  // so the music keeps playing while people browse between pages.
+  const radioBtn = document.createElement("button");
+  radioBtn.type = "button"; radioBtn.className = "radio-btn";
+  radioBtn.innerHTML = `<span class="eq"><i></i><i></i><i></i></span><span data-i18n="radio.btn"></span>`;
+  document.body.appendChild(radioBtn);
+  radioBtn.addEventListener("click", () => {
+    const w = 380, h = 520, left = screen.availWidth - w - 24, top = 80;
+    const win = window.open("radio.html", "srcRadio", `popup=yes,width=${w},height=${h},left=${left},top=${top}`);
+    if (!win) location.href = "radio.html"; else win.focus();
+    radioBtn.classList.add("on");
   });
 
   // behaviour

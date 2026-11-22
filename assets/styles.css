@@ -278,3 +278,13 @@ strong{font-weight:700;color:var(--salt)}
 .hero-bg.has-bg::before{filter:saturate(1) contrast(1.1) brightness(1.15)}
 .hero-bg.has-bg::after{background:linear-gradient(90deg,rgba(12,12,11,.78) 0%,rgba(12,12,11,.3) 60%,rgba(12,12,11,.05) 100%),linear-gradient(180deg,rgba(12,12,11,0) 50%,var(--asphalt) 100%)}
 .hero-bg.has-bg{position:absolute}
+
+/* Salt Road Radio button */
+.radio-btn{position:fixed;left:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:9px;padding:10px 16px 10px 12px;border-radius:99px;border:1px solid var(--line);background:rgba(12,12,11,.85);backdrop-filter:blur(8px);color:var(--salt);font:600 13px var(--wide);cursor:pointer;transition:border-color .2s}
+.radio-btn:hover,.radio-btn.on{border-color:var(--pan)}
+.radio-btn .eq{display:flex;align-items:flex-end;gap:2px;height:14px}
+.radio-btn .eq i{width:3px;background:var(--pan);border-radius:1px;height:40%}
+.radio-btn.on .eq i{animation:eq .9s infinite ease-in-out}
+.radio-btn.on .eq i:nth-child(2){animation-delay:.2s}.radio-btn.on .eq i:nth-child(3){animation-delay:.45s}
+@keyframes eq{0%,100%{height:25%}50%{height:100%}}
+@media(prefers-reduced-motion:reduce){.radio-btn.on .eq i{animation:none;height:70%}}
