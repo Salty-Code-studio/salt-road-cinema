@@ -718,3 +718,35 @@ span.gb-obj.zoom{cursor:default}
 /* glovebox items: decorative only */
 .gb-obj,.gb-obj *{pointer-events:none!important;cursor:default!important}
 .gb-ghost,.gb-caption{display:none!important}
+/* ---------- garage sponsor wall: blacked-out gear ---------- */
+.pegboard{grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,1fr);height:52%;top:7%;padding:10px 8px;gap:6px}
+.sp{position:relative;outline:none;cursor:pointer}
+.sp svg{width:100%;height:100%;display:block;overflow:visible}
+.sp .sil{fill:#050505;stroke:rgba(243,239,230,.12);stroke-width:1;transition:fill .2s,filter .2s}
+.sp.owned .sil{fill:#8f897d;stroke:none}
+.sp:hover .sil,.sp:focus-within .sil{fill:#1d1a17;stroke:#e8a49b;stroke-width:1.4;filter:drop-shadow(0 0 6px rgba(232,164,155,.65))}
+.sp svg{transition:transform .2s}
+.sp:hover svg,.sp:focus-within svg{transform:scale(1.07)}
+.peg-tool svg{width:84%;height:84%;margin:auto}
+.peg-tool .sil{stroke-width:1.2}
+.sp-floor{position:absolute;aspect-ratio:1}
+.sp-floor:hover,.sp-floor:focus-within{z-index:20!important}
+.bay-shelf{position:absolute;z-index:3;right:1.6%;top:42%;width:10.5%;height:26%;transform:perspective(500px) rotateY(-24deg);transform-origin:right center}
+.shelf-board{position:absolute;left:0;right:0;height:5px;background:linear-gradient(180deg,#5a554c,#2a2724);box-shadow:0 3px 4px rgba(0,0,0,.6)}
+.sp-part{position:absolute;width:42%;aspect-ratio:1}
+.sp-part:hover,.sp-part:focus-within{z-index:20}
+/* the popup */
+.sp-card{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translate(-50%,6px);z-index:30;width:max-content;max-width:230px;display:grid;gap:4px;padding:12px 14px;
+  background:rgba(12,11,10,.96);border:1px solid rgba(232,164,155,.5);box-shadow:0 10px 24px rgba(0,0,0,.6),0 0 14px rgba(232,164,155,.18);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;
+  clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px)}
+.sp:hover .sp-card,.sp:focus-within .sp-card{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.peg-tool .sp-card{left:calc(100% + 10px);bottom:auto;top:50%;transform:translate(-6px,-50%)}
+.peg-tool:hover .sp-card,.peg-tool:focus-within .sp-card{transform:translate(0,-50%)}
+.sp-part .sp-card{left:auto;right:calc(100% + 10px);bottom:auto;top:50%;transform:translate(6px,-50%)}
+.sp-part:hover .sp-card,.sp-part:focus-within .sp-card{transform:translate(0,-50%)}
+.sp-ask{font:600 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--pan)}
+.sp-card b{font:400 14px var(--display);color:var(--salt);letter-spacing:-.01em}
+.sp-card i{font-style:normal;font-size:12px;color:var(--salt-dim)}
+.sp-price{font:600 13px var(--mono);color:var(--salt)}
+.sp-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+@media(max-width:700px){.sp-floor,.bay-shelf{display:none}}

@@ -1,12 +1,25 @@
-// Garage tools the Subi build still needs. Shown on the pegboard in the home garage bay.
-// owned:false = outline only + "Sponsor this tool". Set owned:true (and sponsor) when it arrives.
-// price in USD. TODO: real prices from Rudo.
+// Garage gear the Subi rebuild needs (EJ205 engine-out rebuild). Shown blacked out in the home garage bay;
+// hover = "sponsor this". spot: "peg" (pegboard), "floor" (big equipment, x/y/w in % of the bay).
+// owned:true = shown in full + sponsor thanked. Prices: rough USD store estimates, TODO confirm with Rudo.
 window.DATA = window.DATA || {};
 window.DATA.tools = [
-  { id: "torque", icon: "torque", price: 120, owned: false, sponsor: "", name: { en: "Torque wrench", nl: "Momentsleutel", pap: "Yabi di torque" } },
-  { id: "sockets", icon: "sockets", price: 90, owned: false, sponsor: "", name: { en: "Socket set", nl: "Doppenset", pap: "Set di dop" } },
-  { id: "impact", icon: "impact", price: 150, owned: false, sponsor: "", name: { en: "Impact wrench", nl: "Slagmoersleutel", pap: "Yabi di impakto" } },
-  { id: "obd", icon: "obd", price: 70, owned: false, sponsor: "", name: { en: "OBD2 scanner", nl: "OBD2-scanner", pap: "Scanner OBD2" } },
-  { id: "jack", icon: "jack", price: 180, owned: false, sponsor: "", name: { en: "Floor jack", nl: "Garagekrik", pap: "Krik di garashi" } },
-  { id: "stands", icon: "stands", price: 60, owned: false, sponsor: "", name: { en: "Jack stands", nl: "Assteunen", pap: "Sosten di outo" } }
+  // big equipment on the floor
+  { id: "hoist",   spot: "floor", x: 13.5, y: 21, w: 13, z: 1, icon: "hoist",  price: 250, owned: false, name: { en: "Engine hoist (2 ton)", nl: "Motorkraan (2 ton)", pap: "Grua di motor (2 ton)" }, why: { en: "Lifts the EJ20 out of the bay.", nl: "Tilt de EJ20 uit het motorcompartiment.", pap: "Ta hisa e EJ20 for di outo." } },
+  { id: "stand",   spot: "floor", x: 76,   y: 21, w: 9,  z: 1, icon: "stand",  price: 90,  owned: false, name: { en: "Engine stand", nl: "Motorbok", pap: "Stand di motor" }, why: { en: "Holds the block while we rebuild it.", nl: "Houdt het blok vast tijdens de revisie.", pap: "Ta tene e motor miéntras nos ta drech'é." } },
+  { id: "tjack",   spot: "floor", x: 14.5, y: 2,  w: 8,  z: 6, icon: "tjack",  price: 180, owned: false, name: { en: "Transmission / engine jack", nl: "Versnellingsbak- / motorkrik", pap: "Krik di transmishon / motor" }, why: { en: "Drops the gearbox and lines the engine back up.", nl: "Laat de bak zakken en lijnt de motor weer uit.", pap: "Ta baha e transmishon i poné motor bèk na su lugá." } },
+  { id: "jack",    spot: "floor", x: 76,   y: 2,  w: 10, z: 6, icon: "jack",   price: 180, owned: false, name: { en: "Floor jack", nl: "Garagekrik", pap: "Krik di garashi" }, why: { en: "Gets the car up safely.", nl: "Krijgt de auto veilig omhoog.", pap: "Ta hisa e outo ku siguridat." } },
+  { id: "stands",  spot: "floor", x: 64,   y: 1,  w: 6,  z: 6, icon: "stands", price: 60,  owned: false, name: { en: "Jack stands", nl: "Assteunen", pap: "Sosten di outo" }, why: { en: "Nobody works under a car on a jack.", nl: "Niemand werkt onder een auto op een krik.", pap: "Ningun hende ta traha bou di outo riba krik so." } },
+  // hand + Subaru-specific tools on the pegboard
+  { id: "torque",  spot: "peg", icon: "torque",  price: 120, owned: false, name: { en: "Torque wrench", nl: "Momentsleutel", pap: "Yabi di torque" }, why: { en: "Every bolt to spec.", nl: "Elke bout op spec.", pap: "Tur bout segun spec." } },
+  { id: "angle",   spot: "peg", icon: "angle",   price: 15,  owned: false, name: { en: "Torque angle gauge", nl: "Hoekmeter", pap: "Meter di angulo" }, why: { en: "EJ head bolts are torqued to an angle.", nl: "EJ koppakkingbouten gaan op hoek.", pap: "Bout di kabes EJ ta bai riba angulo." } },
+  { id: "sockets", spot: "peg", icon: "sockets", price: 90,  owned: false, name: { en: "Metric socket set", nl: "Metrische doppenset", pap: "Set di dop métriko" }, why: { en: "8 to 19 mm, deep and shallow.", nl: "8 tot 19 mm, diep en kort.", pap: "8 te 19 mm, hundu i kòrtiku." } },
+  { id: "breaker", spot: "peg", icon: "breaker", price: 30,  owned: false, name: { en: "Breaker bar", nl: "Breekstang", pap: "Baranka di fòrsa" }, why: { en: "Crank bolt and seized nuts.", nl: "Krukasbout en vastgeroeste moeren.", pap: "Bout di cranc i moer pegá." } },
+  { id: "impact",  spot: "peg", icon: "impact",  price: 150, owned: false, name: { en: "Impact wrench", nl: "Slagmoersleutel", pap: "Yabi di impakto" }, why: { en: "Saves hours on the tear-down.", nl: "Scheelt uren bij het slopen.", pap: "Ta spar ora ora habri." } },
+  { id: "cam",     spot: "peg", icon: "cam",     price: 25,  owned: false, name: { en: "Cam sprocket holder", nl: "Nokkenas-tandwielhouder", pap: "Tenedó di sprocket" }, why: { en: "Holds the cam gears for the timing belt.", nl: "Houdt de nokkenastandwielen vast voor de distributieriem.", pap: "Ta tene e sprocketnan pa e timing belt." } },
+  { id: "crank",   spot: "peg", icon: "crank",   price: 30,  owned: false, name: { en: "Crank pulley holder", nl: "Krukaspoelie-houder", pap: "Tenedó di pulley" }, why: { en: "To break loose the crank bolt.", nl: "Om de krukasbout los te krijgen.", pap: "Pa los e bout di cranc." } },
+  { id: "valve",   spot: "peg", icon: "valve",   price: 40,  owned: false, name: { en: "Valve spring compressor", nl: "Klepveerspanner", pap: "Kompresor di veer di klèp" }, why: { en: "To service the boxer heads.", nl: "Voor de boxer-cilinderkoppen.", pap: "Pa traha riba e kabesnan boxer." } },
+  { id: "rings",   spot: "peg", icon: "rings",   price: 20,  owned: false, name: { en: "Piston ring compressor", nl: "Zuigerveerspanner", pap: "Kompresor di ring" }, why: { en: "Pistons back in, rings intact.", nl: "Zuigers terug, veren heel.", pap: "Piston bèk aden, ring intakto." } },
+  { id: "comp",    spot: "peg", icon: "comp",    price: 40,  owned: false, name: { en: "Compression tester", nl: "Compressietester", pap: "Tester di kompreshon" }, why: { en: "Before and after numbers on camera.", nl: "Voor- en na-cijfers voor de camera.", pap: "Number promé i despues riba kámara." } },
+  { id: "leak",    spot: "peg", icon: "leak",    price: 60,  owned: false, name: { en: "Leak-down tester", nl: "Lekverliestester", pap: "Tester di leak-down" }, why: { en: "Finds where the compression goes.", nl: "Vindt waar de compressie heen gaat.", pap: "Ta haña unda e kompreshon ta bai." } },
+  { id: "obd",     spot: "peg", icon: "obd",     price: 70,  owned: false, name: { en: "OBD2 / Subaru scanner", nl: "OBD2- / Subaru-scanner", pap: "Scanner OBD2 / Subaru" }, why: { en: "Reads codes and logs the tune.", nl: "Leest codes en logt de tune.", pap: "Ta lesa kode i ta log e tune." } }
 ];
