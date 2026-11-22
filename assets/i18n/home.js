@@ -102,3 +102,9 @@ SRC_I18N.add({
   nl: { "glove.label": "Dashboardkastje", "glove.stickers": "Stickerpakket", "glove.flyers": "Eventflyers", "glove.manual": "Handleiding", "glove.papers": "Save the Subi papieren" },
   pap: { "glove.label": "Kashi di dashboard", "glove.stickers": "Pakete di sticker", "glove.flyers": "Flyer di evento", "glove.manual": "Manual", "glove.papers": "Papel di Save the Subi" }
 });
+
+SRC_I18N.add({
+  en: { "glove.pack": "Merch", "glove.lighter": "Light up a meet", "glove.shades": "Watch the films", "glove.driver": "Fix the Subi", "glove.bra": "Not ours. Probably." },
+  nl: { "glove.pack": "Merch", "glove.lighter": "Naar een meet", "glove.shades": "Kijk de films", "glove.driver": "Fix de Subi", "glove.bra": "Niet van ons. Denk ik." },
+  pap: { "glove.pack": "Merch", "glove.lighter": "Bai un meet", "glove.shades": "Wak e pelíkulanan", "glove.driver": "Drecha e Subi", "glove.bra": "No ta di nos. Kisas." }
+});

@@ -297,3 +297,18 @@ a.vid:hover{border-color:var(--pan)}
 .gb-cavity{padding:2.2cqw 1cqw .8cqw;align-content:end}
 .gb-cavity::before{top:12%}
 .glovebox.open .gb-lid{box-shadow:none}
+
+/* glovebox contents */
+.gb-cavity{display:block;padding:0}
+.gb-obj{position:absolute;display:block;text-decoration:none;opacity:0;transform:translateY(18px) rotate(var(--r,0deg));transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .3s;filter:drop-shadow(0 3px 3px rgba(0,0,0,.6))}
+.glovebox.open .gb-obj{opacity:1;transform:rotate(var(--r,0deg))}
+.gb-obj svg{width:100%;height:auto;display:block}
+.gb-obj span{position:absolute;left:50%;bottom:100%;transform:translate(-50%,-4px);white-space:nowrap;font:600 clamp(9px,.62cqw,12px) var(--wide);color:var(--salt);background:#0c0b0a;border:1px solid #34302b;border-radius:6px;padding:2px 7px;opacity:0;pointer-events:none;transition:opacity .15s}
+.gb-obj:hover span,.gb-obj:focus span{opacity:1}
+.gb-obj:hover{filter:drop-shadow(0 3px 3px rgba(0,0,0,.6)) brightness(1.12)}
+.glovebox.open .gb-obj:hover{transform:rotate(var(--r,0deg)) translateY(-3px)}
+.gb-pack{left:7%;bottom:9%;width:13%;--r:-8deg;transition-delay:.05s}
+.gb-lighter{left:23%;bottom:10%;width:7.5%;--r:12deg;transition-delay:.1s}
+.gb-shades{left:33%;bottom:30%;width:29%;--r:-4deg;transition-delay:.15s}
+.gb-driver{left:30%;bottom:9%;width:38%;--r:3deg;transition-delay:.2s}
+.gb-bra{left:64%;bottom:20%;width:33%;--r:9deg;transition-delay:.25s;cursor:default}
