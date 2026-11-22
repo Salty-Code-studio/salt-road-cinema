@@ -39,3 +39,5 @@ a.vid:hover{border-color:var(--pan)}
 
 .submit-band .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .submit-band h2{max-width:16ch}
+.subi-band .zones{display:none}
+.hero h1{font-size:min(clamp(46px,9vw,136px),13.5vh)}
