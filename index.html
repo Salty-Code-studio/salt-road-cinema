@@ -55,7 +55,9 @@
         <defs>
           <linearGradient id="cpDash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262320"/><stop offset=".25" stop-color="#16140f"/><stop offset="1" stop-color="#070605"/></linearGradient>
           <linearGradient id="cpBrow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e2a25"/><stop offset="1" stop-color="#0d0c0a"/></linearGradient>
-          <radialGradient id="cpWell" cx=".5" cy=".35" r=".7"><stop offset="0" stop-color="#121110"/><stop offset="1" stop-color="#030303"/></radialGradient>
+          <radialGradient id="cpWell" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#0b0a09"/><stop offset=".7" stop-color="#040404"/><stop offset="1" stop-color="#000"/></radialGradient>
+          <radialGradient id="cpTunnel"><stop offset="0" stop-color="#000" stop-opacity=".95"/><stop offset=".62" stop-color="#000" stop-opacity=".85"/><stop offset=".8" stop-color="#000" stop-opacity=".4"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+          <linearGradient id="cpTunnelLip" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a352f"/><stop offset=".5" stop-color="#15130f"/><stop offset="1" stop-color="#0a0908"/></linearGradient>
           <linearGradient id="cpWheel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2824"/><stop offset=".4" stop-color="#151311"/><stop offset="1" stop-color="#050505"/></linearGradient>
           <radialGradient id="cpGlow"><stop offset="0" stop-color="#e8a49b" stop-opacity=".3"/><stop offset=".55" stop-color="#e8a49b" stop-opacity=".08"/><stop offset="1" stop-color="#e8a49b" stop-opacity="0"/></radialGradient>
           <linearGradient id="cpRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a49b" stop-opacity="0"/><stop offset="1" stop-color="#e8a49b" stop-opacity=".16"/></linearGradient>
@@ -77,6 +79,12 @@
         <!-- instrument hood (brow) and the gauge well -->
         <path d="M470,190 C500,70 1100,70 1130,190 L1112,190 C1080,98 520,98 488,190 Z" fill="url(#cpBrow)"/>
         <path d="M492,192 C522,104 1078,104 1108,192 C1114,262 1084,326 1030,340 L570,340 C516,326 486,262 492,192 Z" fill="url(#cpWell)"/>
+        <!-- gauge tunnels: each dial sits in its own dark cup -->
+        <circle cx="598" cy="255" r="112" fill="url(#cpTunnel)"/>
+        <circle cx="1002" cy="255" r="112" fill="url(#cpTunnel)"/>
+        <circle cx="598" cy="255" r="94" fill="none" stroke="url(#cpTunnelLip)" stroke-width="5"/>
+        <circle cx="1002" cy="255" r="94" fill="none" stroke="url(#cpTunnelLip)" stroke-width="5"/>
+        <circle cx="800" cy="240" r="152" fill="url(#cpTunnel)"/>
         <!-- centre console bezel, right -->
         <path d="M1160,206 C1250,197 1400,208 1546,232 L1546,338 Q1546,352 1532,352 L1174,352 Q1160,352 1160,338 Z" fill="#060606" stroke="#34302b" stroke-width="2"/>
         <path d="M1172,216 C1258,208 1400,218 1534,240" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1.5"/>

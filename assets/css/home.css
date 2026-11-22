@@ -335,3 +335,10 @@ a.vid:hover{border-color:var(--pan)}
 .gb-hit{position:absolute;cursor:pointer;z-index:30!important}
 .glovebox:not(.open) .gb-hit{pointer-events:none}
 .gb-pack{bottom:28%}.gb-lighter{bottom:15%}.gb-shades{bottom:27%}.gb-driver{bottom:16%}.gb-bra{bottom:12%}
+
+/* tach on top, side dials tucked behind it, each in a dark cup */
+.pod-tach{z-index:4}
+.pod-boost,.pod-speed{z-index:2}
+.pod-tach .g::after{content:"";position:absolute;inset:-6%;border-radius:50%;z-index:-1;background:radial-gradient(circle,#000 58%,rgba(0,0,0,.75) 66%,transparent 74%)}
+.pod-tach .g::before{box-shadow:inset 0 0 0 2px #3a352f,inset 0 0 40px rgba(0,0,0,.95),0 0 0 1px #4a453d,0 0 0 5px #0a0908,0 0 0 6px #2c2925}
+.pod-boost{left:31.9%}.pod-speed{left:57.16%}
