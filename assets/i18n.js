@@ -14,14 +14,22 @@
   };
   let lang = read();
 
-  const t = (key) => dict[lang][key] ?? dict.en[key] ?? key;
+  const raw = (key) => dict[lang][key] ?? dict.en[key] ?? key;
+  // **word** in a string renders as <strong>word</strong>. t() returns HTML-safe markup when bold is used.
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const bold = s => s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+  const t = (key) => { const v = raw(key); return v.includes("**") ? bold(v) : v; };
+  const plain = (key) => raw(key).replace(/\*\*/g, "");
 
   const apply = (root = document) => {
     document.documentElement.lang = lang === "pap" ? "pap" : lang;
-    root.querySelectorAll("[data-i18n]").forEach(el => (el.textContent = t(el.dataset.i18n)));
+    root.querySelectorAll("[data-i18n]").forEach(el => {
+      const v = raw(el.dataset.i18n);
+      if (v.includes("**")) el.innerHTML = bold(esc(v)); else el.textContent = v;
+    });
     root.querySelectorAll("[data-i18n-html]").forEach(el => (el.innerHTML = t(el.dataset.i18nHtml)));
-    root.querySelectorAll("[data-i18n-ph]").forEach(el => (el.placeholder = t(el.dataset.i18nPh)));
-    root.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+    root.querySelectorAll("[data-i18n-ph]").forEach(el => (el.placeholder = plain(el.dataset.i18nPh)));
+    root.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", plain(el.dataset.i18nAria)));
     document.querySelectorAll("[data-lang-btn]").forEach(b => b.setAttribute("aria-pressed", b.dataset.langBtn === lang));
   };
 
@@ -37,6 +45,6 @@
     LANGS,
     get lang() { return lang; },
     add(d) { LANGS.forEach(l => Object.assign(dict[l], d[l] || {})); },
-    t, apply, set
+    t, plain, apply, set
   };
 })();

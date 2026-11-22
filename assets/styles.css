@@ -254,3 +254,14 @@ h2{line-height:1.02}
 .btn,.chip,.tier,input,select,textarea,button{font-family:var(--wide)}
 .btn{font-weight:600;letter-spacing:.01em}
 h4,.part h4{font-family:var(--wide);font-weight:700}
+
+/* tighter type + weight (Bruno has one weight; stroke adds heft) */
+h1,h2,.hero h1,.page-head h1,.subi-hero h1,footer .big{letter-spacing:-.045em;line-height:.9;-webkit-text-stroke:.012em currentColor;paint-order:stroke fill}
+h3,.subi-band h3,.way h3,.tier h4,.card h3{letter-spacing:-.03em;line-height:1}
+h1 em,h2 em,footer .big em,h1 span,.subi-band h3 em{-webkit-text-stroke:.05em currentColor}
+.logo{letter-spacing:-.03em}
+body{line-height:1.45}
+p,.sub,.lead,.way p,.tier p,.card p,.part p{line-height:1.42}
+.sub,.lead{letter-spacing:-.005em}
+strong{font-weight:700;color:var(--salt)}
+.sub strong,.lead strong{color:#fff}
