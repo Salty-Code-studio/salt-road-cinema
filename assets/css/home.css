@@ -363,3 +363,55 @@ span.gb-obj.zoom{cursor:default}
 .mirror:hover{transform:translateX(-50%) rotate(-2deg)}
 .mirror-cap{position:absolute;left:50%;top:100%;transform:translate(-50%,6px);white-space:nowrap;font:400 clamp(9px,.62cqw,12px) "Bruno Ace SC",sans-serif;color:#f3efe6;background:rgba(12,11,10,.8);border:1px solid rgba(232,164,155,.35);border-radius:6px;padding:3px 9px;opacity:0;transition:opacity .2s;pointer-events:none;box-shadow:0 0 12px rgba(232,164,155,.18)}
 .mirror:hover .mirror-cap,.mirror:focus-visible .mirror-cap{opacity:1}
+
+/* ---------- ignition, lights, lamps, fuel/temp ---------- */
+/* dials dark until the ignition is on */
+.cockpit .pod .g svg,.cockpit .spd{transition:filter .6s,opacity .6s}
+.cockpit:not(.lit) .pod .g .ticks,.cockpit:not(.lit) .pod .g .nums,.cockpit:not(.lit) .pod .g .unit{opacity:.28}
+.cockpit:not(.lit) .pod .needle line{filter:none!important;opacity:.6}
+.cockpit:not(.lit) .spd b,.cockpit:not(.lit) .spd span,.cockpit:not(.lit) .spd i,.cockpit:not(.lit) .dig{opacity:.25}
+.cockpit .ticks,.cockpit .nums,.cockpit .unit{transition:opacity .6s}
+/* backlight glow when lit */
+.cockpit.lit .pod .ticks line.major,.cockpit.lit .pod .nums text{filter:drop-shadow(0 0 2px rgba(255,236,214,.65)) drop-shadow(0 0 6px rgba(232,164,155,.35))}
+.cockpit.lit .pod .g::before{background:radial-gradient(circle at 50% 45%,rgba(255,226,196,.07),transparent 62%)}
+.cockpit.lit .spd{box-shadow:inset 0 0 0 2px #2c2925,0 0 0 1px #4a453d,inset 0 0 30px #000,inset 0 0 50px rgba(255,214,186,.05)}
+.cockpit.lit .spd b{text-shadow:0 0 8px rgba(255,236,214,.45)}
+/* cranking shake */
+.cockpit.cranking .cp-scene{animation:crank .09s linear infinite}
+@keyframes crank{0%{transform:translate(0,0)}25%{transform:translate(.6px,-.8px)}50%{transform:translate(-.6px,.5px)}75%{transform:translate(.4px,.8px)}100%{transform:translate(0,0)}}
+.cockpit.running .cp-scene{animation:idle 1.6s ease-in-out infinite}
+@keyframes idle{50%{transform:translate(0,.4px)}}
+@media(prefers-reduced-motion:reduce){.cockpit.cranking .cp-scene,.cockpit.running .cp-scene{animation:none}}
+/* fuel + temp arcs */
+.spd{position:relative}
+.spd-ring{position:absolute;inset:-3%;width:106%;height:106%;pointer-events:none}
+.spd-ring .seg{fill:#1c1a17;transition:fill .3s,filter .3s}
+.spd-ring .seg.on{fill:#f3efe6;filter:drop-shadow(0 0 3px rgba(255,236,214,.6))}
+.spd-ring .seg.on.low{fill:#ffb02e;filter:drop-shadow(0 0 4px rgba(255,176,46,.8))}
+.spd-ring .seg.on.cold{fill:#6f8ff0;filter:drop-shadow(0 0 4px rgba(111,143,240,.7))}
+.spd-ring .arc-lbl{font:600 11px "Kode Mono",monospace;fill:#7d786d;text-anchor:middle}
+.spd-ring .arc-ico{fill:none;stroke:#7d786d;stroke-width:2}
+.cockpit.lit .spd-ring .arc-lbl{fill:#cfc9bd}.cockpit.lit .spd-ring .arc-ico{stroke:#cfc9bd}
+/* warning lamps inside the tach, above the wheel */
+.lamps{position:absolute;z-index:5;left:46%;top:65%;width:8%;display:flex;justify-content:space-between;gap:2px}
+.lamp{width:15%;aspect-ratio:1;display:block}
+.lamp svg{width:100%;height:100%;fill:none;stroke:#2a2724;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round;transition:stroke .15s,filter .15s}
+.lamp.on.red svg{stroke:#ff4a4f;filter:drop-shadow(0 0 4px #ff4a4f)}
+.lamp.on.amber svg{stroke:#ffb02e;filter:drop-shadow(0 0 4px #ffb02e)}
+.lamp.on.green svg{stroke:#3ddc84;filter:drop-shadow(0 0 4px #3ddc84)}
+.lamp.blink.on svg{animation:lampBlink 1.4s steps(1) infinite}
+@keyframes lampBlink{50%{stroke:#5a4320;filter:none}}
+/* ignition key barrel */
+.ign{position:absolute;z-index:6;left:68.25%;top:63.8%;width:4%;aspect-ratio:1;padding:0;border:0;background:none;cursor:pointer;border-radius:50%}
+.ign svg{width:100%;height:100%;display:block;overflow:visible}
+.ign-marks text{font:600 7px "Kode Mono",monospace;fill:#6b665e}
+.ign-key{transform-origin:50px 50px;transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
+.ign[data-pos="lock"] .ign-key{transform:rotate(-40deg)}
+.ign[data-pos="on"] .ign-key{transform:rotate(30deg)}
+.ign[data-pos="start"] .ign-key{transform:rotate(62deg)}
+.cockpit.lit .ign-marks text{fill:#e8a49b}
+.ign:hover svg{filter:drop-shadow(0 0 6px rgba(232,164,155,.55))}
+.ign.hint svg{animation:ignHint 1.2s ease-out}
+@keyframes ignHint{0%,60%{filter:drop-shadow(0 0 10px rgba(255,176,46,.95))}100%{filter:none}}
+.sw-rev.locked{opacity:.55}
+.lamps{top:70.4%}.ign{width:4.8%;left:67.9%;top:62%}

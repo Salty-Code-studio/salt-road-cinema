@@ -1,5 +1,5 @@
-// Hero dashboard: tach + boost + speed + gear. Idles, revs while REV is held,
-// and the scroll through the hero works as a throttle.
+// Hero cockpit: ignition, gauges, warning lamps, synthesized engine sound.
+// The car starts OFF. Turn the key: lights + lamps on, needle sweep, crank, catch, idle.
 (() => {
   const root = document.querySelector(".cockpit");
   if (!root || !window.SRC_GAUGE) return;
@@ -8,11 +8,116 @@
   const $ = id => document.getElementById(id);
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hero = document.querySelector(".hero");
-  const RATIOS = [0, 3.45, 2.06, 1.45, 1.09, 0.83]; // EJ205 5-speed-ish
-  let rpm = 0.9, b = -0.6, held = false, gear = 1, speed = 0, last = performance.now();
+  const RATIOS = [0, 3.45, 2.06, 1.45, 1.09, 0.83];
 
+  /* ---- fuel + temp arcs around the speed dial ---- */
+  const spd = root.querySelector(".spd");
+  const SEG = 10;
+  const arcSegs = (side) => {
+    // left arc (fuel) from 215deg..145deg, right arc (temp) from -35..35deg, in SVG angle space
+    let out = "";
+    for (let i = 0; i < SEG; i++) {
+      const a0 = side === "L" ? 140 + i * 9 : 40 - i * 9, a1 = a0 + (side === "L" ? 7 : -7); // index 0 = E / C at the bottom
+      const r0 = 84, r1 = 94, p = (a, r) => [100 + r * Math.cos(a * Math.PI / 180), 100 + r * Math.sin(a * Math.PI / 180)];
+      const [x0, y0] = p(a0, r1), [x1, y1] = p(a1, r1), [x2, y2] = p(a1, r0), [x3, y3] = p(a0, r0);
+      const sw = side === "L" ? 1 : 0;
+      out += `<path class="seg seg-${side}" data-i="${i}" d="M${x0.toFixed(1)},${y0.toFixed(1)} A${r1},${r1} 0 0 ${sw} ${x1.toFixed(1)},${y1.toFixed(1)} L${x2.toFixed(1)},${y2.toFixed(1)} A${r0},${r0} 0 0 ${1 - sw} ${x3.toFixed(1)},${y3.toFixed(1)} Z"/>`;
+    }
+    return out;
+  };
+  spd.insertAdjacentHTML("afterbegin", `<svg class="spd-ring" viewBox="0 0 200 200" aria-hidden="true">
+    ${arcSegs("L")}${arcSegs("R")}
+    <text x="40" y="162" class="arc-lbl">E</text><text x="40" y="44" class="arc-lbl">F</text>
+    <text x="160" y="162" class="arc-lbl">C</text><text x="160" y="44" class="arc-lbl">H</text>
+    <path class="arc-ico" d="M20,96 h8 v14 h-8 Z M28,100 l4,2 v6" transform="translate(-2,-4)"/>
+    <path class="arc-ico" d="M178,92 v14 M174,108 a4,4 0 1 0 8,0 a4,4 0 1 0 -8,0 M178,96 h4 M178,100 h4"/>
+  </svg>`);
+  const fuelSegs = [...spd.querySelectorAll(".seg-L")], tempSegs = [...spd.querySelectorAll(".seg-R")];
+  const setArc = (segs, n, cls) => segs.forEach((s, i) => { s.classList.toggle("on", i < n); s.classList.toggle(cls, i < n); });
+
+  /* ---- warning lamps (in the tach, above the wheel) ---- */
+  const lamps = root.querySelector(".lamps");
+  const L = k => lamps.querySelector(`[data-lamp="${k}"]`);
+
+  /* ---- engine sound (WebAudio, generated, no files) ---- */
+  const sound = (() => {
+    let ctx, master, o1, o2, filt, lfo, lfoGain, starter, starterGain;
+    return {
+      start() {
+        try {
+          ctx = new (window.AudioContext || window.webkitAudioContext)();
+          master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
+          filt = ctx.createBiquadFilter(); filt.type = "lowpass"; filt.frequency.value = 420; filt.Q.value = 3; filt.connect(master);
+          const shaper = ctx.createWaveShaper(); const c = new Float32Array(256);
+          for (let i = 0; i < 256; i++) { const x = i / 128 - 1; c[i] = Math.tanh(x * 2.4); } shaper.curve = c; shaper.connect(filt);
+          o1 = ctx.createOscillator(); o1.type = "sawtooth"; o1.frequency.value = 0.01; o1.connect(shaper);
+          o2 = ctx.createOscillator(); o2.type = "square"; const g2 = ctx.createGain(); g2.gain.value = .5; o2.connect(g2).connect(shaper);
+          lfo = ctx.createOscillator(); lfo.type = "sine"; lfoGain = ctx.createGain(); lfoGain.gain.value = .35; lfo.connect(lfoGain).connect(master.gain); // boxer burble
+          starter = ctx.createOscillator(); starter.type = "square"; starter.frequency.value = 230; starterGain = ctx.createGain(); starterGain.gain.value = 0;
+          const sf = ctx.createBiquadFilter(); sf.type = "bandpass"; sf.frequency.value = 900; starter.connect(sf).connect(starterGain).connect(ctx.destination);
+          [o1, o2, lfo, starter].forEach(o => o.start());
+        } catch { ctx = null; }
+      },
+      crank(on) { if (!ctx) return; starterGain.gain.setTargetAtTime(on ? .05 : 0, ctx.currentTime, .05); },
+      run(on) { if (!ctx) return; master.gain.setTargetAtTime(on ? .16 : 0, ctx.currentTime, on ? .08 : .25); },
+      rpm(r, throttle) {
+        if (!ctx) return;
+        const f = Math.max(8, r * 1000 / 60 * 2); // 4-cyl firing frequency
+        o1.frequency.setTargetAtTime(f, ctx.currentTime, .03);
+        o2.frequency.setTargetAtTime(f / 2, ctx.currentTime, .03);
+        lfo.frequency.setTargetAtTime(f / 4, ctx.currentTime, .03);
+        filt.frequency.setTargetAtTime(260 + r * 230 + throttle * 900, ctx.currentTime, .05);
+      },
+      stop() { if (!ctx) return; const c = ctx; master.gain.setTargetAtTime(0, c.currentTime, .2); setTimeout(() => c.close().catch(() => {}), 900); ctx = null; }
+    };
+  })();
+
+  /* ---- state ---- */
+  let state = "off"; // off | on | crank | run
+  let rpm = 0, b = 0, gear = 1, speed = 0, temp = 0.5, held = false, last = performance.now(), sweep = null, crankT = 0;
+  const key = root.querySelector(".ign");
+  const setKey = pos => key.dataset.pos = pos; // lock | on | start
+  const lampsAll = on => lamps.querySelectorAll(".lamp").forEach(l => l.classList.toggle("on", on));
+
+  const turnOn = () => {
+    state = "on"; setKey("on"); root.classList.add("lit");
+    lampsAll(true);
+    setArc(fuelSegs, 1, "low"); setArc(tempSegs, 1, "cold");
+    sweep = performance.now();
+    sound.start();
+    setTimeout(crank, reduce ? 200 : 1400);
+  };
+  const crank = () => {
+    if (state !== "on") return;
+    state = "crank"; setKey("start"); crankT = performance.now();
+    root.classList.add("cranking"); sound.crank(true);
+    setTimeout(() => {
+      if (state !== "crank") return;
+      state = "run"; setKey("on"); root.classList.remove("cranking"); sound.crank(false); sound.run(true);
+      rpm = 1.9;
+      ["battery", "oil", "engine", "belt"].forEach(k => L(k).classList.remove("on"));
+      L("fuel").classList.add("on", "blink"); L("lights").classList.add("on");
+      root.classList.add("running");
+      $("d-rev").classList.remove("locked");
+    }, reduce ? 300 : 950);
+  };
+  const turnOff = () => {
+    state = "off"; setKey("lock"); held = false;
+    root.classList.remove("lit", "running", "cranking"); lampsAll(false);
+    lamps.querySelectorAll(".lamp").forEach(l => l.classList.remove("blink"));
+    setArc(fuelSegs, 0, "low"); setArc(tempSegs, 0, "cold");
+    sound.stop(); $("d-rev").classList.add("locked");
+  };
+  key.addEventListener("click", () => (state === "off" ? turnOn() : turnOff()));
+  $("d-rev").classList.add("locked");
+
+  /* ---- rev button ---- */
   const rev = $("d-rev");
-  const down = e => { e.preventDefault(); held = true; rev.classList.add("on"); };
+  const down = e => {
+    e.preventDefault();
+    if (state !== "run") { key.classList.remove("hint"); void key.offsetWidth; key.classList.add("hint"); return; }
+    held = true; rev.classList.add("on");
+  };
   const up = () => { held = false; rev.classList.remove("on"); };
   rev.addEventListener("pointerdown", down);
   ["pointerup", "pointerleave", "pointercancel"].forEach(ev => rev.addEventListener(ev, up));
@@ -23,31 +128,44 @@
   clock(); setInterval(clock, 15000);
 
   const loop = now => {
-    if (!root.isConnected) return; // left the page (soft navigation)
+    if (!root.isConnected) { sound.stop(); return; }
     const dt = Math.min(50, now - last) / 1000; last = now;
     const scroll = hero ? Math.min(1, Math.max(0, scrollY / (hero.offsetHeight * 0.8))) : 0;
-    const throttle = held ? 1 : scroll;
-    // rpm target: idle wobble, throttle pushes towards the limiter
-    const idle = 0.85 + Math.sin(now / 260) * 0.03;
-    const target = throttle > 0.02 ? idle + throttle * 6.8 : idle;
-    rpm += (target - rpm) * (1 - Math.exp(-(target > rpm ? 2.4 : 3.2) * dt));
-    if (rpm > 7.4) rpm = 7.25 + Math.random() * 0.25; // limiter bounce
-    // gearbox: shift up near redline while on throttle, drop back when off
-    if (throttle > 0.3 && rpm > 6.9 && gear < 5) { gear++; rpm *= RATIOS[gear] / RATIOS[gear - 1]; }
-    if (throttle < 0.05 && gear > 1 && rpm < 1.6) gear--;
-    speed = throttle > 0.02 || speed > 1 ? (rpm * 1000) / (RATIOS[gear] * 4.44) * 1.94 * 0.06 : 0; // tyre 1.94 m, final drive 4.44
-    // boost lags rpm
-    const bt = throttle > 0.05 && rpm > 2.6 ? Math.min(1.25, -0.5 + (rpm - 2.6) * 0.45) : -0.62;
-    b += (bt - b) * (1 - Math.exp(-(bt > b ? 2.2 : 6) * dt));
+    const running = state === "run";
+    const throttle = running ? (held ? 1 : scroll) : 0;
+
+    if (state === "off") { rpm += (0 - rpm) * (1 - Math.exp(-4 * dt)); b += (0 - b) * (1 - Math.exp(-4 * dt)); speed = 0; gear = 1; }
+    else if (state === "on" && sweep) {
+      // needle sweep: up in 0.55s, down in 0.55s
+      const t = (now - sweep) / 550, k = t < 1 ? t : Math.max(0, 2 - t);
+      const e = 1 - Math.pow(1 - Math.min(1, k), 3);
+      rpm = e * 8; b = -1 + e * 2.5;
+    } else if (state === "crank") {
+      rpm = 0.25 + Math.abs(Math.sin((now - crankT) / 70)) * 0.25; b = -0.1;
+    } else {
+      const idle = 0.85 + Math.sin(now / 260) * 0.03;
+      const target = throttle > 0.02 ? idle + throttle * 6.8 : idle;
+      rpm += (target - rpm) * (1 - Math.exp(-(target > rpm ? 2.4 : 3.2) * dt));
+      if (rpm > 7.4) rpm = 7.25 + Math.random() * 0.25;
+      if (throttle > 0.3 && rpm > 6.9 && gear < 5) { gear++; rpm *= RATIOS[gear] / RATIOS[gear - 1]; }
+      if (throttle < 0.05 && gear > 1 && rpm < 1.6) gear--;
+      speed = throttle > 0.02 || speed > 1 ? (rpm * 1000) / (RATIOS[gear] * 4.44) * 1.94 * 0.06 : 0;
+      const bt = throttle > 0.05 && rpm > 2.6 ? Math.min(1.25, -0.5 + (rpm - 2.6) * 0.45) : -0.62;
+      b += (bt - b) * (1 - Math.exp(-(bt > b ? 2.2 : 6) * dt));
+      // warm up: 1 segment cold -> 5 segments normal over ~25s
+      temp = Math.min(5, temp + dt / 5);
+      setArc(tempSegs, Math.round(temp), "cold"); tempSegs.forEach(s => s.classList.toggle("cold", Math.round(temp) < 3));
+      sound.rpm(rpm, throttle);
+    }
 
     tach.set(rpm); boost.set(b);
     $("d-speed").textContent = Math.round(speed);
-    $("d-gear").textContent = speed < 1 && throttle < 0.02 ? "N" : gear;
-    $("d-boost").textContent = (b >= 0 ? "+" : "") + b.toFixed(1);
-    root.classList.toggle("limiter", rpm > 6.5);
-    root.classList.toggle("spooled", b > 0.9);
-    $("d-shift").classList.toggle("on", rpm > 6.8 && Math.floor(now / 70) % 2 === 0);
-    if (!reduce || held) requestAnimationFrame(loop); else setTimeout(() => requestAnimationFrame(loop), 500);
+    $("d-gear").textContent = state === "run" ? (speed < 1 && throttle < 0.02 ? "N" : gear) : "–";
+    $("d-boost").textContent = state === "off" ? "0.0" : (b >= 0 ? "+" : "") + b.toFixed(1);
+    root.classList.toggle("limiter", running && rpm > 6.5);
+    root.classList.toggle("spooled", running && b > 0.9);
+    $("d-shift").classList.toggle("on", running && rpm > 6.8 && Math.floor(now / 70) % 2 === 0);
+    requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
 })();

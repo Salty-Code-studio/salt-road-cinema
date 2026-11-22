@@ -196,6 +196,24 @@
         <svg class="gb-line" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M0,220 C330,125 660,55 1000,25 L1000,900 Q1000,1000 955,1000 L45,1000 Q0,1000 0,900 Z" fill="none" stroke="#050505" stroke-width="2.5" vector-effect="non-scaling-stroke"/><path d="M8,232 C330,139 660,69 992,40" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg><span class="gb-handle"></span>
       </button>
     </div>
+      <div class="lamps" aria-hidden="true">
+        <span class="lamp red" data-lamp="battery"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M7 7V5h3v2M14 7V5h3v2M7 13h4M15 11v4M13 13h4"/></svg></span>
+        <span class="lamp red" data-lamp="oil"><svg viewBox="0 0 24 24"><path d="M3 15h13l5-5-3 1-2-2H8l-2 2H3z"/><path d="M20 16c0 1.5-1 2.5-1 2.5s-1-1-1-2.5 1-2.5 1-2.5 1 1 1 2.5z"/></svg></span>
+        <span class="lamp amber" data-lamp="engine"><svg viewBox="0 0 24 24"><path d="M5 9h3V7h6v2h3l2 2v5h-2v2h-9l-3-3H3v-4h2z"/></svg></span>
+        <span class="lamp amber" data-lamp="fuel"><svg viewBox="0 0 24 24"><path d="M5 20V5a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v15H5zM7 6h5v4H7zM14 9h2l2 2v6a1 1 0 0 0 2 0V9l-3-3"/></svg></span>
+        <span class="lamp red" data-lamp="belt"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><path d="M8 21v-7l-1-4 5-2 5 2-1 4v7M8 9l9 9"/></svg></span>
+        <span class="lamp green" data-lamp="lights"><svg viewBox="0 0 24 24"><path d="M13 6c4 0 7 2.7 7 6s-3 6-7 6zM4 8h6M4 12h6M4 16h6"/></svg></span>
+      </div>
+      <button class="ign" type="button" data-pos="lock" aria-label="Ignition key: start or stop the engine">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <defs><radialGradient id="ignChrome" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#f2efe9"/><stop offset=".5" stop-color="#8f8a83"/><stop offset="1" stop-color="#3a3732"/></radialGradient></defs>
+          <circle cx="50" cy="50" r="44" fill="#0a0908" stroke="#34302b" stroke-width="2"/>
+          <circle cx="50" cy="50" r="30" fill="url(#ignChrome)"/>
+          <circle cx="50" cy="50" r="24" fill="#1a1816"/>
+          <g class="ign-marks"><text x="21" y="27">LOCK</text><text x="10" y="54">ACC</text><text x="68" y="20">ON</text><text x="76" y="44">START</text></g>
+          <g class="ign-key"><rect x="46" y="28" width="8" height="44" rx="2" fill="#bdb8b0"/><rect x="34" y="40" width="32" height="20" rx="8" fill="#141311" stroke="#2c2925" stroke-width="1.5"/><rect x="43" y="46" width="14" height="8" rx="2" fill="#e8a49b"/></g>
+        </svg>
+      </button>
       <div class="pod pod-boost"><div class="g"></div><div class="dig"><b id="d-boost">-0.6</b><span>BAR</span></div></div>
       <div class="pod pod-tach"><div class="g"></div><div class="shiftlight" id="d-shift"></div></div>
       <div class="pod pod-speed"><div class="spd"><b id="d-speed">0</b><span>KM/H</span><i id="d-gear">N</i></div></div>
