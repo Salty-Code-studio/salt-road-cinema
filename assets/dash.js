@@ -39,38 +39,8 @@
   const lamps = root.querySelector(".lamps");
   const L = k => lamps.querySelector(`[data-lamp="${k}"]`);
 
-  /* ---- engine sound (WebAudio, generated, no files) ---- */
-  const sound = (() => {
-    let ctx, master, o1, o2, filt, lfo, lfoGain, starter, starterGain;
-    return {
-      start() {
-        try {
-          ctx = new (window.AudioContext || window.webkitAudioContext)();
-          master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
-          filt = ctx.createBiquadFilter(); filt.type = "lowpass"; filt.frequency.value = 420; filt.Q.value = 3; filt.connect(master);
-          const shaper = ctx.createWaveShaper(); const c = new Float32Array(256);
-          for (let i = 0; i < 256; i++) { const x = i / 128 - 1; c[i] = Math.tanh(x * 2.4); } shaper.curve = c; shaper.connect(filt);
-          o1 = ctx.createOscillator(); o1.type = "sawtooth"; o1.frequency.value = 0.01; o1.connect(shaper);
-          o2 = ctx.createOscillator(); o2.type = "square"; const g2 = ctx.createGain(); g2.gain.value = .5; o2.connect(g2).connect(shaper);
-          lfo = ctx.createOscillator(); lfo.type = "sine"; lfoGain = ctx.createGain(); lfoGain.gain.value = .35; lfo.connect(lfoGain).connect(master.gain); // boxer burble
-          starter = ctx.createOscillator(); starter.type = "square"; starter.frequency.value = 230; starterGain = ctx.createGain(); starterGain.gain.value = 0;
-          const sf = ctx.createBiquadFilter(); sf.type = "bandpass"; sf.frequency.value = 900; starter.connect(sf).connect(starterGain).connect(ctx.destination);
-          [o1, o2, lfo, starter].forEach(o => o.start());
-        } catch { ctx = null; }
-      },
-      crank(on) { if (!ctx) return; starterGain.gain.setTargetAtTime(on ? .05 : 0, ctx.currentTime, .05); },
-      run(on) { if (!ctx) return; master.gain.setTargetAtTime(on ? .16 : 0, ctx.currentTime, on ? .08 : .25); },
-      rpm(r, throttle) {
-        if (!ctx) return;
-        const f = Math.max(8, r * 1000 / 60 * 2); // 4-cyl firing frequency
-        o1.frequency.setTargetAtTime(f, ctx.currentTime, .03);
-        o2.frequency.setTargetAtTime(f / 2, ctx.currentTime, .03);
-        lfo.frequency.setTargetAtTime(f / 4, ctx.currentTime, .03);
-        filt.frequency.setTargetAtTime(260 + r * 230 + throttle * 900, ctx.currentTime, .05);
-      },
-      stop() { if (!ctx) return; const c = ctx; master.gain.setTargetAtTime(0, c.currentTime, .2); setTimeout(() => c.close().catch(() => {}), 900); ctx = null; }
-    };
-  })();
+  // No engine sound (by request): silent stubs keep the start sequence code simple.
+  const sound = { start() {}, crank() {}, run() {}, rpm() {}, stop() {} };
 
   /* ---- state ---- */
   let state = "off"; // off | on | crank | run

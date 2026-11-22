@@ -415,3 +415,68 @@ span.gb-obj.zoom{cursor:default}
 @keyframes ignHint{0%,60%{filter:drop-shadow(0 0 10px rgba(255,176,46,.95))}100%{filter:none}}
 .sw-rev.locked{opacity:.55}
 .lamps{top:70.4%}.ign{width:4.8%;left:67.9%;top:62%}
+
+/* ---------- Drift day: black fade from the bottom-right ---------- */
+.reel-sec{position:relative;isolation:isolate}
+.reel-sec::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(130% 120% at 100% 100%,#000 0%,rgba(0,0,0,.92) 22%,rgba(0,0,0,.55) 40%,rgba(0,0,0,0) 62%)}
+
+/* ---------- The Garage: centred, smaller title + a real garage bay ---------- */
+.garage-head{text-align:center;margin:0 auto 34px;max-width:720px}
+.garage-head h2{font-size:clamp(28px,3.4vw,46px);max-width:none}
+.garage-head .sub{margin:12px auto 0}
+.garage-more{text-align:center;margin-top:26px}
+.garage-bay{display:block;text-decoration:none;color:inherit;border-radius:16px;overflow:hidden;border:1px solid var(--line);transition:border-color .2s}
+.garage-bay:hover{border-color:rgba(232,164,155,.5)}
+.bay-scene{position:relative;aspect-ratio:21/9;background:#0b0a09;overflow:hidden}
+@media(max-width:700px){.bay-scene{aspect-ratio:4/3}}
+/* back wall: roller shutter */
+.bay-door{position:absolute;left:13%;right:13%;top:0;height:64%;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 35%,rgba(0,0,0,.25) 100%),
+    radial-gradient(40% 70% at 32% 0%,rgba(255,240,214,.16),transparent 70%),
+    radial-gradient(40% 70% at 68% 0%,rgba(255,240,214,.16),transparent 70%),
+    repeating-linear-gradient(180deg,#2b2825 0 11px,#1d1b19 11px 13px,#3a3631 13px 14px);
+  box-shadow:inset 0 -8px 0 #141210,inset 0 -10px 0 #2c2925}
+.bay-stencil{position:absolute;left:0;right:0;top:44%;text-align:center;font:400 clamp(14px,2.6vw,40px) var(--display);letter-spacing:.08em;color:rgba(232,164,155,.13)}
+/* side walls: block wall, angled */
+.bay-wall{position:absolute;top:0;height:100%;width:13%;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.25)),
+    repeating-linear-gradient(0deg,transparent 0 22px,rgba(0,0,0,.45) 22px 24px),
+    repeating-linear-gradient(90deg,transparent 0 46px,rgba(0,0,0,.35) 46px 48px),
+    #242120}
+.bay-wall-l{left:0;clip-path:polygon(0 0,100% 0,100% 64%,0 100%)}
+.bay-wall-r{right:0;clip-path:polygon(0 0,100% 0,100% 100%,0 64%);transform:scaleX(-1)}
+.bay-tools{position:absolute;left:12%;top:12%;width:70%;opacity:.9;background:#1f1c19;border-radius:3px;box-shadow:0 0 0 2px #151311}
+/* floor: concrete, light pool, oil stain */
+.bay-floor{position:absolute;left:0;right:0;bottom:0;top:64%;clip-path:polygon(13% 0,87% 0,100% 100%,0 100%);
+  background:
+    radial-gradient(45% 80% at 50% 10%,rgba(255,236,210,.13),transparent 70%),
+    linear-gradient(180deg,#1f1c19 0%,#141210 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  background-blend-mode:screen,normal,overlay}
+.bay-floor::after{content:"";position:absolute;left:0;right:0;top:46%;height:1px;background:rgba(0,0,0,.4)}
+.bay-oil{position:absolute;left:58%;top:44%;width:16%;height:22%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,.25) 60%,transparent);filter:blur(2px)}
+/* fluorescent tubes */
+.bay-tube{position:absolute;top:3%;width:20%;height:6px;border-radius:4px;background:#fdf6e8;box-shadow:0 0 10px 3px rgba(255,244,222,.55),0 0 40px 10px rgba(255,236,210,.18)}
+.bay-tube-1{left:22%}.bay-tube-2{right:22%}
+/* tool chest + tyres */
+.bay-chest{position:absolute;left:4%;bottom:12%;width:9%;height:30%;border-radius:3px;background:linear-gradient(180deg,#b3242a,#7a171b);display:grid;gap:5%;padding:8% 7%;box-shadow:0 8px 14px rgba(0,0,0,.6)}
+.bay-chest i{display:block;border-radius:2px;background:linear-gradient(180deg,#c9313a,#8d1b21);box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)}
+.bay-chest i::after{content:"";display:block;width:40%;height:3px;margin:30% auto 0;background:#d9d5ce;border-radius:2px}
+.bay-tyres{position:absolute;right:4%;bottom:10%;width:9%;display:grid;gap:2px}
+.bay-tyres i{display:block;aspect-ratio:3.2/1;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#2a2826 0 30%,#0c0b0a 32% 58%,#1b1a18 60% 100%);box-shadow:0 2px 0 #000}
+/* the car */
+.bay-car{position:absolute;left:50%;bottom:7%;width:60%;transform:translateX(-50%);filter:drop-shadow(0 14px 10px rgba(0,0,0,.75))}
+.bay-car::after{content:"";position:absolute;left:8%;right:8%;bottom:6%;height:10%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),transparent);z-index:-1}
+.bay-car .car-photo img{-webkit-box-reflect:below -6px linear-gradient(transparent 72%,rgba(255,255,255,.16))}
+.bay-car .zones{display:none}
+@media(max-width:700px){.bay-car{width:86%}.bay-chest,.bay-tools{display:none}.bay-tyres{width:14%}}
+/* info under the bay */
+.bay-info{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:22px 26px;background:linear-gradient(180deg,#121110,#0c0b0a)}
+.bay-info h3{font-size:clamp(24px,2.6vw,36px);text-transform:uppercase;line-height:1}
+.bay-info p{color:var(--salt-dim);margin-top:8px;max-width:48ch}
+.bay-info .meter{margin:0 0 14px}
+@media(max-width:760px){.bay-info{grid-template-columns:1fr;gap:14px}}
+.bay-chest{height:24%;grid-template-rows:repeat(4,1fr)}.bay-chest i::after{margin-top:12%}
