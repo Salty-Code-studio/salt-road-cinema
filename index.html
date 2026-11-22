@@ -47,16 +47,16 @@
           <radialGradient id="cpGlow"><stop offset="0" stop-color="#e8a49b" stop-opacity=".3"/><stop offset=".55" stop-color="#e8a49b" stop-opacity=".08"/><stop offset="1" stop-color="#e8a49b" stop-opacity="0"/></radialGradient>
           <linearGradient id="cpRim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a49b" stop-opacity="0"/><stop offset="1" stop-color="#e8a49b" stop-opacity=".16"/></linearGradient>
           <filter id="cpBlur" x="-10%" y="-200%" width="120%" height="500%"><feGaussianBlur stdDeviation="22"/></filter>
-          <linearGradient id="cpEdgeFade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".07" stop-color="#fff" stop-opacity=".85"/><stop offset=".16" stop-color="#fff" stop-opacity="0"/><stop offset=".84" stop-color="#fff" stop-opacity="0"/><stop offset=".93" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff"/></linearGradient>
+          <linearGradient id="cpEdgeFade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".1" stop-color="#fff" stop-opacity=".8"/><stop offset=".24" stop-color="#fff" stop-opacity="0"/><stop offset=".76" stop-color="#fff" stop-opacity="0"/><stop offset=".9" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff"/></linearGradient>
           <mask id="cpEdges" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="420"><rect width="1600" height="420" fill="url(#cpEdgeFade)"/></mask>
-          <radialGradient id="cpCorner"><stop offset="0" stop-color="#f2b3aa" stop-opacity=".55"/><stop offset=".45" stop-color="#e8a49b" stop-opacity=".18"/><stop offset="1" stop-color="#e8a49b" stop-opacity="0"/></radialGradient>
+          <radialGradient id="cpCorner"><stop offset="0" stop-color="#f2b3aa" stop-opacity=".38"/><stop offset=".5" stop-color="#e8a49b" stop-opacity=".12"/><stop offset="1" stop-color="#e8a49b" stop-opacity="0"/></radialGradient>
           <filter id="cpGrain"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
         </defs>
         <!-- dash light reflecting on the windshield: sits behind the dash, shows only above its edge -->
-        <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200" fill="none" stroke="#e8a49b" stroke-opacity=".55" stroke-width="56" filter="url(#cpBlur)" mask="url(#cpEdges)"/>
+        <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200" fill="none" stroke="#e8a49b" stroke-opacity=".4" stroke-width="64" filter="url(#cpBlur)" mask="url(#cpEdges)"/>
         <!-- corner hotspots, like light spilling up from each side -->
-        <ellipse cx="20" cy="190" rx="190" ry="95" fill="url(#cpCorner)"/>
-        <ellipse cx="1580" cy="194" rx="190" ry="95" fill="url(#cpCorner)"/>
+        <ellipse cx="30" cy="186" rx="290" ry="130" fill="url(#cpCorner)"/>
+        <ellipse cx="1570" cy="190" rx="290" ry="130" fill="url(#cpCorner)"/>
         <!-- dash top surface, windshield base to edges -->
         <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200 L1600,420 L0,420 Z" fill="url(#cpDash)"/>
         <path d="M0,196 C230,168 380,156 452,160 C540,60 1060,60 1148,160 C1230,152 1390,166 1600,200" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="2"/>
