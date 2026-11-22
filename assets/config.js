@@ -24,8 +24,10 @@ window.SRC = {
   // Empty = the dialog asks sponsors to get the address on WhatsApp.
   // e.g. ["Salt Road Cinema / Save the Subi", "<forwarder> Suite 123", "Miami, FL 33xxx, USA"]
   shipTo: [], // TODO: forwarder address from Rudo
+  // Next Subi progress video on YouTube (ISO, Bonaire time). Empty = "date coming soon".
+  nextVideo: "", // TODO e.g. "2026-12-05T19:00:00-04:00"
   goalUSD: 6500,      // Subi: total the build needs
-  raisedUSD: 0        // Subi: update as money and parts come in
+  raisedUSD: 32       // Subi: update as money and parts come in (2026-11-22: $32)
 };
 
 // One way to take money everywhere on the site.

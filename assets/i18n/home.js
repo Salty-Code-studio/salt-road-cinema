@@ -114,3 +114,9 @@ SRC_I18N.add({
   nl: { "mirror.label": "Achter de schermen" },
   pap: { "mirror.label": "Tras di kámara" }
 });
+
+SRC_I18N.add({
+  en: { "bay.next": "Next Subi video", "bay.todo": "Next on the to-do list", "bay.built": "built", "bay.drag": "Drag to turn", "bay.soon": "Date soon", "bay.live": "Out now" },
+  nl: { "bay.next": "Volgende Subi video", "bay.todo": "Volgende op de to-do lijst", "bay.built": "gebouwd", "bay.drag": "Sleep om te draaien", "bay.soon": "Datum volgt", "bay.live": "Nu online" },
+  pap: { "bay.next": "Siguiente video di Subi", "bay.todo": "Siguiente riba e lista", "bay.built": "trahá", "bay.drag": "Hala pa bira", "bay.soon": "Fecha ta bin", "bay.live": "Awor online" }
+});
