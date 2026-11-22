@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Submit your car | Salt Road Cinema</title>
+<meta name="description" content="Get your build featured in a Salt Road Cinema video or in the Garage. Free shoot for the owner.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/css/submit.css">
+</head>
+<body data-page="submit">
+<div data-shell="nav"></div>
+
+<header class="page-head"><div class="wrap">
+  <h1 data-i18n-html="submit.title">Submit your <em>car</em></h1>
+  <p class="sub" data-i18n="submit.sub"></p>
+</div></header>
+
+<section class="sub-wrap"><div class="wrap sub-grid">
+  <div class="sub-main">
+    <form id="car-form" class="sform" novalidate>
+      <label class="f">
+        <span data-i18n="submit.f.name"></span>
+        <input name="name" autocomplete="name" required>
+        <small class="err" data-err="name" role="alert"></small>
+      </label>
+      <label class="f">
+        <span data-i18n="submit.f.contact"></span>
+        <input name="contact" autocomplete="email" required>
+        <small class="help" data-i18n="submit.f.contactHelp"></small>
+        <small class="err" data-err="contact" role="alert"></small>
+      </label>
+      <label class="f full">
+        <span data-i18n="submit.f.ig"></span>
+        <input name="instagram" autocomplete="off" autocapitalize="none" placeholder="@">
+      </label>
+
+      <label class="f">
+        <span data-i18n="submit.f.make"></span>
+        <input name="make" required placeholder="Subaru">
+        <small class="err" data-err="make" role="alert"></small>
+      </label>
+      <label class="f">
+        <span data-i18n="submit.f.model"></span>
+        <input name="model" required placeholder="Impreza WRX">
+        <small class="err" data-err="model" role="alert"></small>
+      </label>
+      <label class="f">
+        <span data-i18n="submit.f.year"></span>
+        <input name="year" inputmode="numeric" maxlength="4" required placeholder="2003">
+        <small class="err" data-err="year" role="alert"></small>
+      </label>
+      <label class="f">
+        <span data-i18n="submit.f.engine"></span>
+        <input name="engine" placeholder="EJ205T">
+      </label>
+
+      <label class="f full">
+        <span data-i18n="submit.f.mods"></span>
+        <textarea name="mods" data-i18n-ph="submit.f.modsPh"></textarea>
+      </label>
+      <label class="f full">
+        <span data-i18n="submit.f.story"></span>
+        <textarea name="story" required data-i18n-ph="submit.f.storyPh"></textarea>
+        <small class="err" data-err="story" role="alert"></small>
+      </label>
+      <label class="f full">
+        <span data-i18n="submit.f.where"></span>
+        <input name="where" data-i18n-ph="submit.f.wherePh">
+      </label>
+      <label class="f full">
+        <span data-i18n="submit.f.photos"></span>
+        <input name="photos" type="url" inputmode="url" autocapitalize="none" placeholder="https://">
+        <small class="help" data-i18n="submit.f.photosHelp"></small>
+        <small class="err" data-err="photos" role="alert"></small>
+      </label>
+
+      <div class="full">
+        <label class="check">
+          <input type="checkbox" name="consent" value="yes">
+          <span data-i18n="submit.f.consent"></span>
+        </label>
+        <small class="err" data-err="consent" role="alert"></small>
+      </div>
+
+      <div class="full actions">
+        <button class="btn btn-pan" type="submit" id="car-send" data-i18n="submit.send"></button>
+        <small class="err" id="car-summary" role="alert"></small>
+        <p class="help" id="car-mail" hidden data-i18n="submit.mail"></p>
+      </div>
+    </form>
+
+    <div class="thanks" id="car-thanks" hidden>
+      <h2 data-i18n-html="submit.thanks.title"></h2>
+      <p class="sub" data-i18n="submit.thanks.text"></p>
+      <a class="btn btn-pan" id="car-wa" href="#" target="_blank" rel="noopener" data-i18n="submit.thanks.wa"></a>
+    </div>
+  </div>
+
+  <aside class="sub-side">
+    <h2 data-i18n="submit.next.title"></h2>
+    <ul class="next-list">
+      <li data-i18n="submit.next.1"></li>
+      <li data-i18n="submit.next.2"></li>
+      <li data-i18n="submit.next.3"></li>
+      <li data-i18n="submit.next.4"></li>
+    </ul>
+    <a class="btn btn-ghost" id="side-wa" href="#" target="_blank" rel="noopener" data-i18n="submit.next.wa"></a>
+  </aside>
+</div></section>
+
+<div data-shell="signup"></div>
+<div data-shell="footer"></div>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n/submit.js"></script>
+<script src="assets/shell.js"></script>
+<script src="assets/submit.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+.ev-wrap{padding:56px 0 90px;border-bottom:1px solid var(--line)}
+@media(max-width:600px){.ev-wrap{padding:36px 0 64px}}
+.ev-wrap .wrap{margin-bottom:40px}
+.demo-note{font-family:var(--mono);font-size:12px;color:var(--gold);border:1px dashed rgba(212,167,44,.5);border-radius:6px;padding:8px 12px;display:inline-block}
+
+/* type tag */
+.ev-type{display:inline-block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--salt-dim);border:1px solid var(--line);border-radius:99px;padding:3px 10px;margin-bottom:8px}
+.ev-type-race{color:var(--gold);border-color:rgba(212,167,44,.45)}
+.ev-type-show{color:#8ea3ee;border-color:rgba(79,111,224,.5)}
+.ev-type-shoot{background:var(--pan);color:var(--asphalt);border-color:var(--pan);font-weight:600}
+
+/* next up */
+.ev-next{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:40px;background:linear-gradient(160deg,#1a1715,#0f0e0d)}
+.ev-next.is-shoot{border-color:rgba(232,164,155,.5)}
+@media(max-width:860px){.ev-next{grid-template-columns:1fr;padding:24px 20px}}
+.ev-next-label{font-family:var(--mono);font-size:13px;color:var(--salt-dim);margin-bottom:12px}
+.ev-next h2{max-width:none;font-size:clamp(30px,4.6vw,60px);overflow-wrap:anywhere}
+.ev-next-act{margin-top:22px}
+.ev-next-cd{justify-self:end;width:100%;max-width:420px}
+@media(max-width:860px){.ev-next-cd{justify-self:start}}
+.cd{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cd div{border:1px solid var(--line);border-radius:8px;padding:16px 8px;text-align:center;background:var(--asphalt)}
+.cd b{display:block;font-weight:900;font-stretch:120%;font-size:clamp(34px,6vw,60px);line-height:1;font-variant-numeric:tabular-nums}
+.cd span{font-family:var(--mono);font-size:12px;color:var(--salt-dim)}
+.cd-now{display:inline-block;font-weight:900;font-stretch:120%;text-transform:uppercase;font-size:clamp(28px,5vw,44px);color:var(--pan)}
+
+/* meta */
+.ev-meta{display:flex;flex-wrap:wrap;gap:4px 18px;color:var(--salt-dim);font-size:15px;margin-top:6px}
+.ev-meta.big{font-size:18px;color:#d9d4c8;margin-top:14px}
+.ev-meta a{color:var(--pan);text-decoration:none;font-weight:600;white-space:nowrap}
+.ev-meta a:hover{text-decoration:underline}
+.ev-note{color:var(--salt-dim);font-size:15px;margin-top:8px;max-width:60ch}
+
+/* list */
+.ev-h{margin:56px 0 8px}
+.ev-month{margin-top:32px}
+.ev-month-name{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--pan);text-transform:capitalize;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.ev-list{list-style:none}
+.ev-row{display:grid;grid-template-columns:78px 1fr auto;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+.ev-row.is-shoot{background:linear-gradient(90deg,rgba(232,164,155,.07),transparent 60%)}
+.ev-date{text-align:center;border:1px solid var(--line);border-radius:8px;padding:10px 0;background:var(--asphalt-2)}
+.ev-date b{display:block;font-weight:900;font-stretch:120%;font-size:34px;line-height:1}
+.ev-date span{font-family:var(--mono);font-size:12px;color:var(--salt-dim);text-transform:capitalize}
+.ev-row h3{font-size:21px;font-weight:800;font-stretch:115%;line-height:1.15;overflow-wrap:anywhere}
+@media(max-width:600px){
+  .ev-row{grid-template-columns:64px 1fr;gap:6px 14px;align-items:start}
+  .ev-date b{font-size:28px}
+  .ev-act{grid-column:2}
+}
+
+/* past */
+.ev-past{margin-top:56px;border-top:1px solid var(--line)}
+.ev-past summary{cursor:pointer;padding:20px 0;font-weight:700;list-style:none;color:var(--salt-dim)}
+.ev-past summary::-webkit-details-marker{display:none}
+.ev-past summary::after{content:" +";color:var(--pan)}
+.ev-past[open] summary::after{content:" \2212"}
+.ev-past .when-open,.ev-past[open] .when-closed{display:none}
+.ev-past[open] .when-open{display:inline}
+.ev-past .ev-row{opacity:.55}
+
+/* empty */
+.ev-empty{border:1px dashed var(--line);border-radius:10px;padding:64px 32px;text-align:center;display:grid;justify-items:center;gap:20px}
+.ev-empty h2{max-width:16ch}
+.ev-empty .sub{margin:0}
+@media(max-width:600px){.ev-empty{padding:40px 20px}}
