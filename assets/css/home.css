@@ -714,3 +714,7 @@ span.gb-obj.zoom{cursor:default}
   box-shadow:0 0 14px rgba(232,164,155,.45),0 6px 14px rgba(0,0,0,.6);opacity:0;transition:opacity .15s;
   clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
 .glovebox.focus.open > .gb-caption{opacity:1}
+
+/* glovebox items: decorative only */
+.gb-obj,.gb-obj *{pointer-events:none!important;cursor:default!important}
+.gb-ghost,.gb-caption{display:none!important}
