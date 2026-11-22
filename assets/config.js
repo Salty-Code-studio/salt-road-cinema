@@ -5,8 +5,8 @@ window.SRC = {
   whatsapp: "5997000000",                 // TODO: +599 number, digits only
   youtube: "https://www.youtube.com/@saltroadcinema",
   // Home hero: a short muted loop (mp4, 8-15s, under 6 MB) and/or a still. Empty = dark gradient.
-  heroVideo: "",   // e.g. "photos/hero-loop.mp4"
-  heroImage: "",   // e.g. "photos/hero.jpg" (also the poster while the video loads)
+  heroVideo: "media/hero-loop.mp4", heroVideoSmall: "media/hero-loop-s.mp4",
+  heroImage: "media/drift-night-smoke.jpg", // poster while the video loads
   youtubeChannelId: "UC_9DRztFlyJ7oeig9lC-v4w", // used by tools/fetch-videos.mjs
   instagram: "https://www.instagram.com/saltroadcinema", // TODO: confirm handle
   tiktok: "",

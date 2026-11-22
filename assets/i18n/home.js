@@ -84,3 +84,9 @@ SRC_I18N.add({
     "home.submit.go": "Manda bo outo"
   }
 });
+
+SRC_I18N.add({
+  en: { "home.reel.h": "Drift day,<br><em>Bonaire</em>.", "home.reel.sub": "Smoke, tyre walls and a **full crowd**. This is the scene we film. **Sound on.**" },
+  nl: { "home.reel.h": "Driftdag,<br><em>Bonaire</em>.", "home.reel.sub": "Rook, bandenmuren en een **vol publiek**. Dit is de scene die we filmen. **Geluid aan.**" },
+  pap: { "home.reel.h": "Dia di drift,<br><em>Boneiru</em>.", "home.reel.sub": "Huma, muraya di band i un **publiko yen**. Esaki ta e scene ku nos ta filma. **Zonido aden.**" }
+});
