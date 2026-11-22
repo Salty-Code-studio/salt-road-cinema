@@ -67,7 +67,7 @@
 
   const signup = document.querySelector('[data-shell="signup"]');
   if (signup) signup.outerHTML = `
-  <section class="signup"><div class="wrap signup-grid">
+  <section class="signup" data-bg="coast"><div class="wrap signup-grid">
     <h2 data-i18n-html="signup.title"></h2>
     <div>
       <p class="sub" data-i18n="signup.sub"></p>
@@ -99,6 +99,17 @@
       <div>© ${new Date().getFullYear()} Salt Road Cinema · <span data-i18n="foot.made"></span></div>
     </div>
   </div></footer>`;
+
+  // mood images: data-bg="key" -> graded background from DATA.images
+  const IM = (window.DATA && window.DATA.images) || {};
+  const imgUrl = (im, w) => im.src || `https://images.unsplash.com/photo-${im.unsplash}?w=${w}&q=70&auto=format&fit=crop`;
+  document.querySelectorAll("[data-bg]").forEach(el => {
+    const im = IM[el.dataset.bg]; if (!im) return;
+    el.classList.add("has-bg");
+    el.style.setProperty("--bg-l", `url("${imgUrl(im, 2000)}")`);
+    el.style.setProperty("--bg-s", `url("${imgUrl(im, 900)}")`);
+    if (im.stock) el.dataset.credit = `Photo: ${im.by} / Unsplash`;
+  });
 
   // behaviour
   document.querySelectorAll("[data-lang-btn]").forEach(b => b.addEventListener("click", () => I.set(b.dataset.langBtn)));

@@ -265,3 +265,16 @@ p,.sub,.lead,.way p,.tier p,.card p,.part p{line-height:1.42}
 .sub,.lead{letter-spacing:-.005em}
 strong{font-weight:700;color:var(--salt)}
 .sub strong,.lead strong{color:#fff}
+
+/* graded mood backgrounds */
+.has-bg{position:relative;isolation:isolate;background-color:var(--asphalt)}
+.has-bg::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg-l) center/cover no-repeat;filter:saturate(.85) contrast(1.05)}
+@media(max-width:700px){.has-bg::before{background-image:var(--bg-s)}}
+.has-bg::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(12,12,11,.9) 0%,rgba(12,12,11,.6) 45%,rgba(12,12,11,.2) 100%),linear-gradient(180deg,rgba(12,12,11,.1) 40%,var(--asphalt) 100%)}
+.page-head.has-bg{padding:150px 0 90px}
+@media(max-width:600px){.page-head.has-bg{padding:110px 0 64px}}
+.signup.has-bg::after{background:linear-gradient(180deg,var(--asphalt) 0%,rgba(12,12,11,.55) 35%,rgba(12,12,11,.7) 100%)}
+.hero-bg.has-bg::before{filter:saturate(1) contrast(1.1) brightness(1.15)}
+.hero-bg.has-bg::after{background:linear-gradient(90deg,rgba(12,12,11,.78) 0%,rgba(12,12,11,.3) 60%,rgba(12,12,11,.05) 100%),linear-gradient(180deg,rgba(12,12,11,0) 50%,var(--asphalt) 100%)}
+.hero-bg.has-bg{position:absolute}
