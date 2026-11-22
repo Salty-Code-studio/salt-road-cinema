@@ -356,10 +356,3 @@ strong{font-weight:700;color:var(--salt)}
 .btn-pan::after,.btn-salt::after{content:"";position:absolute;left:0;top:0;width:calc(var(--bc) * 1.5);height:calc(var(--bc) * 1.5);background:linear-gradient(135deg,rgba(12,12,11,.55) 0 calc(var(--bc) * .55),transparent calc(var(--bc) * .55));pointer-events:none}
 .dock-pp{border-radius:0}
 .status,.tag-pill{border-radius:0!important;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
-
-/* dock collapses to its play button while the home cockpit is in view */
-.dock{transition:max-width .35s,min-width .35s,padding .35s}
-.dock.mini{min-width:0;max-width:64px;padding:6px;gap:0;overflow:hidden}
-.dock.mini>:not(.dock-pp){display:none}
-.dock.mini:hover{max-width:420px;min-width:min(380px,calc(100vw - 32px));padding:8px 10px 8px 8px;gap:10px}
-.dock.mini:hover>:not(.dock-pp):not(.dock-sp):not(.dock-full){display:revert}

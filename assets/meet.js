@@ -24,22 +24,10 @@
     const fly = () => {
       if (reduce) { map.setView(target, 16); return; }
       mapEl.classList.add("tilting");
-      map.flyTo(target, 16, { duration: 0.9, easeLinearity: 0.5 });
+      map.flyTo(target, 16, { duration: 1.6, easeLinearity: 0.2 });
       map.once("moveend", () => { mapEl.classList.remove("tilting"); mapEl.classList.add("landed"); });
     };
-    // warm the tile cache for the landing view before the section is on screen, so the zoom ends sharp
-    const warm = () => {
-      const ghost = document.createElement("div");
-      ghost.style.cssText = "position:absolute;left:-9999px;top:0;width:" + mapEl.offsetWidth + "px;height:" + mapEl.offsetHeight + "px";
-      document.body.appendChild(ghost);
-      const pm = window.L.map(ghost, { zoomControl: false, attributionControl: false, fadeAnimation: false }).setView(target, 16);
-      window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(pm);
-      pm.setView(target, 15);
-      setTimeout(() => { pm.remove(); ghost.remove(); }, 6000);
-    };
-    const near = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { near.disconnect(); warm(); } }, { rootMargin: "900px 0px" });
-    near.observe(mapEl);
-    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); setTimeout(fly, 150); } }, { threshold: .45 });
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); setTimeout(fly, 250); } }, { threshold: .45 });
     io.observe(mapEl);
     window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "© OpenStreetMap contributors", maxZoom: 19, className: "meet-tiles" }).addTo(map);
     window.L.marker(at, { icon: window.L.divIcon({ className: "meet-dot", html: "<i></i><b></b>", iconSize: [40, 40], iconAnchor: [20, 20] }), keyboard: false }).addTo(map);

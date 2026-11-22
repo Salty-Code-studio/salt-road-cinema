@@ -167,7 +167,7 @@
   cav.querySelectorAll(".gb-hit").forEach(h => h.remove());
   const cap = cav.querySelector(".gb-caption");
   const items = [...cav.querySelectorAll(".gb-obj:not(.gb-ghost)")];
-  let current = null, dwell = null, back = null, dwellFor = null, openedAt = 0;
+  let current = null, dwell = null, back = null;
   const ghosts = items.map(el => {
     const g = el.cloneNode(true);
     g.classList.add("gb-ghost"); g.removeAttribute("href"); g.setAttribute("aria-hidden", "true"); g.tabIndex = -1;
@@ -181,8 +181,8 @@
     const c = cav.getBoundingClientRect();
     const w = el.offsetWidth, h = el.offsetHeight;
     const ex = el.offsetLeft + w / 2, ey = el.offsetTop + h / 2;
-    const tx = c.width / 2, ty = c.height * .4;
-    const s = Math.min(2.2, (c.width * .46) / w, (c.height * .42) / h);
+    const tx = c.width / 2, ty = c.height * .56;
+    const s = Math.min(2.4, (c.width * .52) / w, (c.height * .6) / h);
     el.style.setProperty("--dx", `${tx - ex}px`); el.style.setProperty("--dy", `${ty - ey}px`); el.style.setProperty("--s", s.toFixed(2));
     items.forEach(i => { i.classList.toggle("zoom", i === el); i.classList.remove("glow"); });
     cav.classList.add("focus");
@@ -190,23 +190,20 @@
     cap.style.top = Math.max(4, ty - (h * s) / 2 - 6) + "px";
     current = el;
   };
-  const reset = () => { clearTimeout(dwell); dwellFor = null; clearTimeout(back); items.forEach(i => i.classList.remove("zoom", "glow")); cav.classList.remove("focus"); current = null; };
+  const reset = () => { clearTimeout(dwell); clearTimeout(back); items.forEach(i => i.classList.remove("zoom", "glow")); cav.classList.remove("focus"); current = null; };
   const goBackSoon = () => { clearTimeout(back); back = setTimeout(reset, 180); };
   const stay = () => clearTimeout(back);
 
   items.forEach((el, i) => {
     const g = ghosts[i];
-    const arm = () => {
+    g.addEventListener("mouseenter", () => {
       if (current === el) return stay();
-      if (performance.now() - openedAt < 450 || dwellFor === el) return;
-      clearTimeout(dwell); dwellFor = el;
+      clearTimeout(dwell);
       if (!current) el.classList.add("glow");
-      dwell = setTimeout(() => { dwellFor = null; zoom(el); }, 500);
-    };
-    g.addEventListener("mouseenter", arm);
-    g.addEventListener("mousemove", arm);
+      dwell = setTimeout(() => zoom(el), 500);
+    });
     g.addEventListener("mouseleave", () => {
-      if (dwellFor === el) { clearTimeout(dwell); dwellFor = null; } el.classList.remove("glow");
+      clearTimeout(dwell); el.classList.remove("glow");
       if (current === el) goBackSoon();
     });
     g.addEventListener("click", e => { e.preventDefault(); if (current === el) el.click(); else zoom(el); });
@@ -218,19 +215,5 @@
   });
   cav.addEventListener("mouseleave", reset);
   const lidBtn = document.querySelector(".gb-lid");
-  const gbox = document.querySelector(".glovebox");
-  const syncInert = () => { const open = gbox.classList.contains("open"); cav.inert = !open; if (open) openedAt = performance.now(); };
-  lidBtn && lidBtn.addEventListener("click", () => { reset(); requestAnimationFrame(syncInert); });
-  new MutationObserver(syncInert).observe(gbox, { attributes: true, attributeFilter: ["class"] });
-  syncInert();
-})();
-
-// Radio dock shrinks to a corner button while the cockpit is on screen, so it never covers the dash.
-(() => {
-  const cp = document.querySelector(".cockpit"), dock = document.querySelector(".dock");
-  if (!cp || !dock) return;
-  const io = new IntersectionObserver(es => es.forEach(e => dock.classList.toggle("mini", e.isIntersecting && e.intersectionRatio > .15)), { threshold: [0, .15, .5] });
-  io.observe(cp);
-  const off = () => { if (!cp.isConnected) { dock.classList.remove("mini"); io.disconnect(); document.removeEventListener("pagechange", off); } };
-  document.addEventListener("pagechange", off);
+  lidBtn && lidBtn.addEventListener("click", reset);
 })();
