@@ -144,3 +144,5 @@ SRC_I18N.add({
   nl: { "merch.lighter": "Gegraveerde aansteker", "merch.soon": "Binnenkort", "home.shop.sub": "Shirts, petten, pluche dobbelstenen en aanstekers. Ophalen in Kralendijk." },
   pap: { "merch.lighter": "Lighter grabá", "merch.soon": "Pronto", "home.shop.sub": "T-shirt, pet, dado peludo i lighter. Buska na Kralendijk." }
 });
+
+SRC_I18N.add({ en: { "merch.h": "Merch" }, nl: { "merch.h": "Merch" }, pap: { "merch.h": "Merch" } });
