@@ -36,8 +36,8 @@
     <g transform="translate(${x} ${y})">
       <rect x="${-size * 0.55}" y="${-size * 0.95}" width="${size * 1.1}" height="${size * 0.7}" rx="${size * 0.12}" fill="none" stroke="${fg}" stroke-width="${size * 0.1}"/>
       <rect x="${-size * 0.3}" y="${-size * 0.8}" width="${size * 0.6}" height="${size * 0.4}" rx="${size * 0.05}" fill="#e8a49b"/>
-      <text y="${size * 0.1}" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="900" font-size="${size * 0.42}" letter-spacing="${size * 0.02}" fill="${fg}">SALT ROAD</text>
-      <text y="${size * 0.48}" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="${size * 0.3}" letter-spacing="${size * 0.12}" fill="#e8a49b">CINEMA</text>
+      <text y="${size * 0.1}" text-anchor="middle" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="${size * 0.42}" letter-spacing="${size * 0.02}" fill="${fg}">SALT ROAD</text>
+      <text y="${size * 0.48}" text-anchor="middle" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="${size * 0.3}" letter-spacing="${size * 0.12}" fill="#e8a49b">CINEMA</text>
     </g>`;
 
   const art = (p, color) => {
@@ -56,8 +56,8 @@
         <rect x="16" y="68" width="268" height="64" rx="8" fill="#f3efe6"/>
         <rect x="22" y="74" width="256" height="52" rx="5" fill="#0c0c0b"/>
         <rect x="22" y="74" width="12" height="52" rx="3" fill="#e8a49b"/>
-        <text x="150" y="110" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="900" font-size="28" letter-spacing="1" fill="#f3efe6">SAVE THE <tspan fill="#5878ec">SUBI</tspan></text>
-        <text x="150" y="152" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="2" fill="#a9a497">SALT ROAD CINEMA</text></svg>`;
+        <text x="150" y="110" text-anchor="middle" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="28" letter-spacing="1" fill="#f3efe6">SAVE THE <tspan fill="#5878ec">SUBI</tspan></text>
+        <text x="150" y="152" text-anchor="middle" font-family="Kode Mono,monospace" font-size="9" letter-spacing="2" fill="#a9a497">SALT ROAD CINEMA</text></svg>`;
     } else {
       return `<svg viewBox="0 0 200 200" role="img" aria-hidden="true">
         <path d="M44 28 Q100 12 156 28 Q182 36 176 100 Q182 164 156 172 Q100 188 44 172 Q18 164 24 100 Q18 36 44 28 Z" fill="#f3efe6"/>

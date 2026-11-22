@@ -5,8 +5,9 @@
   --rally:#2346b8;          /* WR blue */
   --gold:#d4a72c;           /* gold wheels */
   --ok:#7fbf8a;
-  --wide:"Archivo",system-ui,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --display:"Bruno Ace SC","Bai Jamjuree",system-ui,sans-serif;
+  --wide:"Bai Jamjuree",system-ui,sans-serif;
+  --mono:"Kode Mono",ui-monospace,monospace;
   --max:1240px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -244,3 +245,12 @@ footer .foot-links a{margin:0}
 .car-photo{position:relative}
 .car-photo img{width:100%;height:auto}
 .car-photo .zones-overlay{position:absolute;inset:0;width:100%;height:100%}
+
+/* ---------- type system: Bruno Ace SC (display) · Bai Jamjuree (body) · Kode Mono (labels) ---------- */
+h1,h2,h3,.logo,footer .big,.stats b,.ev-date b,.subi-band h3,.way h3,.tier h4,.card h3,.page-head h1,.hero h1,.subi-hero h1{
+  font-family:var(--display);font-weight:400;font-stretch:normal;font-synthesis:none;letter-spacing:0}
+.hero h1,.page-head h1,.subi-hero h1,footer .big{line-height:1;letter-spacing:-.01em}
+h2{line-height:1.02}
+.btn,.chip,.tier,input,select,textarea,button{font-family:var(--wide)}
+.btn{font-weight:600;letter-spacing:.01em}
+h4,.part h4{font-family:var(--wide);font-weight:700}
