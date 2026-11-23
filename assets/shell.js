@@ -164,7 +164,8 @@
       <div class="dock-bar"><i></i></div>
     </div>
     <button class="dock-btn dock-prev" type="button" aria-label="Previous track">⏮</button>
-    <button class="dock-btn dock-next" type="button" aria-label="Next track">⏭</button>`;
+    <button class="dock-btn dock-next" type="button" aria-label="Next track">⏭</button>
+    <button class="dock-btn dock-mute" type="button" aria-label="Mute radio" aria-pressed="false"></button>`;
   document.body.appendChild(dock);
   const D$ = s => dock.querySelector(s);
   let yt = null, ytReady = null, playing = false, tick = null;
@@ -185,9 +186,9 @@
     const make = () => {
       yt = new YT.Player("dock-yt", {
         width: 96, height: 54,
-        playerVars: { autoplay: 1, playsinline: 1, controls: 0, rel: 0, iv_load_policy: 3, disablekb: 1 },
+        playerVars: { autoplay: 1, mute: autoMuted ? 1 : 0, playsinline: 1, controls: 0, rel: 0, iv_load_policy: 3, disablekb: 1 },
         events: {
-          onReady: e => { e.target.setVolume(60); e.target.loadPlaylist({ listType: "playlist", list: PLAYLIST, index: C.radioStart ?? 1 }); res(); }, // 1 = Riders on the Storm
+          onReady: e => { e.target.setVolume(60); if (autoMuted) e.target.mute(); e.target.loadPlaylist({ listType: "playlist", list: PLAYLIST, index: C.radioStart ?? 1 }); res(); }, // 1 = Riders on the Storm
           onStateChange: e => { playing = e.data === YT.PlayerState.PLAYING || e.data === YT.PlayerState.BUFFERING; sync(); },
           onError: () => yt.nextVideo() // skip anything that refuses to embed
         }
@@ -203,10 +204,50 @@
     window.onYouTubeIframeAPIReady = make;
     const sc = document.createElement("script"); sc.src = "https://www.youtube.com/iframe_api"; document.head.appendChild(sc);
   });
+  /* Like the game: the radio starts on arrival. Browsers only allow sound
+     after a first tap/click/key, so it starts muted and the first gesture
+     anywhere turns the sound on. Mute or pause is remembered (src-radio). */
+  const PREF = "src-radio";
+  const pref = () => { try { return localStorage.getItem(PREF) || "on"; } catch { return "on"; } };
+  const setPref = v => { try { localStorage.setItem(PREF, v); } catch {} };
+  let unlockedAt = 0, autoMuted = false, userMuted = pref() === "muted";
+  const ICON_ON = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  const ICON_OFF = '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 9.5l5 5M21.5 9.5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+  const syncMute = () => {
+    const m = userMuted || autoMuted, b = D$(".dock-mute");
+    b.innerHTML = m ? ICON_OFF : ICON_ON;
+    b.setAttribute("aria-pressed", String(m));
+    b.setAttribute("aria-label", m ? "Unmute radio" : "Mute radio");
+    dock.classList.toggle("muted", m);
+  };
+  const unlock = () => {
+    ["pointerdown", "keydown", "touchend"].forEach(t => document.removeEventListener(t, unlock, true));
+    if (!autoMuted) return;
+    autoMuted = false; unlockedAt = Date.now(); syncMute();
+    if (yt && yt.unMute && !userMuted) { yt.unMute(); yt.playVideo(); }
+  };
+  D$(".dock-mute").addEventListener("click", e => {
+    e.stopPropagation();
+    if (autoMuted && !userMuted) { unlock(); return; }
+    autoMuted = false;
+    if (Date.now() - unlockedAt < 700 && !userMuted) return; // this click already turned the sound on
+    userMuted = !userMuted; setPref(userMuted ? "muted" : "on"); syncMute();
+    if (!yt) { if (!userMuted) loadYT(); return; }
+    userMuted ? yt.mute() : (yt.unMute(), yt.playVideo());
+  });
   D$(".dock-pp").addEventListener("click", async () => {
-    if (!yt) return loadYT();
+    if (!yt) { setPref("on"); return loadYT(); }
+    if (Date.now() - unlockedAt < 700) return; // the same tap that turned the sound on
+    setPref(playing ? "off" : (userMuted ? "muted" : "on"));
     playing ? yt.pauseVideo() : yt.playVideo();
   });
+  if (pref() !== "off") {
+    autoMuted = !userMuted && !(navigator.userActivation && navigator.userActivation.hasBeenActive);
+    if (userMuted) autoMuted = true; // stays silent; unlock skips unmute
+    ["pointerdown", "keydown", "touchend"].forEach(t => document.addEventListener(t, unlock, true));
+    loadYT();
+  }
+  syncMute();
   D$(".dock-next").addEventListener("click", async () => { if (!yt) await loadYT(); yt.nextVideo(); });
   D$(".dock-prev").addEventListener("click", async () => { if (!yt) await loadYT(); yt.previousVideo(); });
   D$(".dock-bar").addEventListener("click", e => {
