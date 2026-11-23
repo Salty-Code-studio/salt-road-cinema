@@ -53,7 +53,8 @@
       .map(s => `<a href="films.html?series=${s.slug}">${esc(s[I.lang] || s.en)}</a>`).join("");
 
     // meter
-    $(".meter .nums").innerHTML = `<span><b>${usd(C.raisedUSD)}</b> ${I.t("home.subi.raised")}</span><span>${I.t("home.subi.goal")} ${usd(C.goalUSD)}</span>`;
+    const meterNums = $(".meter .nums");
+    if (meterNums) meterNums.innerHTML = `<span><b>${usd(C.raisedUSD)}</b> ${I.t("home.subi.raised")}</span><span>${I.t("home.subi.goal")} ${usd(C.goalUSD)}</span>`;
 
     // next event
     const today = new Date().toISOString().slice(0, 10);

@@ -1059,3 +1059,71 @@ html,body{overflow-x:clip}
 .isl-plus{font:400 54px/1 "Bruno Ace SC",sans-serif;color:#e8a49b}
 /* the island row sits above the steering wheel that hangs out of the hero */
 .island-sec{position:relative;z-index:6;background:linear-gradient(180deg,rgba(15,14,12,0) 0,rgba(15,14,12,.92) 90px,#0f0e0c 160px)}
+
+/* ---------- garage v5: deeper bay, real concrete, real shadows, parts bar below the scene ---------- */
+.tune{--band:196px;height:clamp(700px,56vw,940px)}
+.tune .tune-scene{bottom:var(--band);inset:0 0 var(--band) 0}
+.tune-scene::after{display:none}
+/* deeper room: smaller back wall, wider side walls, longer floor, a ceiling */
+.tune .bay-door{left:25%;right:25%;top:7%;height:45%}
+.tune .bay-beams{left:25%;right:25%;top:7%}
+.tune .bay-wall{width:25%}
+.tune .bay-wall-l{clip-path:polygon(0 0,100% 7%,100% 52%,0 100%)}
+.tune .bay-wall-r{clip-path:polygon(0 0,100% 0,100% 100%,0 52%);clip-path:polygon(0 7%,100% 0,100% 100%,0 52%)}
+.tune .bay-wall-r{clip-path:polygon(0 0,100% 7%,100% 52%,0 100%)}
+.tune .bay-floor{top:52%;clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);background:#1b1a18;overflow:hidden}
+.tune .bay-floor::before{content:"";position:absolute;left:-80%;right:-80%;bottom:0;height:420%;transform-origin:50% 100%;transform:perspective(640px) rotateX(74deg);
+  background:url("../../media/concrete-floor.jpg") 0 0/300px 300px;filter:brightness(.62) contrast(1.05)}
+.tune .bay-floor::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:normal;background:
+  radial-gradient(ellipse 22% 55% at 33% 18%,rgba(255,236,214,.16),transparent 70%),
+  radial-gradient(ellipse 22% 55% at 67% 18%,rgba(255,236,214,.16),transparent 70%),
+  linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 14%,rgba(0,0,0,0) 60%,rgba(0,0,0,.5) 100%),
+  radial-gradient(ellipse 80% 120% at 50% 40%,transparent 50%,rgba(0,0,0,.55) 100%)}
+.tune .bay-oil{display:none}
+.tune .bay-stencil{top:40%;font-size:clamp(12px,1.9vw,30px)}
+.tune .pegboard{transform:perspective(600px) rotateY(22deg);transform-origin:left center;left:2%;top:10%;height:48%}
+.tune .bay-shelf{top:36%;height:24%}
+.tune .bay-cone{height:92%}
+/* car stands in the middle of the floor, with a real contact shadow */
+@media(min-width:901px){
+  .tune-car{left:20%;right:20%;top:calc((100% - var(--band)) * .34);height:calc((100% - var(--band)) * .56);bottom:auto}
+  .tune-hint{top:calc((100% - var(--band)) * .3)}
+}
+.tune .tune-scene .tune-spot{display:none}
+.tune-car::before{content:"";position:absolute;z-index:-1;left:12%;right:12%;top:64%;height:16%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),rgba(0,0,0,.5) 55%,transparent);filter:blur(10px)}
+.tune-car::after{content:"";position:absolute;z-index:-1;left:20%;right:20%;top:68%;height:6%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.95),transparent);filter:blur(4px)}
+/* parts bar: its own strip under the scene, nothing in the garage is covered */
+.tune-band{position:absolute;left:0;right:0;bottom:0;height:var(--band);z-index:2;background:linear-gradient(180deg,#121110,#0c0b0a);border-top:1px solid rgba(255,255,255,.08);box-shadow:0 -14px 30px rgba(0,0,0,.45)}
+.tune-info::before{display:none}
+@media(min-width:901px){
+  .tune-info{left:calc(var(--c) + 14px);bottom:calc(var(--band) - 150px);width:27%;top:auto}
+  .tune-rail{left:calc(27% + var(--c) + 44px);right:calc(var(--c) + 14px);bottom:64px}
+  .tune-keys{bottom:18px}
+}
+.island-sec{background:none}
+.tune .bay-floor::before{height:300%;transform:perspective(520px) rotateX(64deg);background-size:240px 240px;filter:brightness(.7) contrast(1.08)}
+.tune-car::before{top:70%;height:15%;left:10%;right:10%;background:radial-gradient(closest-side,rgba(0,0,0,.92),rgba(0,0,0,.6) 50%,transparent)}
+.tune-car::after{top:75.5%;height:5%;left:16%;right:16%}
+@media(min-width:901px){.tune-car{top:calc((100% - var(--band)) * .43)}.tune-hint{top:calc((100% - var(--band)) * .36)}}
+.tune .bay-cone{-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,transparent 72%);mask-image:linear-gradient(180deg,#000 0%,#000 55%,transparent 72%)}
+/* real-looking tyre stack */
+.tune .bay-tyres{display:block;right:3.5%;bottom:6%;width:11%;filter:drop-shadow(8px 10px 8px rgba(0,0,0,.7))}
+.tune .bay-tyres svg{width:100%;height:auto;display:block}
+/* garage fits one screen */
+.tune{height:clamp(600px,calc(100svh - 84px),56vw)}
+/* lighter concrete with depth: brighter up front and under the lights, darker toward the back wall */
+.tune .bay-floor::before{filter:brightness(1.05) contrast(1.05) saturate(.8)}
+.tune .bay-floor::after{background:
+  radial-gradient(ellipse 24% 60% at 33% 22%,rgba(255,238,220,.22),transparent 70%),
+  radial-gradient(ellipse 24% 60% at 67% 22%,rgba(255,238,220,.22),transparent 70%),
+  linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.25) 22%,rgba(0,0,0,0) 55%,rgba(255,255,255,.04) 100%),
+  radial-gradient(ellipse 90% 140% at 50% 60%,transparent 55%,rgba(0,0,0,.45) 100%)}
+/* parts we already have: lit up, ticked, not blacked out */
+.tr-card.owned{border-color:rgba(130,214,160,.55);background:linear-gradient(180deg,#1f2a23,#121714)}
+.tr-card.owned svg{fill:#9fe0b6}
+.tr-card.owned .tr-price{color:#9fe0b6}
+.tr-card.owned::after{content:"✓";position:absolute;top:4px;left:6px;font:700 11px var(--mono);color:#0d1410;background:#9fe0b6;padding:0 4px}
+.tune-info .ti-price{transition:color .2s}
+.tune-scene .sp.owned .sil{fill:#7fc79a;stroke:rgba(200,255,220,.5)}
+.tune-scene .sp.owned svg{filter:drop-shadow(0 0 8px rgba(130,214,160,.55)) drop-shadow(3px 6px 4px rgba(0,0,0,.7))}
+@media(min-width:901px){.tune-car{left:16%;right:16%;top:calc((100% - var(--band)) * .4);height:calc((100% - var(--band)) * .6)}}

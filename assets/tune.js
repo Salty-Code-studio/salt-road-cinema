@@ -11,15 +11,15 @@
   I.add({
     en: { "tune.current": "Current build", "tune.next": "Next up", "tune.of": "of", "tune.raisedS": "raised",  "tune.crumb": "Garage", "tune.ep": "Next ep", "tune.browse": "Browse", "tune.turn": "Drag to turn", "tune.all": "All parts", "tune.level": "Build level",
       "tune.engine": "Engine", "tune.power": "Power", "tune.drive": "Drive", "tune.state": "State", "tune.stateV": "Crashed front, tired engine", "tune.raised": "Raised", "tune.built": "Built",
-      "tune.needed": "Needed", "tune.fitted": "Fitted", "tune.owned": "In the garage", "tune.fund": "Fund it", "tune.send": "Send the part", "tune.sponsor": "Sponsor it", "tune.buy": "Buy at",
+      "tune.needed": "Needed", "tune.fitted": "Fitted", "tune.owned": "In the garage", "tune.have": "Got it. In the garage", "tune.fund": "Fund it", "tune.send": "Send the part", "tune.sponsor": "Sponsor it", "tune.buy": "Buy at",
       "tune.g.Engine": "Engine", "tune.g.Turbo": "Turbo", "tune.g.Cooling": "Cooling", "tune.g.Fuel": "Fuel", "tune.g.Ignition": "Ignition", "tune.g.Drive": "Drivetrain", "tune.g.Chassis": "Chassis", "tune.g.Tune": "Tune", "tune.g.Tools": "Tools", "tune.g.Equipment": "Equipment" },
     nl: { "tune.current": "Huidige build", "tune.next": "Volgende", "tune.of": "van", "tune.raisedS": "opgehaald", "tune.crumb": "Garage", "tune.ep": "Volgende ep", "tune.browse": "Bladeren", "tune.turn": "Sleep om te draaien", "tune.all": "Alle onderdelen", "tune.level": "Buildniveau",
       "tune.engine": "Motor", "tune.power": "Vermogen", "tune.drive": "Aandrijving", "tune.state": "Staat", "tune.stateV": "Voorkant gecrasht, moeie motor", "tune.raised": "Opgehaald", "tune.built": "Gebouwd",
-      "tune.needed": "Nodig", "tune.fitted": "Gemonteerd", "tune.owned": "In de garage", "tune.fund": "Financier het", "tune.send": "Stuur het onderdeel", "tune.sponsor": "Sponsor het", "tune.buy": "Koop bij",
+      "tune.needed": "Nodig", "tune.fitted": "Gemonteerd", "tune.owned": "In de garage", "tune.have": "Hebben we. In de garage", "tune.fund": "Financier het", "tune.send": "Stuur het onderdeel", "tune.sponsor": "Sponsor het", "tune.buy": "Koop bij",
       "tune.g.Engine": "Motor", "tune.g.Turbo": "Turbo", "tune.g.Cooling": "Koeling", "tune.g.Fuel": "Brandstof", "tune.g.Ignition": "Ontsteking", "tune.g.Drive": "Aandrijflijn", "tune.g.Chassis": "Onderstel", "tune.g.Tune": "Tune", "tune.g.Tools": "Gereedschap", "tune.g.Equipment": "Uitrusting" },
     pap: { "tune.current": "Build aktual", "tune.next": "Siguiente", "tune.of": "di", "tune.raisedS": "kolektá", "tune.crumb": "Garashi", "tune.ep": "Siguiente ep", "tune.browse": "Wak", "tune.turn": "Hala pa bira", "tune.all": "Tur pida", "tune.level": "Nivel di build",
       "tune.engine": "Motor", "tune.power": "Forsa", "tune.drive": "Draai", "tune.state": "Estado", "tune.stateV": "Dilanti dañá, motor kansá", "tune.raised": "Kolektá", "tune.built": "Trahá",
-      "tune.needed": "Nesesario", "tune.fitted": "Montá", "tune.owned": "Den garashi", "tune.fund": "Paga p'e", "tune.send": "Manda e pida", "tune.sponsor": "Sponsor e", "tune.buy": "Kumpra na",
+      "tune.needed": "Nesesario", "tune.fitted": "Montá", "tune.owned": "Den garashi", "tune.have": "Nos tin e. Den garashi", "tune.fund": "Paga p'e", "tune.send": "Manda e pida", "tune.sponsor": "Sponsor e", "tune.buy": "Kumpra na",
       "tune.g.Engine": "Motor", "tune.g.Turbo": "Turbo", "tune.g.Cooling": "Enfriamentu", "tune.g.Fuel": "Kombustibel", "tune.g.Ignition": "Ignishon", "tune.g.Drive": "Transmishon", "tune.g.Chassis": "Chasis", "tune.g.Tune": "Tune", "tune.g.Tools": "Hèrmèntnan", "tune.g.Equipment": "Ekipo" }
   });
   const t = k => I.t(k);
@@ -100,7 +100,7 @@
         <h3>${esc(it.name)}</h3>
         ${it.sub ? `<p class="ti-sub">${esc(it.sub)}</p>` : ""}
         <p>${esc(it.note)}</p>
-        <div class="ti-row"><b class="ti-price">${owned ? t(it.kind === "part" ? "tune.fitted" : "tune.owned") : usd(it.price)}</b>${it.link ? `<a class="ti-buy" href="${esc(it.link)}" target="_blank" rel="noopener sponsored">${t("tune.buy")} ${esc(it.store || "store")} ↗</a>` : ""}</div>
+        <div class="ti-row"><b class="ti-price">${owned ? t(it.status === "have" ? "tune.have" : it.kind === "part" ? "tune.fitted" : "tune.owned") : usd(it.price)}</b>${it.link ? `<a class="ti-buy" href="${esc(it.link)}" target="_blank" rel="noopener sponsored">${t("tune.buy")} ${esc(it.store || "store")} ↗</a>` : ""}</div>
         <div class="ti-acts">${acts}</div>
       </div>`;
   };
@@ -110,7 +110,7 @@
     const groups = [...new Set(list.map(i => i.group))];
     $("tune-rail").innerHTML = groups.map(g => `
       <div class="tr-group"><div class="tr-head">${t("tune.g." + g)}</div><div class="tr-cards">
-        ${list.map((it, i) => it.group !== g ? "" : `<button type="button" class="tr-card ${it.status !== "needed" ? "owned" : ""}" role="option" data-i="${i}" aria-selected="${i === sel}" title="${esc(it.name)}">
+        ${list.map((it, i) => it.group !== g ? "" : `<button type="button" class="tr-card ${it.status !== "needed" ? "owned" : ""} st-${it.status}" role="option" data-i="${i}" aria-selected="${i === sel}" title="${esc(it.name)}">
           ${icon(it.id)}<span class="tr-name">${esc(it.name)}</span><span class="tr-price">${it.status !== "needed" ? "✓" : usd(Math.round(it.price))}</span></button>`).join("")}
       </div></div>`).join("");
   };
@@ -123,6 +123,8 @@
   };
 
   $("tune-rail").addEventListener("click", e => { const b = e.target.closest(".tr-card"); if (b) select(+b.dataset.i); });
+  // hovering a card shows its info too
+  $("tune-rail").addEventListener("mouseover", e => { const b = e.target.closest(".tr-card"); if (b && +b.dataset.i !== sel) select(+b.dataset.i); });
   root.addEventListener("keydown", e => {
     if (e.target.closest("input,textarea")) return;
     if (e.key === "ArrowRight") { e.preventDefault(); select(sel + 1, true); root.querySelector(`.tr-card[data-i="${sel}"]`)?.focus({ preventScroll: true }); }
