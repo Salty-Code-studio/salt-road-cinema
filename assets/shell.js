@@ -52,6 +52,14 @@
   const IM = () => (window.DATA && window.DATA.images) || {};
   const imgUrl = (im, w) => im.src ? new URL(im.src, location.href).href : `https://images.unsplash.com/photo-${im.unsplash}?w=${w}&q=70&auto=format&fit=crop`;
 
+  // Nav gets its stepped panel edge once the page is scrolled (one listener for the whole session).
+  if (!window.__srcNavEdge) {
+    window.__srcNavEdge = true;
+    const edge = () => { const n = document.querySelector(".nav"); if (n) n.classList.toggle("edge", scrollY > 12); };
+    addEventListener("scroll", edge, { passive: true });
+    addEventListener("load", edge);
+    setInterval(edge, 600); // also after soft navigation swaps the page
+  }
   // Renders nav, sign-up band, footer and mood images into the current page, and binds them.
   function render() {
     const page = document.body.dataset.page || "";

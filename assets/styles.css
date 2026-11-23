@@ -371,3 +371,17 @@ model-viewer.car-3d{--progress-bar-height:0px}
 model-viewer.car-3d{--min-hotspot-opacity:0;--max-hotspot-opacity:1}
 .decal model-viewer.car-3d{aspect-ratio:16/10}
 model-viewer.car-3d{height:auto!important}
+
+/* ---------- nav: hardware-panel edge. Straight at the top of the page; once you scroll, the bottom edge
+   steps down into a chamfered centre tab with cut corners, like a machined plate. ---------- */
+.nav{background:transparent;border-bottom:0;backdrop-filter:none}
+.nav::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:0;bottom:0;background:rgba(12,12,11,.9);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  clip-path:polygon(0 0,100% 0,100% 100%,calc(100% - 0px) 100%,70% 100%,70% 100%,30% 100%,30% 100%,0 100%,0 100%);
+  filter:drop-shadow(0 1px 0 rgba(243,239,230,.12));transition:clip-path .45s cubic-bezier(.2,.8,.2,1),bottom .45s cubic-bezier(.2,.8,.2,1)}
+.nav.edge::before{bottom:-12px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 22px),calc(100% - 10px) calc(100% - 12px),calc(70% + 12px) calc(100% - 12px),70% 100%,30% 100%,calc(30% - 12px) calc(100% - 12px),10px calc(100% - 12px),0 calc(100% - 22px))}
+.nav::after{content:"";position:absolute;left:30%;right:30%;bottom:-12px;height:12px;pointer-events:none;opacity:0;transition:opacity .3s .15s;
+  background:radial-gradient(circle,rgba(243,239,230,.45) 1.2px,transparent 1.8px) left 14px center/8px 8px no-repeat,radial-gradient(circle,rgba(243,239,230,.45) 1.2px,transparent 1.8px) right 14px center/8px 8px no-repeat,
+  linear-gradient(90deg,transparent 30%,rgba(232,164,155,.55) 30%,rgba(232,164,155,.55) 70%,transparent 70%) center bottom 3px/60% 1px no-repeat}
+.nav.edge::after{opacity:1}
