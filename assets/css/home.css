@@ -932,3 +932,12 @@ span.gb-obj.zoom{cursor:default}
 .hero h1.banner::after{display:none}
 .hero h1.banner{padding:.3em .4em;margin-top:-.3em}
 .hero h1.banner .ch{padding:.1em .3em;margin:-.1em -.3em}
+/* garage v3: the old physical bay (door, walls, floor, lights, gear, pegboard) is the backdrop of the tuning screen */
+.tune .tune-scene{position:absolute;inset:0;aspect-ratio:auto;z-index:0}
+.tune .tune-scene .tune-spot{z-index:1}
+.tune-scene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:4;pointer-events:none;background:linear-gradient(180deg,transparent,rgba(8,8,8,.75) 55%,rgba(8,8,8,.9))}
+@media(max-width:900px){.tune .tune-scene{position:absolute;inset:0}}
+/* glovebox latch fails the first time: lid swings up, doesn't catch, drops back open */
+.glovebox.open.jam .gb-lid{animation:gbJam .85s cubic-bezier(.3,.7,.4,1)}
+@keyframes gbJam{0%{transform:rotateX(-78deg)}38%{transform:rotateX(-6deg)}46%{transform:rotateX(-4deg)}72%{transform:rotateX(-82deg)}84%{transform:rotateX(-70deg)}100%{transform:rotateX(-78deg)}}
+@media(prefers-reduced-motion:reduce){.glovebox.open.jam .gb-lid{animation:none}}

@@ -153,9 +153,21 @@
   if (!gb) return;
   const lid = gb.querySelector(".gb-lid");
   const set = open => { gb.classList.toggle("open", open); lid.setAttribute("aria-expanded", open); };
-  lid.addEventListener("click", () => set(!gb.classList.contains("open")));
-  document.addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
-  document.addEventListener("click", e => { if (!gb.contains(e.target)) set(false); });
+  // Old Subaru latch: the first try to shut it swings up, doesn't catch and drops back open. Second try closes it.
+  let jammed = false;
+  const close = () => {
+    if (!gb.classList.contains("open")) return;
+    if (!jammed) {
+      jammed = true;
+      gb.classList.remove("jam"); void gb.offsetWidth; gb.classList.add("jam");
+      setTimeout(() => gb.classList.remove("jam"), 900);
+      return;
+    }
+    jammed = false; gb.classList.remove("jam"); set(false);
+  };
+  lid.addEventListener("click", () => gb.classList.contains("open") ? close() : (jammed = false, set(true)));
+  document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+  document.addEventListener("click", e => { if (!gb.contains(e.target) && !e.target.closest(".gb-stage")) close(); });
 })();
 
 // Glovebox items. Hover: the item comes to the middle. Click: go to its page. Stop hovering: it goes back.
