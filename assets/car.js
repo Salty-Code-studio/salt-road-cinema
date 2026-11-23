@@ -66,7 +66,7 @@
     const hot = o.hotspots ? HOT.map(([z, pos, nrm], i) => `<button class="zone mv-hot" slot="hotspot-${z}-${i}" data-zone="${z}" data-position="${pos}" data-normal="${nrm}" type="button" aria-label="${z}"><i></i></button>`).join("") : "";
     const ctl = o.auto ? 'auto-rotate auto-rotate-delay="0" rotation-per-second="18deg" interaction-prompt="none"' : 'camera-controls interaction-prompt="none" touch-action="pan-y" disable-pan';
     return `<model-viewer class="car-3d" src="${car.model}" poster="${car.sideCutout || ""}" ${ctl}
-      camera-orbit="${o.orbit || "180deg 80deg 4.6m"}" camera-target="0m 0.62m 0m" min-camera-orbit="auto 25deg 3.2m" max-camera-orbit="auto 95deg 9m" field-of-view="30deg"
+      camera-orbit="${o.orbit || "180deg 80deg 5.6m"}" camera-target="0m 0.62m 0m" min-camera-orbit="auto 25deg 3.2m" max-camera-orbit="auto 95deg 9m" field-of-view="30deg"
       shadow-intensity="1" shadow-softness=".8" exposure="1.05" environment-image="neutral" alt="${car.year || ""} ${car.name || ""}, 3D scan">${hot}</model-viewer>`;
   };
   window.SRC_CAR = {
