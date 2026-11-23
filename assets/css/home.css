@@ -1024,3 +1024,5 @@ html,body{overflow-x:clip}
 .tune-scene .sp-floor svg{filter:url(#gearGrain) drop-shadow(0 1px 0 rgba(255,255,255,.07)) drop-shadow(10px 8px 6px rgba(0,0,0,.7))}
 .tune-scene .sp:hover .sil,.tune-scene .sp:focus-within .sil{fill:url(#gearMetalHot);stroke:#e8a49b;stroke-width:1.4}
 .tune-scene .sp:hover svg,.tune-scene .sp:focus-within svg{filter:url(#gearGrain) drop-shadow(0 0 6px rgba(232,164,155,.65)) drop-shadow(3px 6px 4px rgba(0,0,0,.7))}
+/* sun strip sits higher and fades out smoothly: no hard edge line across the glass */
+.sunstrip{background:linear-gradient(180deg,rgba(6,6,8,.9) 0,rgba(6,6,8,.82) calc(var(--banner-top) + var(--banner-fs) * .2),rgba(8,8,11,.5) calc(var(--banner-top) + var(--banner-fs) * .75),rgba(10,10,14,.2) calc(var(--banner-top) + var(--banner-fs) * 1.25),rgba(10,10,14,0) calc(var(--banner-top) + var(--banner-fs) * 1.9))}

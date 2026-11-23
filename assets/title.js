@@ -38,7 +38,9 @@
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) h1.classList.add("applied");
     else setTimeout(() => h1.classList.add("applied"), 250);
   };
-  document.addEventListener("DOMContentLoaded", () => setTimeout(start, 50));
+  // runs on a fresh load and when the page is swapped in by soft navigation (no DOMContentLoaded then)
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => setTimeout(start, 50));
+  else setTimeout(start, 50);
   if (document.fonts) document.fonts.ready.then(() => h1.isConnected && bend());
   let t; addEventListener("resize", () => { clearTimeout(t); t = setTimeout(() => h1.isConnected && bend(), 120); });
   document.addEventListener("langchange", () => setTimeout(() => { if (h1.isConnected) { h1.querySelectorAll(".ch").length || split(); bend(); } }, 40));
