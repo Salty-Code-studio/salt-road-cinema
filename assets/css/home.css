@@ -1183,3 +1183,4 @@ html,body{overflow-x:clip}
 .island-sec::before{content:"";position:absolute;inset:-60px 0 0;z-index:-1;pointer-events:none;
   background:radial-gradient(ellipse 70% 75% at 50% 52%,rgba(10,10,9,.94) 0%,rgba(10,10,9,.82) 45%,rgba(10,10,9,.4) 75%,rgba(10,10,9,0) 100%)}
 .island-sec > *{position:relative}
+.island-sec[data-mode="a"] .isl-img img{filter:none}.island-sec[data-mode="a"] .isl-img::after{display:none}
