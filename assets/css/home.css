@@ -1360,3 +1360,7 @@ html,body{overflow-x:clip}
 .yt-thumb img{width:100%;height:100%;object-fit:cover}
 .yt-thumb em{position:absolute;left:4px;top:4px;font:600 8px var(--mono);letter-spacing:.12em;text-transform:uppercase;font-style:normal;background:rgba(0,0,0,.75);color:#f3efe6;padding:1px 4px}
 .yt-item{grid-template-columns:120px 1fr}
+/* story: only the question, and only the last card keeps its line */
+.story-help p{display:none}
+.story-ways .way span{display:none}
+.story-ways .way:last-child span{display:block}
