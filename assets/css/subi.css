@@ -21,3 +21,5 @@
 form.sponsor .full .btn{margin-right:6px;margin-bottom:6px}
 @media(max-width:600px){.part .acts .btn{flex:1 1 auto;justify-content:center}.amounts button{font-size:16px}}
 .part h4,.part p{overflow-wrap:anywhere}
+.part .buy{display:inline-block;margin-top:4px;font:600 12px var(--mono);color:var(--pan);text-decoration:none}
+.part .buy:hover{text-decoration:underline}

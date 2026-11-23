@@ -318,3 +318,5 @@ SRC_I18N.add({
   nl: { "subi.ship.ask": "Stuur ons een WhatsApp voor het verzendadres. We reageren dezelfde dag." },
   pap: { "subi.ship.ask": "Manda nos un WhatsApp pa e adrès di manda. Nos ta kontestá e mesun dia." }
 });
+
+SRC_I18N.add({ en: { "subi.buyat": "Buy it at" }, nl: { "subi.buyat": "Koop bij" }, pap: { "subi.buyat": "Kumpra na" } });

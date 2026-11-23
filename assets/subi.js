@@ -132,8 +132,8 @@
     list.innerHTML = P.filter(p => active === "All" || p.group === active).map(p => `
       <div class="part ${p.status === "fitted" ? "done" : ""}">
         <span class="grp">${esc(gname(p.group))}</span>
-        <div><h4>${esc(pname(p))}</h4><p>${esc(pnote(p))}</p></div>
-        <span class="price">≈ ${usd(p.price)}</span>
+        <div><h4>${esc(pname(p))}</h4><p>${esc(p.product ? p.product + " · " + pnote(p) : pnote(p))}</p>${p.link ? `<a class="buy" href="${esc(p.link)}" target="_blank" rel="noopener sponsored">${t("subi.buyat")} ${esc(p.store || "store")} ↗</a>` : ""}</div>
+        <span class="price">${usd(p.price)}</span>
         <span class="status ${p.status}">${t("subi.status." + p.status)}</span>
         <div class="acts">${p.status === "needed" ? `
           <button class="btn btn-pan btn-sm" type="button" data-ship="${p.id}">${t("subi.send")}</button>
