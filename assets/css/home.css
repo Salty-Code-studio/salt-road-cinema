@@ -1184,3 +1184,7 @@ html,body{overflow-x:clip}
   background:radial-gradient(ellipse 70% 75% at 50% 52%,rgba(10,10,9,.94) 0%,rgba(10,10,9,.82) 45%,rgba(10,10,9,.4) 75%,rgba(10,10,9,0) 100%)}
 .island-sec > *{position:relative}
 .island-sec[data-mode="a"] .isl-img img{filter:none}.island-sec[data-mode="a"] .isl-img::after{display:none}
+/* island heading sits in the middle of the steering wheel */
+.island-head{flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.island-head .sub{margin:0 auto;max-width:520px}
+.island-tabs{justify-content:center}
