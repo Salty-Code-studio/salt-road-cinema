@@ -1137,3 +1137,49 @@ html,body{overflow-x:clip}
 /* tyre stack half off the right edge, tool chest standing on the floor by the left wall */
 .tune .bay-tyres{right:-5%;bottom:2%;width:13%}
 .tune .bay-chest{left:4.5%;bottom:3%;height:26%;width:9.5%}
+
+/* ---------- island cars: three looks + review switch ---------- */
+.island-switch{display:flex;align-items:center;gap:8px;flex-wrap:wrap;width:fit-content;margin:0 auto 26px;padding:6px 8px;background:#1a1816;border:1px dashed rgba(232,164,155,.5);font:600 11px var(--mono)}
+.island-switch > span{color:#e8a49b;letter-spacing:.14em;text-transform:uppercase;padding:0 6px}
+.island-switch button{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(243,239,230,.75);font:inherit;padding:6px 12px;cursor:pointer;letter-spacing:.06em}
+.island-switch button[aria-pressed="true"]{background:#e8a49b;border-color:#e8a49b;color:#141110}
+.island-switch em{font-style:normal;color:rgba(243,239,230,.55);padding:0 6px;font-weight:400}
+.island-row{overflow:hidden}
+.island-track{will-change:transform;transform:translate3d(0,0,0)}
+.island-sec[data-mode="a"] .island-row:hover .island-track,.island-sec[data-mode="c"] .island-row:hover .island-track{animation-play-state:paused!important}
+@keyframes islDrift{from{transform:translate3d(0,0,0)}to{transform:translate3d(var(--loop),0,0)}}
+@media(prefers-reduced-motion:reduce){.island-track{animation:none!important}.island-row{overflow-x:auto}}
+.isl-card{contain:layout paint}
+.isl-card:hover{transform:none}
+/* A: smooth strip, photos graded so low-res footage reads as a style */
+.island-sec[data-mode="a"] .isl-img img{filter:grayscale(.85) contrast(1.15) brightness(.8)}
+.island-sec[data-mode="a"] .isl-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(232,164,155,0) 30%,rgba(232,96,80,.28));mix-blend-mode:color;pointer-events:none}
+.island-sec[data-mode="a"] .isl-card:hover .isl-img img{filter:none;transform:none}
+.island-sec[data-mode="a"] .isl-card:hover{border-color:rgba(232,164,155,.45)}
+/* B: swipe gallery, bigger, snaps, no auto motion */
+.island-sec[data-mode="b"] .island-row{overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:clamp(16px,2.5vw,40px);cursor:grab;scrollbar-width:none}
+.island-sec[data-mode="b"] .island-track{padding-right:clamp(16px,2.5vw,40px)}
+.island-sec[data-mode="b"] .isl-card{scroll-snap-align:start;width:clamp(280px,30vw,440px);height:clamp(360px,30vw,460px)}
+.island-sec[data-mode="b"] .isl-img{height:60%}
+.island-sec[data-mode="b"] .isl-img img{transform:none}
+/* C: plate ticker, type only */
+.isl-plate{height:clamp(200px,16vw,240px)!important;justify-content:flex-start;padding:18px!important}
+.isl-plate .isl-make{width:fit-content;margin-bottom:12px}
+.isl-plate h3{font-size:clamp(24px,2.2vw,34px)!important}
+.isl-pl{position:absolute;right:16px;bottom:16px;display:flex;flex-direction:column;align-items:center;gap:1px;background:#f3efe6;color:#141110;font:700 15px var(--mono);letter-spacing:.08em;padding:4px 10px 5px;border-radius:3px;box-shadow:inset 0 0 0 2px #141110}
+.isl-pl i{font:600 7px var(--mono);letter-spacing:.24em;font-style:normal;color:#b32a2a}
+.island-sec[data-mode="c"] .isl-own{bottom:16px}
+.island-sec[data-mode="c"] .isl-add{height:clamp(200px,16vw,240px)}
+.island-sec[data-mode="c"] .isl-own{max-width:52%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* floor runs on past both edges of the screen instead of ending at the side walls */
+.tune .bay-floor{clip-path:none;left:0;right:0}
+.tune .bay-wall-l,.tune .bay-wall-r{clip-path:polygon(0 0,100% 7%,100% 52%,0 52%)}
+.tune .bay-floor::before{left:-120%;right:-120%}
+.tune .bay-floor::after{background:
+  radial-gradient(ellipse 24% 60% at 33% 22%,rgba(255,238,220,.22),transparent 70%),
+  radial-gradient(ellipse 24% 60% at 67% 22%,rgba(255,238,220,.22),transparent 70%),
+  linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.25) 22%,rgba(0,0,0,0) 55%,rgba(255,255,255,.04) 100%)}
+/* soft dark pool behind the island cars so the steering wheel stays behind and never competes */
+.island-sec::before{content:"";position:absolute;inset:-60px 0 0;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse 70% 75% at 50% 52%,rgba(10,10,9,.94) 0%,rgba(10,10,9,.82) 45%,rgba(10,10,9,.4) 75%,rgba(10,10,9,0) 100%)}
+.island-sec > *{position:relative}
