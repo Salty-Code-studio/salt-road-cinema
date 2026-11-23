@@ -1224,3 +1224,29 @@ html,body{overflow-x:clip}
 /* island cars now sit at the bottom of the page */
 .island-sec{padding-top:80px}
 .way-ico{filter:none;color:#e8a49b;width:28px;height:28px;display:block}.way-ico svg{width:100%;height:100%}
+
+/* ---------- turquoise accent: lines and accent text ---------- */
+:root{--teal:#3cd3c6;--teal-dim:rgba(60,211,198,.35)}
+/* story, compact: sits inside the steering wheel */
+.story-sec{padding:56px 0 48px}
+.story-sec .wrap{max-width:860px}
+.story-top{grid-template-columns:1fr;gap:12px;text-align:center;justify-items:center;margin-bottom:26px}
+.story-top h2{font-size:clamp(20px,2.3vw,36px);line-height:1.05}
+.story-top h2 em{color:var(--teal);font-style:normal}
+.story-lead{max-width:560px}
+.story-lead p{font-size:clamp(13px,.95vw,15px);margin:0 0 8px}
+.story-close{font-size:clamp(12px,.95vw,14px)!important;color:var(--teal)!important;margin-top:10px!important}
+.story-now{grid-template-columns:1.3fr 1fr .6fr auto;gap:12px 22px;padding:14px 18px;margin-bottom:12px;border-top:1px solid var(--teal-dim)}
+.sn-lbl{background:var(--teal);color:#0c1514}
+.sn-car b{font-size:clamp(15px,1.3vw,20px)}
+.sn-car p{font-size:12px}
+.sn-num b{font-size:clamp(18px,1.7vw,26px)}
+.sn-num span{font-size:10px}
+.story-now .btn{padding:9px 14px;font-size:13px}
+.story-ways{gap:8px}
+.way{min-height:0;padding:14px 12px 16px;gap:4px;box-shadow:inset 0 2px 0 var(--teal-dim)}
+.way-ico{width:20px;height:20px;margin-bottom:4px;color:var(--teal)}
+.way b{font-size:clamp(12px,.95vw,14px)}
+.way span{font-size:11.5px}
+.way:hover b{color:var(--teal)}
+.way:hover{box-shadow:inset 0 2px 0 var(--teal)}
