@@ -1,0 +1,16 @@
+// The island's cars: everything we've filmed or spotted on Bonaire. Shown as the auto-scrolling row after the hero.
+// owner: "" = unknown, the card asks "Is this yours?" and links to Submit. tag: drift | jdm | euro | offroad | bikes
+// Names come from the footage; correct anything that's wrong (and add owners / IG handles when known).
+window.DATA = window.DATA || {};
+window.DATA.community = [
+  { id: "subi",    make: "Subaru",  model: "Impreza WRX", year: "2003", color: "Red",      tags: ["jdm", "project"], img: "media/community/subaru-wrx.jpg",     owner: "Salt Road Cinema", href: "subi.html", spot: { en: "Our project. Help save it.", nl: "Ons project. Help hem redden.", pap: "Nos proyekto. Yuda salba e." } },
+  { id: "240sx",   make: "Nissan",  model: "240SX",       year: "",     color: "Blue",     tags: ["jdm", "drift"],   img: "media/community/nissan-240sx.jpg",   owner: "", spot: { en: "Pop-ups up at Drift Day.", nl: "Pop-ups omhoog op Drift Day.", pap: "Lus ariba na Drift Day." } },
+  { id: "350z",    make: "Nissan",  model: "350Z",        year: "",     color: "Orange",   tags: ["jdm", "drift"],   img: "media/community/nissan-350z.jpg",    owner: "", spot: { en: "Night runs, full smoke.", nl: "Nachtruns, vol in de rook.", pap: "Kore anochi, yen di huma." } },
+  { id: "altezza", make: "Toyota",  model: "Altezza",     year: "",     color: "White",    tags: ["jdm", "drift"],   img: "media/community/toyota-altezza.jpg", owner: "", spot: { en: "Spotted at the night meet.", nl: "Gespot op de nachtmeet.", pap: "Wak na e meet di anochi." } },
+  { id: "s2000",   make: "Honda",   model: "S2000",       year: "",     color: "Silver",   tags: ["jdm"],            img: "media/community/honda-s2000.jpg",    owner: "", spot: { en: "Parked trackside, Drift Day.", nl: "Langs de baan, Drift Day.", pap: "Pará banda di track, Drift Day." } },
+  { id: "m2",      make: "BMW",     model: "M2",          year: "",     color: "Teal",     tags: ["euro"],           img: "media/community/bmw-m2.jpg",         owner: "", spot: { en: "Sunset by the sea.", nl: "Zonsondergang aan zee.", pap: "Solo ta baha na laman." } },
+  { id: "pink",    make: "Unknown", model: "Pink sedan",  year: "",     color: "Pink",     tags: ["drift"],          img: "media/community/pink-sedan.jpg",     owner: "", spot: { en: "Who's driving this one?", nl: "Wie rijdt deze?", pap: "Ken ta kore esaki?" } },
+  { id: "black",   make: "Unknown", model: "Black widebody", year: "",  color: "Black",    tags: ["drift"],          img: "media/community/black-coupe.jpg",    owner: "", spot: { en: "Only comes out at night.", nl: "Komt alleen 's nachts naar buiten.", pap: "Ta sali anochi so." } },
+  { id: "bikes",   make: "Stunt",   model: "Bikes",       year: "",     color: "",         tags: ["bikes"],          img: "media/community/stunt-bikes.jpg",    owner: "", spot: { en: "Wheelies between the tyres.", nl: "Wheelies tussen de banden.", pap: "Wheelie meimei di e bandanan." } },
+  { id: "offroad", make: "Off-road", model: "Crew",       year: "",     color: "",         tags: ["offroad"],        img: "media/community/offroad.jpg",        owner: "", spot: { en: "Convoy through the dark.", nl: "Konvooi door het donker.", pap: "Konvoi den skuridat." } }
+];
