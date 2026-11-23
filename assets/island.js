@@ -6,11 +6,11 @@
   const I = window.SRC_I18N, D = window.DATA || {};
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   I.add({
-    en: { "island.h": "The island's <em>cars</em>", "island.sub": "Everything we've filmed or spotted on Bonaire. Yours missing? Add it.", "island.all": "All", "island.jdm": "JDM", "island.drift": "Drift", "island.euro": "Euro", "island.offroad": "Off-road", "island.bikes": "Bikes",
+    en: { "island.h": "The island's <em>cars</em>", "island.sub": "Got a car worth filming? Add it to the wall.", "island.all": "All", "island.jdm": "JDM", "island.drift": "Drift", "island.euro": "Euro", "island.offroad": "Off-road", "island.bikes": "Bikes",
       "island.yours": "Is this yours?", "island.owner": "Owner", "island.add": "Add your car", "island.addSub": "Get it on the wall and maybe in a film.", "island.see": "See the build", "island.pick": "Pick a look" },
-    nl: { "island.h": "De <em>auto's</em> van het eiland", "island.sub": "Alles wat we op Bonaire filmden of spotten. Staat de jouwe er niet bij? Voeg hem toe.", "island.all": "Alles", "island.jdm": "JDM", "island.drift": "Drift", "island.euro": "Euro", "island.offroad": "Off-road", "island.bikes": "Motoren",
+    nl: { "island.h": "De <em>auto's</em> van het eiland", "island.sub": "Een auto die we moeten filmen? Zet hem op de muur.", "island.all": "Alles", "island.jdm": "JDM", "island.drift": "Drift", "island.euro": "Euro", "island.offroad": "Off-road", "island.bikes": "Motoren",
       "island.yours": "Is deze van jou?", "island.owner": "Eigenaar", "island.add": "Voeg je auto toe", "island.addSub": "Op de muur en misschien in een film.", "island.see": "Bekijk de build", "island.pick": "Kies een look" },
-    pap: { "island.h": "E <em>outonan</em> di isla", "island.sub": "Tur loke nos a filma òf wak na Boneiru. Esun di bo no ta aki? Agreg'é.", "island.all": "Tur", "island.jdm": "JDM", "island.drift": "Drift", "island.euro": "Euro", "island.offroad": "Off-road", "island.bikes": "Motor",
+    pap: { "island.h": "E <em>outonan</em> di isla", "island.sub": "Bo tin un outo ku nos mester filma? Pon'é riba e muraya.", "island.all": "Tur", "island.jdm": "JDM", "island.drift": "Drift", "island.euro": "Euro", "island.offroad": "Off-road", "island.bikes": "Motor",
       "island.yours": "Esaki ta di bo?", "island.owner": "Doño", "island.add": "Agregá bo outo", "island.addSub": "Riba e muraya i kisas den un pelíkula.", "island.see": "Wak e build", "island.pick": "Skohe un look" }
   });
   const t = k => I.t(k);

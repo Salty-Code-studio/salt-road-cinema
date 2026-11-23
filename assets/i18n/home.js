@@ -1,7 +1,7 @@
 SRC_I18N.add({
   en: {
     "home.h1": "Salt <em>Road</em> Cinema",
-    "home.lead": "We film the builds, the night runs and the people who **tune cars** on a **39 km island**. Bonaire, no filter.",
+    "home.lead": "We film the builds, the night runs and the people who **tune cars** on a **39 km island**.",
     "home.cta.yt": "Watch on YouTube",
     "home.cta.garage": "Enter the Garage",
     "home.films.h": "Latest <em>films</em>",
@@ -29,7 +29,7 @@ SRC_I18N.add({
   },
   nl: {
     "home.h1": "Salt <em>Road</em> Cinema",
-    "home.lead": "We filmen de builds, de nachtritten en de mensen die **auto's tunen** op een **eiland van 39 km**. Bonaire, zonder filter.",
+    "home.lead": "We filmen de builds, de nachtritten en de mensen die **auto's tunen** op een **eiland van 39 km**.",
     "home.cta.yt": "Kijk op YouTube",
     "home.cta.garage": "Naar de Garage",
     "home.films.h": "Nieuwste <em>films</em>",
@@ -57,7 +57,7 @@ SRC_I18N.add({
   },
   pap: {
     "home.h1": "Salt <em>Road</em> Cinema",
-    "home.lead": "Nos ta filma e builds, e kore di anochi i e hendenan ku ta **tune outo** riba un **isla di 39 km**. Boneiru, sin filter.",
+    "home.lead": "Nos ta filma e builds, e kore di anochi i e hendenan ku ta **tune outo** riba un **isla di 39 km**.",
     "home.cta.yt": "Wak riba YouTube",
     "home.cta.garage": "Drenta e Garashi",
     "home.films.h": "Pelíkula <em>mas nobo</em>",
