@@ -9,17 +9,24 @@
   I.add({
     en: { "yt.h": "On <em>YouTube</em>", "yt.sub": "Every episode, plus the next one on the way.", "yt.bell": "Get notified", "yt.latest": "Latest episode", "yt.trailer": "Trailer",
       "yt.next": "Next episode", "yt.soon": "Date soon", "yt.live": "Out now", "yt.d": "d", "yt.h2": "h", "yt.m": "m", "yt.s": "s",
-      "yt.all": "All episodes", "yt.none": "No episodes yet. Hit the bell and catch the first one.", "yt.watch": "Watch on YouTube", "yt.play": "Play" },
+      "yt.all": "All episodes", "yt.none": "No episodes yet. Hit the bell and catch the first one.", "yt.watch": "Watch on YouTube", "yt.play": "Play", "yt.preview": "Preview", "yt.subscribe": "Subscribe" },
     nl: { "yt.h": "Op <em>YouTube</em>", "yt.sub": "Elke aflevering, plus de volgende die eraan komt.", "yt.bell": "Krijg een melding", "yt.latest": "Nieuwste aflevering", "yt.trailer": "Trailer",
       "yt.next": "Volgende aflevering", "yt.soon": "Datum volgt", "yt.live": "Nu online", "yt.d": "d", "yt.h2": "u", "yt.m": "m", "yt.s": "s",
-      "yt.all": "Alle afleveringen", "yt.none": "Nog geen afleveringen. Druk op de bel en zie de eerste.", "yt.watch": "Kijk op YouTube", "yt.play": "Afspelen" },
+      "yt.all": "Alle afleveringen", "yt.none": "Nog geen afleveringen. Druk op de bel en zie de eerste.", "yt.watch": "Kijk op YouTube", "yt.play": "Afspelen", "yt.preview": "Voorbeeld", "yt.subscribe": "Abonneren" },
     pap: { "yt.h": "Riba <em>YouTube</em>", "yt.sub": "Tur episodio, i e siguiente ku ta bini.", "yt.bell": "Haña avisu", "yt.latest": "Último episodio", "yt.trailer": "Trailer",
       "yt.next": "Siguiente episodio", "yt.soon": "Fecha pronto", "yt.live": "Afó awor", "yt.d": "d", "yt.h2": "o", "yt.m": "m", "yt.s": "s",
-      "yt.all": "Tur episodio", "yt.none": "Ainda no tin episodio. Primi e bel i wak e promé.", "yt.watch": "Wak riba YouTube", "yt.play": "Toka" }
+      "yt.all": "Tur episodio", "yt.none": "Ainda no tin episodio. Primi e bel i wak e promé.", "yt.watch": "Wak riba YouTube", "yt.play": "Toka", "yt.preview": "Ehempel", "yt.subscribe": "Subskribí" }
   });
   const t = k => I.t(k);
   const locale = () => ({ en: "en-GB", nl: "nl-NL", pap: "nl-NL" })[I.lang] || "en-GB";
   const vids = () => (D.videos || []).filter(v => !v.short).sort((a, b) => b.published.localeCompare(a.published));
+  // Layout preview: example episodes shown in the list until the first real one is live (marked "Preview").
+  const DEMO = [
+    { title: "Save the Subi: what's really wrong with her", date: "2026-11-15", img: "media/subi-34-front.jpg" },
+    { title: "Drift Day Bonaire: full smoke at sunset", date: "2026-11-08", img: "media/drift-crowd.jpg" },
+    { title: "Night runs on the salt road", date: "2026-11-01", img: "media/drift-night-smoke.jpg" },
+    { title: "The teal M2 by the sea", date: "2026-10-25", img: "media/m2-taillight-sea.jpg" }
+  ];
   const subHref = C.youtubeChannelId ? `https://www.youtube.com/channel/${C.youtubeChannelId}?sub_confirmation=1` : C.youtube;
 
   const renderPlayer = () => {
@@ -43,8 +50,9 @@
     const list = vids();
     $("yt-list").innerHTML = `<h3>${t("yt.all")}</h3>` + (list.length
       ? `<div class="yt-items">${list.map(v => `<a class="yt-item" href="https://www.youtube.com/watch?v=${esc(v.id)}" target="_blank" rel="noopener">
-          <img src="https://i.ytimg.com/vi/${esc(v.id)}/mqdefault.jpg" alt="" loading="lazy"><span><b>${esc(v.title)}</b><i>${new Date(v.published).toLocaleDateString(locale(), { day: "numeric", month: "short", year: "numeric" })}</i></span></a>`).join("")}</div>`
-      : `<p class="yt-none">${t("yt.none")}</p>`) +
+          <span class="yt-thumb"><img src="https://i.ytimg.com/vi/${esc(v.id)}/mqdefault.jpg" alt="" loading="lazy"></span><span><b>${esc(v.title)}</b><i>${new Date(v.published).toLocaleDateString(locale(), { day: "numeric", month: "short", year: "numeric" })}</i></span></a>`).join("")}</div>`
+      : `<div class="yt-items is-demo">${DEMO.map(v => `<a class="yt-item" href="${esc(C.youtube)}" target="_blank" rel="noopener">
+          <span class="yt-thumb"><img src="${esc(v.img)}" alt="" loading="lazy"><em>${t("yt.preview")}</em></span><span><b>${esc(v.title)}</b><i>${new Date(v.date).toLocaleDateString(locale(), { day: "numeric", month: "short", year: "numeric" })}</i></span></a>`).join("")}</div>`) +
       `<a class="btn btn-ghost yt-more" href="${esc(C.youtube)}" target="_blank" rel="noopener">${t("yt.watch")} ↗</a>`;
   };
 
@@ -55,7 +63,7 @@
     const last = vids()[0] ? new Date(vids()[0].published).getTime() : (isNaN(next) ? NaN : next - 14 * 864e5);
     const now = Date.now(), title = esc(C.nextVideoTitle || "");
     let clock, pct = 0, state = "";
-    if (isNaN(next)) { clock = `<b class="yt-clock-soon">${t("yt.soon")}</b>`; state = "soon"; }
+    if (isNaN(next)) { clock = `<b class="yt-clock-soon">${t("yt.soon")}</b>`; state = "soon"; pct = 0; }
     else if (next <= now) { clock = `<b>${t("yt.live")}</b>`; pct = 100; state = "live"; }
     else {
       const ms = next - now, p = n => String(n).padStart(2, "0");
