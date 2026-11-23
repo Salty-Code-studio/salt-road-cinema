@@ -6,8 +6,8 @@
   const I = window.SRC_I18N, C = window.SRC, D = window.DATA || {};
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   // Default spot until a real meet is in data/events.js: the walled square at Onima (the spot everyone goes to),
-  // off Kaminda Onima, Bonaire. Picked by Rudo on the map, 2026-11-22.
-  const DEF = { lat: 12.24955, lng: -68.31065, address: "Onima, Kaminda Onima, Bonaire", name: "Onima" };
+  // the rectangle by the road east of Boka Onima, Bonaire. Picked by Rudo on the map, 2026-11-22.
+  const DEF = { lat: 12.24716, lng: -68.30033, address: "Onima, Kaminda Onima, Bonaire", name: "Onima" };
   const fmt = (v, pos, neg) => `${Math.abs(v).toFixed(5)}° ${v >= 0 ? pos : neg}`;
   const next = () => {
     const today = new Date().toISOString().slice(0, 10);
@@ -20,6 +20,7 @@
   if (window.L) {
     const mobile = matchMedia("(pointer: coarse)").matches;
     const map = window.L.map(mapEl, { zoomControl: true, scrollWheelZoom: false, dragging: !mobile, tap: false, attributionControl: true, zoomSnap: 0.25 }).setView([12.2, -68.27], 10.5);
+    mapEl._srcMap = map; // handy for picking a spot by hand in the console
     // Opening shot: all of Bonaire, then a fast zoom with a slight tilt onto the dot when the section comes into view.
     const target = [at[0], at[1] + 0.005], reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const fly = () => {
