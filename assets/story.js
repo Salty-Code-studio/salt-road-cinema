@@ -5,8 +5,8 @@
   const I = window.SRC_I18N, C = window.SRC, D = window.DATA || {};
   I.add({
     en: {
-      "story.h": "Cars die on this island. <em>We bring them back.</em>",
-      "story.p1": "Salt Road Cinema films one car project at a time. **Bringing back cars and projects against all odds.**",
+      "story.h": "Help bring them <em>back.</em>",
+      "story.p1": "Salt Road Cinema films one car project at a time.<br>**Bringing back cars and projects against all odds.**",
       "story.p2": "",
       "story.close": "Sponsored by people who love cars.",
       "story.f1": "A car gets stuck", "story.f1s": "Blown engine, crashed front, no budget.",
@@ -21,8 +21,8 @@
       "story.w5": "Bring your project", "story.w5s": "Got a car that needs saving? Tell us."
     },
     nl: {
-      "story.h": "Auto's gaan dood op dit eiland. <em>Wij halen ze terug.</em>",
-      "story.p1": "Salt Road Cinema filmt één autoproject tegelijk. **We halen auto's en projecten terug, tegen alle verwachtingen in.**",
+      "story.h": "Help ze <em>terug te brengen.</em>",
+      "story.p1": "Salt Road Cinema filmt één autoproject tegelijk.<br>**We halen auto's en projecten terug, tegen alle verwachtingen in.**",
       "story.p2": "",
       "story.close": "Gesponsord door mensen die van auto's houden.",
       "story.f1": "Een auto staat stil", "story.f1s": "Motor kapot, voorkant in elkaar, geen budget.",
@@ -37,8 +37,8 @@
       "story.w5": "Breng je project", "story.w5s": "Een auto die gered moet worden? Vertel het ons."
     },
     pap: {
-      "story.h": "Outo ta muri riba e isla aki. <em>Nos ta trese nan bèk.</em>",
-      "story.p1": "Salt Road Cinema ta filma un proyekto di outo pa biaha. **Nos ta trese outo i proyekto bèk, kontra tur pronóstiko.**",
+      "story.h": "Yuda trese nan <em>bèk.</em>",
+      "story.p1": "Salt Road Cinema ta filma un proyekto di outo pa biaha.<br>**Nos ta trese outo i proyekto bèk, kontra tur pronóstiko.**",
       "story.p2": "",
       "story.close": "Patrosiná pa hende ku ta stima outo.",
       "story.f1": "Un outo ta keda pegá", "story.f1s": "Motor dañá, dilanti kibrá, no tin plaka.",
