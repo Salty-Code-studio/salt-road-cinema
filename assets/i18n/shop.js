@@ -98,3 +98,58 @@ SRC_I18N.add({
 });
 
 SRC_I18N.add({ en: { "shop.soon": "Coming soon" }, nl: { "shop.soon": "Binnenkort" }, pap: { "shop.soon": "Ta bin pronto" } });
+
+// 2026-11-23 shop redesign: hero, filters, facts.
+SRC_I18N.add({
+  en: {
+    "shop.sub2": "Tees, caps, stickers and bits for your car. **Small drops** for Bonaire's car scene.",
+    "shop.fund": "Every order goes into **the Subi**.",
+    "shop.fund.of": "of",
+    "shop.fact.pickup": "Pickup in Kralendijk",
+    "shop.fact.ship": "Shipping on request",
+    "shop.fact.pay": "Pay by card, no account",
+    "shop.f.all": "All",
+    "shop.f.tee": "Tees",
+    "shop.f.cap": "Caps",
+    "shop.f.extra": "For the car",
+    "shop.f.sticker": "Stickers",
+    "shop.items": "items",
+    "shop.feature.cta": "Get the tee",
+    "shop.pick": "Pick a size",
+    "shop.view": "View cart"
+  },
+  nl: {
+    "shop.sub2": "Shirts, petten, stickers en spullen voor je auto. **Kleine drops** voor de autoscene van Bonaire.",
+    "shop.fund": "Elke bestelling gaat naar **de Subi**.",
+    "shop.fund.of": "van",
+    "shop.fact.pickup": "Ophalen in Kralendijk",
+    "shop.fact.ship": "Verzending op aanvraag",
+    "shop.fact.pay": "Betaal met kaart, geen account",
+    "shop.f.all": "Alles",
+    "shop.f.tee": "Shirts",
+    "shop.f.cap": "Petten",
+    "shop.f.extra": "Voor de auto",
+    "shop.f.sticker": "Stickers",
+    "shop.items": "items",
+    "shop.feature.cta": "Pak het shirt",
+    "shop.pick": "Kies een maat",
+    "shop.view": "Bekijk winkelmand"
+  },
+  pap: {
+    "shop.sub2": "Kamisa, kachi, sticker i kosnan pa bo outo. **Drops chikí** pa e scena di outo di Boneiru.",
+    "shop.fund": "Tur òrdu ta bai pa **e Subi**.",
+    "shop.fund.of": "di",
+    "shop.fact.pickup": "Buska na Kralendijk",
+    "shop.fact.ship": "Nos ta manda si bo pidi",
+    "shop.fact.pay": "Paga ku kaart, sin kuenta",
+    "shop.f.all": "Tur",
+    "shop.f.tee": "Kamisa",
+    "shop.f.cap": "Kachi",
+    "shop.f.extra": "Pa e outo",
+    "shop.f.sticker": "Sticker",
+    "shop.items": "artíkulo",
+    "shop.feature.cta": "Haña e kamisa",
+    "shop.pick": "Skohe un medida",
+    "shop.view": "Wak karchi"
+  }
+});

@@ -4,7 +4,6 @@
   const t = (k) => I.t(k);
   const products = (window.DATA && window.DATA.products) || [];
   const byId = Object.fromEntries(products.map(p => [p.id, p]));
-  const KINDS = ["sticker", "tee", "cap"];
   const KEY = "src-cart-v1";
 
   const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -36,8 +35,8 @@
     <g transform="translate(${x} ${y})">
       <rect x="${-size * 0.55}" y="${-size * 0.95}" width="${size * 1.1}" height="${size * 0.7}" rx="${size * 0.12}" fill="none" stroke="${fg}" stroke-width="${size * 0.1}"/>
       <rect x="${-size * 0.3}" y="${-size * 0.8}" width="${size * 0.6}" height="${size * 0.4}" rx="${size * 0.05}" fill="#e8a49b"/>
-      <text y="${size * 0.1}" text-anchor="middle" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="${size * 0.42}" letter-spacing="${size * 0.02}" fill="${fg}">SALT ROAD</text>
-      <text y="${size * 0.48}" text-anchor="middle" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="${size * 0.3}" letter-spacing="${size * 0.12}" fill="#e8a49b">CINEMA</text>
+      <text y="${size * 0.1}" text-anchor="middle" textLength="${size * 2.3}" lengthAdjust="spacingAndGlyphs" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="${size * 0.42}" letter-spacing="${size * 0.02}" fill="${fg}">SALT ROAD</text>
+      <text y="${size * 0.48}" text-anchor="middle" textLength="${size * 1.5}" lengthAdjust="spacingAndGlyphs" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="${size * 0.3}" letter-spacing="${size * 0.12}" fill="#e8a49b">CINEMA</text>
     </g>`;
 
   const art = (p, color) => {
@@ -56,7 +55,7 @@
         <rect x="16" y="68" width="268" height="64" rx="8" fill="#f3efe6"/>
         <rect x="22" y="74" width="256" height="52" rx="5" fill="#0c0c0b"/>
         <rect x="22" y="74" width="12" height="52" rx="3" fill="#e8a49b"/>
-        <text x="150" y="110" text-anchor="middle" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="28" letter-spacing="1" fill="#f3efe6">SAVE THE <tspan fill="#5878ec">SUBI</tspan></text>
+        <text x="156" y="109" text-anchor="middle" textLength="226" lengthAdjust="spacingAndGlyphs" font-family="Bruno Ace SC,sans-serif" font-weight="400" font-size="24" letter-spacing="1" fill="#f3efe6">SAVE THE <tspan fill="#5878ec">SUBI</tspan></text>
         <text x="150" y="152" text-anchor="middle" font-family="Kode Mono,monospace" font-size="9" letter-spacing="2" fill="#a9a497">SALT ROAD CINEMA</text></svg>`;
     } else {
       return `<svg viewBox="0 0 200 200" role="img" aria-hidden="true">
@@ -67,57 +66,113 @@
     return `<svg viewBox="0 0 230 200" role="img" aria-hidden="true">${body}</svg>`;
   };
 
-  // ---------- product grid ----------
+  // ---------- filters + grid ----------
   const grid = document.getElementById("shop-grid");
+  const chipsEl = document.getElementById("shop-chips");
+  const countLbl = document.getElementById("shop-count");
+  const GROUP = (p) => (p.kind === "tee" || p.kind === "cap" || p.kind === "sticker") ? p.kind : "extra";
+  const FILTERS = ["all", "tee", "cap", "extra", "sticker"];
+  // photo items first, then made-to-order art, sold-out last
+  const rank = (p) => (p.soldOut ? 2 : 0) + (p.photo ? 0 : 1);
+  const ordered = products.map((p, i) => [p, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(x => x[0]);
+  let filter = "all";
+
+  const renderChips = () => {
+    chipsEl.innerHTML = FILTERS.filter(f => f === "all" || products.some(p => GROUP(p) === f)).map(f => {
+      const n = f === "all" ? products.length : products.filter(p => GROUP(p) === f).length;
+      return `<button type="button" role="tab" data-filter="${f}" aria-selected="${f === filter}">${t("shop.f." + f)}<i>${n}</i></button>`;
+    }).join("");
+  };
 
   const cardHTML = (p) => {
     const s = pick(p);
     const name = esc(lc(p.name));
-    const opts = (arr, cur, mapper) => arr.map(v => `<option value="${esc(v)}"${v === cur ? " selected" : ""}>${esc(mapper ? mapper(v) : v)}</option>`).join("");
+    const sizes = p.sizes || [];
+    const media = p.photo
+      ? `<img src="${esc(p.photo)}" alt="${name}" loading="lazy">`
+      : `<div class="part-art k-${esc(p.kind)}${p.shape ? " s-" + esc(p.shape) : ""}">${art(p, s.color)}</div>`;
+    const btn = p.soldOut ? (p.price ? t("shop.soldout") : t("shop.soon")) : t("shop.add");
     return `
-    <article class="pcard${p.soldOut ? " sold" : ""}" data-id="${esc(p.id)}">
-      <div class="pmedia">${p.photo ? `<img src="${esc(p.photo)}" alt="${name}" loading="lazy">` : art(p, s.color)}</div>
+    <article class="pcard cut${p.soldOut ? " sold" : ""}" id="${esc(p.id)}" data-id="${esc(p.id)}">
+      <div class="pmedia">${media}${p.soldOut ? `<span class="pflag">${p.price ? t("shop.soldout") : t("shop.soon")}</span>` : ""}</div>
       <div class="pbody">
-        <div class="ptop"><h3>${name}</h3><span class="pprice">${p.price ? money(p.price) : t("shop.soon")}</span></div>
+        <div class="ptop"><h3>${name}</h3><span class="pprice">${p.price ? money(p.price) : ""}</span></div>
         ${p.desc ? `<p>${esc(lc(p.desc))}</p>` : ""}
-        <div class="pctl">
-          ${(p.sizes || []).length ? `<label><span>${t("shop.size")}</span><select data-f="size">${opts(p.sizes, s.size)}</select></label>` : ""}
-          ${(p.colors || []).length > 1 ? `<label><span>${t("shop.color")}</span><select data-f="color">${opts(p.colors, s.color, colorLabel)}</select></label>` : ""}
-          <label><span>${t("shop.qty")}</span>
-            <select data-f="qty">${[1, 2, 3, 4, 5, 6, 8, 10].map(n => `<option value="${n}"${n === s.qty ? " selected" : ""}>${n}</option>`).join("")}</select>
-          </label>
-        </div>
-        <button class="btn btn-pan add" type="button" ${p.soldOut ? "disabled" : ""}>${p.soldOut ? (p.price ? t("shop.soldout") : t("shop.soon")) : t("shop.add")}</button>
+        ${sizes.length ? `<div class="sizes" role="radiogroup" aria-label="${t("shop.size")}">${sizes.map(z => `<button type="button" role="radio" data-size="${esc(z)}" aria-checked="${z === s.size}">${esc(z)}</button>`).join("")}</div>` : ""}
+        ${(p.colors || []).length > 1 ? `<label class="pcolor"><span>${t("shop.color")}</span><select data-f="color">${p.colors.map(v => `<option value="${esc(v)}"${v === s.color ? " selected" : ""}>${esc(colorLabel(v))}</option>`).join("")}</select></label>` : ""}
+        <button class="btn btn-pan add" type="button" ${p.soldOut ? "disabled" : ""}>
+          <span>${btn}</span>${p.soldOut ? "" : `<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`}
+        </button>
       </div>
     </article>`;
   };
 
   const renderGrid = () => {
-    if (!products.length) { grid.innerHTML = `<p class="shop-empty">${t("shop.empty")}</p>`; return; }
-    grid.innerHTML = KINDS.map(k => {
-      const list = products.filter(p => p.kind === k);
-      if (!list.length) return "";
-      return `<div class="kind"><h2 class="kind-h">${t("shop.kind." + k)}</h2><div class="pgrid">${list.map(cardHTML).join("")}</div></div>`;
-    }).join("");
+    renderChips();
+    if (!products.length) { grid.innerHTML = `<p class="shop-empty">${t("shop.empty")}</p>`; countLbl.textContent = ""; return; }
+    const list = ordered.filter(p => filter === "all" || GROUP(p) === filter);
+    grid.innerHTML = list.map(cardHTML).join("");
+    countLbl.textContent = `${list.length} ${t("shop.items")}`;
   };
+
+  chipsEl.addEventListener("click", e => {
+    const b = e.target.closest("[data-filter]"); if (!b) return;
+    filter = b.dataset.filter; renderGrid();
+  });
 
   grid.addEventListener("change", e => {
     const card = e.target.closest(".pcard"); if (!card || !e.target.dataset.f) return;
     const p = byId[card.dataset.id], s = pick(p);
-    s[e.target.dataset.f] = e.target.dataset.f === "qty" ? +e.target.value : e.target.value;
-    if (e.target.dataset.f === "color") card.querySelector(".pmedia").innerHTML = p.photo ? card.querySelector(".pmedia").innerHTML : art(p, s.color);
+    s[e.target.dataset.f] = e.target.value;
+    if (e.target.dataset.f === "color" && !p.photo) card.querySelector(".part-art").innerHTML = art(p, s.color);
   });
 
+  const fab = document.getElementById("cart-open");
   grid.addEventListener("click", e => {
+    const sz = e.target.closest("[data-size]");
+    if (sz) {
+      const card = sz.closest(".pcard"); pick(byId[card.dataset.id]).size = sz.dataset.size;
+      card.querySelectorAll("[data-size]").forEach(b => b.setAttribute("aria-checked", b === sz));
+      return;
+    }
     const btn = e.target.closest(".add"); if (!btn || btn.disabled) return;
     const p = byId[btn.closest(".pcard").dataset.id], s = pick(p);
     const hit = cart.find(l => l.id === p.id && l.size === (s.size || "") && l.color === (s.color || ""));
-    if (hit) hit.qty = Math.min(99, hit.qty + s.qty);
-    else cart.push({ id: p.id, size: s.size || "", color: s.color || "", qty: s.qty });
+    if (hit) hit.qty = Math.min(99, hit.qty + 1);
+    else cart.push({ id: p.id, size: s.size || "", color: s.color || "", qty: 1 });
     save(); renderCart();
-    btn.textContent = t("shop.added");
-    clearTimeout(btn._t); btn._t = setTimeout(() => (btn.textContent = t("shop.add")), 1200);
+    const lbl = btn.querySelector("span");
+    btn.classList.add("done"); lbl.textContent = t("shop.added") + (s.size ? ` · ${s.size}` : "");
+    fab.classList.remove("bump"); void fab.offsetWidth; fab.classList.add("bump");
+    clearTimeout(btn._t); btn._t = setTimeout(() => { btn.classList.remove("done"); lbl.textContent = t("shop.add"); }, 1400);
   });
+
+  // ---------- hero: featured drop + Subi fund bar ----------
+  const renderHero = () => {
+    const f = byId["tee-logo-black"] || ordered.find(p => p.photo && !p.soldOut);
+    const fe = document.getElementById("sh-feature");
+    if (f && fe) {
+      fe.href = "#" + f.id;
+      fe.innerHTML = `<img src="${esc(f.photo)}" alt="${esc(lc(f.name))}">
+        <span class="sh-feat-meta"><b>${esc(lc(f.name))}</b><span class="sh-feat-row"><em>${money(f.price)}</em><span class="btn btn-salt btn-sm">${t("shop.feature.cta")}</span></span></span>`;
+    } else if (fe) fe.hidden = true;
+    const goal = +C.goalUSD || 0, raised = +C.raisedUSD || 0;
+    const bar = document.getElementById("sh-bar"), n = document.getElementById("sh-fund-n");
+    if (bar && goal) {
+      bar.style.width = Math.max(1.5, Math.min(100, raised / goal * 100)) + "%";
+      n.textContent = `$${raised.toLocaleString("en-US")} ${t("shop.fund.of")} $${goal.toLocaleString("en-US")}`;
+    }
+  };
+
+  // land on a product from a link (home merch -> shop.html#cap-logo)
+  const focusHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1)); if (!id || !byId[id]) return;
+    if (!document.getElementById(id)) { filter = "all"; renderGrid(); }
+    const el = document.getElementById(id); if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
+  };
+  window.addEventListener("hashchange", focusHash);
 
   // ---------- cart drawer ----------
   const dlg = document.getElementById("cart");
@@ -197,7 +252,9 @@
 
   // ---------- go ----------
   load();
+  renderHero();
   renderGrid();
   renderCart();
-  document.addEventListener("langchange", () => { renderGrid(); renderCart(); });
+  setTimeout(focusHash, 60);
+  document.addEventListener("langchange", () => { renderHero(); renderGrid(); renderCart(); });
 })();
