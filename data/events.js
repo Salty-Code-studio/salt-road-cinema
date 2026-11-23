@@ -3,3 +3,5 @@
 // { id, date, time, title: {en,nl,pap}, place, mapUrl, type, note: {en,nl,pap} }
 window.DATA = window.DATA || {};
 window.DATA.events = []; // TODO: real events from Rudo
+// "Spark a meet" (home page): how many people make the coming Sunday meet at Onima happen.
+window.DATA.spark = { threshold: 10 };
