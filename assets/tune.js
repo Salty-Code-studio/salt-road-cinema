@@ -77,12 +77,12 @@
       <a class="btn btn-pan st-go" href="subi.html">${t("home.subi.go")}</a>`;
     const nextP = P.find(p => p.status === "needed");
     $("tune-build").innerHTML = `
-      <span class="tb-lbl">${t("tune.current")}</span>
-      <b class="tb-name">2003 Subaru WRX</b>
-      <div class="tb-pct"><b>${pct}%</b><span>${t("tune.built")}</span></div>
-      <i class="tb-bar"><em style="width:${Math.max(pct, 1.5)}%"></em>${[20, 40, 60, 80].map(x => `<s style="left:${x}%"></s>`).join("")}</i>
-      <div class="tb-row"><span>${usd(raised)} ${t("tune.raisedS")} ${t("tune.of")} ${usd(goal)}</span></div>
-      ${nextP ? `<div class="tb-row"><span>${t("tune.next")}</span><b>${esc(nextP.name)}</b></div>` : ""}`;
+      <div class="bh-title"><span class="bh-lbl">${t("tune.current")}</span><h2>2003 Subaru <em>WRX</em></h2></div>
+      <div class="bh-prog">
+        <div class="bh-pct"><b>${pct}%</b><span>${t("tune.built")}</span></div>
+        <i class="tb-bar"><em style="width:${Math.max(pct, 1.5)}%"></em>${[20, 40, 60, 80].map(x => `<s style="left:${x}%"></s>`).join("")}</i>
+        <div class="bh-meta"><span>${usd(raised)} ${t("tune.raisedS")} ${t("tune.of")} ${usd(goal)}</span>${nextP ? `<span>${t("tune.next")}: <b>${esc(nextP.name)}</b></span>` : ""}</div>
+      </div>`;
     $("tune-raised").textContent = usd(raised);
     $("tune-pct").textContent = pct + "%";
   };
