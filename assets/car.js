@@ -47,9 +47,39 @@
     svg.classList.add("zones-overlay");
     return svg.outerHTML;
   };
+  // 3D: <model-viewer> loads on demand. Sponsor hotspots sit on the real panels (model: front +X, up +Y, left side -Z).
+  const loadMV = () => {
+    if (customElements.get("model-viewer") || document.querySelector("script[data-mv]")) return;
+    const sc = document.createElement("script"); sc.type = "module"; sc.dataset.mv = "1";
+    sc.src = "https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js";
+    document.head.appendChild(sc);
+  };
+  const HOT = [
+    ["hood", "1.45 0.93 0", "0 1 0"], ["banner", "0.55 1.30 0", "0.55 0.83 0"],
+    ["fdoor", "0.45 0.66 -0.9", "0 0 -1"], ["fdoor", "0.45 0.66 0.9", "0 0 1"],
+    ["rdoor", "-0.45 0.66 -0.9", "0 0 -1"], ["rdoor", "-0.45 0.66 0.9", "0 0 1"],
+    ["quarter", "-1.55 0.74 -0.86", "0 0 -1"], ["quarter", "-1.55 0.74 0.86", "0 0 1"],
+    ["skirt", "0.05 0.27 -0.9", "0 0 -1"], ["skirt", "0.05 0.27 0.9", "0 0 1"]
+  ];
+  const model = (car, o) => {
+    loadMV();
+    const hot = o.hotspots ? HOT.map(([z, pos, nrm], i) => `<button class="zone mv-hot" slot="hotspot-${z}-${i}" data-zone="${z}" data-position="${pos}" data-normal="${nrm}" type="button" aria-label="${z}"><i></i></button>`).join("") : "";
+    const ctl = o.auto ? 'auto-rotate auto-rotate-delay="0" rotation-per-second="18deg" interaction-prompt="none"' : 'camera-controls interaction-prompt="none" touch-action="pan-y" disable-pan';
+    return `<model-viewer class="car-3d" src="${car.model}" poster="${car.sideCutout || ""}" ${ctl}
+      camera-orbit="${o.orbit || "180deg 80deg 4.6m"}" camera-target="0m 0.62m 0m" min-camera-orbit="auto 25deg 3.2m" max-camera-orbit="auto 95deg 9m" field-of-view="30deg"
+      shadow-intensity="1" shadow-softness=".8" exposure="1.05" environment-image="neutral" alt="${car.year || ""} ${car.name || ""}, 3D scan">${hot}</model-viewer>`;
+  };
   window.SRC_CAR = {
     svg: SVG,
-    render(el, car) {
+    render(el, car, o = {}) {
+      if (car && car.model && !o.flat) {
+        el.classList.add("has-3d");
+        el.innerHTML = model(car, o);
+        const mv = el.querySelector("model-viewer");
+        // plain mouse-wheel scrolls the page; trackpad pinch (ctrl+wheel) still zooms the car
+        mv.addEventListener("wheel", e => { if (!e.ctrlKey) e.stopImmediatePropagation(); }, { capture: true });
+        return;
+      }
       if (car && car.sideCutout) {
         el.classList.add("has-photo");
         el.innerHTML = `<div class="car-photo"><img src="${car.sideCutout}" alt="${car.year || ""} ${car.name || ""}">${zonesOnly()}</div>`;

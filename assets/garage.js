@@ -25,7 +25,7 @@
     if (car.photo) return `<div class="vis"><img src="${esc(car.photo)}" alt=""></div>`;
     if (car.slug === "subi" && window.SRC_CAR) {
       const tmp = document.createElement("div");
-      window.SRC_CAR.render(tmp, car);
+      window.SRC_CAR.render(tmp, car, { auto: true, orbit: "200deg 78deg 4.7m" });
       return `<div class="vis subi">${tmp.innerHTML}</div>`;
     }
     return `<div class="vis ph" aria-hidden="true"><span>${esc(car.name)}</span></div>`;

@@ -45,7 +45,7 @@
   // car.js: SRC_CAR.render(el, car) draws car.sideCutout (<img> + zone overlay SVG, viewBox matching,
   // preserveAspectRatio none) when set, else the drawn SVG. Zones carry data-zone either way.
   const frame = $("[data-car]");
-  if (window.SRC_CAR && frame) window.SRC_CAR.render(frame, car);
+  if (window.SRC_CAR && frame) window.SRC_CAR.render(frame, car, { hotspots: true, orbit: "205deg 72deg 3.9m" });
   const paintZones = () => $$(".decal .zone").forEach(z => {
     z.classList.toggle("on", z.dataset.zone === zone);
     z.classList.toggle("taken", taken.has(z.dataset.zone));

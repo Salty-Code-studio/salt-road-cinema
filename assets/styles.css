@@ -356,3 +356,17 @@ strong{font-weight:700;color:var(--salt)}
 .btn-pan::after,.btn-salt::after{content:"";position:absolute;left:0;top:0;width:calc(var(--bc) * 1.5);height:calc(var(--bc) * 1.5);background:linear-gradient(135deg,rgba(12,12,11,.55) 0 calc(var(--bc) * .55),transparent calc(var(--bc) * .55));pointer-events:none}
 .dock-pp{border-radius:0}
 .status,.tag-pill{border-radius:0!important;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
+
+/* 3D Subi (model-viewer) */
+.has-3d{position:relative}
+model-viewer.car-3d{display:block;width:100%;aspect-ratio:8/3;background:transparent;--poster-color:transparent;--progress-bar-color:#e8a49b;--progress-bar-height:2px}
+.mv-hot{width:26px;height:26px;padding:0;border:0;border-radius:50%;background:rgba(232,164,155,.18);cursor:pointer;display:grid;place-items:center;box-shadow:0 0 0 2px rgba(255,255,255,.75),0 0 14px rgba(232,164,155,.7);transition:transform .2s,background .2s,opacity .25s;clip-path:none!important}
+.mv-hot i{width:10px;height:10px;border-radius:50%;background:#e8a49b;box-shadow:0 0 10px #e8a49b}
+.mv-hot:hover,.mv-hot.on{transform:scale(1.25);background:rgba(232,164,155,.45)}
+.mv-hot.on i{background:#fff}
+.mv-hot.taken i{background:var(--gold)}
+model-viewer.car-3d{--progress-bar-height:0px}
+.mv-hot{width:20px;height:20px}
+.mv-hot i{width:8px;height:8px}
+model-viewer.car-3d{--min-hotspot-opacity:0;--max-hotspot-opacity:1}
+.decal model-viewer.car-3d{aspect-ratio:16/10}

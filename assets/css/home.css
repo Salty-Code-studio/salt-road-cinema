@@ -750,3 +750,7 @@ span.gb-obj.zoom{cursor:default}
 .sp-price{font:600 13px var(--mono);color:var(--salt)}
 .sp-acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
 @media(max-width:700px){.sp-floor,.bay-shelf{display:none}}
+
+.bay-car.has-3d{width:64%;bottom:4%;filter:none}
+.bay-car.has-3d::after{display:none}
+.bay-car.has-3d model-viewer{aspect-ratio:2.4/1}

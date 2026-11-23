@@ -33,6 +33,7 @@
 
   /* drag to turn: uses turntable frames when available, else a 2D turntable illusion of the side view */
   const car = scene.querySelector(".bay-car");
+  if (car.classList.contains("has-3d")) return; // real 3D model: model-viewer handles turning and pinch
   const subi = (D.cars || []).find(c => c.slug === "subi") || {};
   const frames = subi.turntable || [];
   let angle = 0, vel = 0, dragging = false, startX = 0, moved = 0, lastX = 0, raf = 0;
