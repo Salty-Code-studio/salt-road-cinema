@@ -6,9 +6,9 @@
   I.add({
     en: {
       "story.h": "Cars die on this island. <em>We bring them back.</em>",
-      "story.p1": "Salt, sun and potholes. Every Bonaire car fights them. Too many lose. They end up behind a house, **waiting for money that never comes.**",
-      "story.p2": "Salt Road Cinema films the comeback. One project car at a time. **The island funds it, we build it, everyone watches it drive again.**",
-      "story.close": "No big sponsor. Just people who love cars.",
+      "story.p1": "Salt Road Cinema films one car project at a time. **Bringing back cars and projects against all odds.**",
+      "story.p2": "",
+      "story.close": "Sponsored by people who love cars.",
       "story.f1": "A car gets stuck", "story.f1s": "Blown engine, crashed front, no budget.",
       "story.f2": "The island chips in", "story.f2s": "Parts, tools, money, a sticker spot. Every bit counts.",
       "story.f3": "It drives again, on camera", "story.f3s": "Every step filmed. Your name in the video.",
@@ -22,9 +22,9 @@
     },
     nl: {
       "story.h": "Auto's gaan dood op dit eiland. <em>Wij halen ze terug.</em>",
-      "story.p1": "Zout, zon en gaten in de weg. Elke auto op Bonaire vecht ertegen. Te veel verliezen. Ze eindigen achter een huis, **wachtend op geld dat nooit komt.**",
-      "story.p2": "Salt Road Cinema filmt de comeback. Eén projectauto tegelijk. **Het eiland betaalt mee, wij bouwen, iedereen ziet hem weer rijden.**",
-      "story.close": "Geen grote sponsor. Gewoon mensen die van auto's houden.",
+      "story.p1": "Salt Road Cinema filmt één autoproject tegelijk. **We halen auto's en projecten terug, tegen alle verwachtingen in.**",
+      "story.p2": "",
+      "story.close": "Gesponsord door mensen die van auto's houden.",
       "story.f1": "Een auto staat stil", "story.f1s": "Motor kapot, voorkant in elkaar, geen budget.",
       "story.f2": "Het eiland helpt mee", "story.f2s": "Onderdelen, gereedschap, geld, een stickerplek. Alles telt.",
       "story.f3": "Hij rijdt weer, op camera", "story.f3s": "Elke stap gefilmd. Jouw naam in de video.",
@@ -38,9 +38,9 @@
     },
     pap: {
       "story.h": "Outo ta muri riba e isla aki. <em>Nos ta trese nan bèk.</em>",
-      "story.p1": "Salu, solo i buraku den kaminda. Tur outo na Boneiru ta bringa kontra nan. Hopi ta pèrdè. Nan ta keda tras di un kas, **ta warda riba plaka ku nunka no ta bini.**",
-      "story.p2": "Salt Road Cinema ta filma e kombek. Un outo di proyekto pa biaha. **E isla ta paga, nos ta traha, tur hende ta mir'é kore atrobe.**",
-      "story.close": "No tin sponsor grandi. Djis hende ku ta stima outo.",
+      "story.p1": "Salt Road Cinema ta filma un proyekto di outo pa biaha. **Nos ta trese outo i proyekto bèk, kontra tur pronóstiko.**",
+      "story.p2": "",
+      "story.close": "Patrosiná pa hende ku ta stima outo.",
       "story.f1": "Un outo ta keda pegá", "story.f1s": "Motor dañá, dilanti kibrá, no tin plaka.",
       "story.f2": "E isla ta yuda", "story.f2s": "Pida, hèrmèntnan, plaka, un lugá pa sticker. Tur kos ta konta.",
       "story.f3": "E ta kore atrobe, riba kámara", "story.f3s": "Tur paso filmá. Bo nòmber den e video.",

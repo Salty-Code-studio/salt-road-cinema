@@ -29,6 +29,7 @@ window.SRC = {
   shipTo: [], // TODO: forwarder address from Rudo
   // Next Subi progress video on YouTube (ISO, Bonaire time). Empty = "date coming soon".
   nextVideo: "", // TODO e.g. "2026-12-05T19:00:00-04:00"
+  nextVideoTitle: "Save the Subi, episode 1", // shown with the countdown on the home page
   goalUSD: 6500,      // Subi: total the build needs
   raisedUSD: 32       // Subi: update as money and parts come in (2026-11-22: $32)
 };

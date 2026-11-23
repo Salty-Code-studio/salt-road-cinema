@@ -305,25 +305,20 @@
   </div>
 </section>
 
-<section class="reel-sec"><div class="wrap reel-grid">
-  <div class="reveal">
-    <h2 data-i18n-html="home.reel.h"></h2>
-    <p class="sub" data-i18n="home.reel.sub"></p>
-    <p class="credit">Footage <a href="https://www.instagram.com/keanupanu/" target="_blank" rel="noopener">@keanupanu</a> · <a href="https://www.instagram.com/rnsxnce/" target="_blank" rel="noopener">@rnsxnce</a></p>
+<section class="yt-sec" id="yt-sec" aria-labelledby="yt-h"><div class="wrap">
+  <div class="yt-head reveal">
+    <div><h2 id="yt-h" data-i18n-html="yt.h"></h2><p class="sub" data-i18n="yt.sub"></p></div>
+    <a class="yt-bell" id="yt-bell" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg><span data-i18n="yt.bell"></span></a>
   </div>
-  <div class="reel-video cut reveal">
-    <video poster="media/drift-crowd.jpg" controls playsinline preload="none"><source src="media/reel-drift-vp9.mp4" type='video/mp4; codecs="vp09.00.10.08, mp4a.40.2"'><source src="media/reel-drift.mp4" type="video/mp4"></video>
+  <div class="yt-grid">
+    <div class="yt-main reveal">
+      <div class="yt-player cut" id="yt-player"></div>
+      <div class="yt-next" id="yt-next"></div>
+    </div>
+    <aside class="yt-list reveal" id="yt-list"></aside>
   </div>
 </div></section>
 
-<section id="films-sec"><div class="wrap">
-  <div class="head reveal">
-    <div><h2 data-i18n-html="home.films.h"></h2><p class="sub" data-i18n="home.films.sub"></p></div>
-    <a class="btn btn-ghost" href="films.html" data-i18n="common.more"></a>
-  </div>
-  <div id="reel" class="reel reveal"></div>
-  <div id="series" class="series reveal"></div>
-</div></section>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="gearMetal" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="#3a3733"/><stop offset=".18" stop-color="#1d1b19"/><stop offset=".55" stop-color="#0e0d0c"/><stop offset="1" stop-color="#050505"/></linearGradient>
@@ -472,6 +467,7 @@
 <script src="assets/tune.js"></script>
 <script src="assets/island.js"></script>
 <script src="assets/story.js"></script>
+<script src="assets/yt.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="assets/meet.js"></script>
 <script src="assets/title.js"></script>

@@ -1250,3 +1250,47 @@ html,body{overflow-x:clip}
 .way span{font-size:11.5px}
 .way:hover b{color:var(--teal)}
 .way:hover{box-shadow:inset 0 2px 0 var(--teal)}
+.story-lead p:empty{display:none}
+
+/* ---------- YouTube block ---------- */
+.yt-sec{padding:70px 0}
+.yt-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px 30px;flex-wrap:wrap;margin-bottom:22px}
+.yt-head h2{margin:0 0 6px}.yt-head h2 em{color:var(--teal);font-style:normal}
+.yt-head .sub{margin:0}
+.yt-bell{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;background:var(--teal);color:#081211;text-decoration:none;font:700 14px var(--body,inherit);
+  clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transition:filter .2s,transform .2s}
+.yt-bell svg{width:20px;height:20px;fill:none;stroke:#081211;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transform-origin:50% 10%}
+.yt-bell:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.yt-bell:hover svg{animation:bellRing .7s ease-in-out}
+@keyframes bellRing{0%,100%{transform:rotate(0)}20%{transform:rotate(16deg)}40%{transform:rotate(-14deg)}60%{transform:rotate(9deg)}80%{transform:rotate(-5deg)}}
+.yt-grid{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1fr);gap:18px}
+.yt-player{--c:18px;position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+.yt-player video,.yt-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.yt-tag{position:absolute;z-index:3;left:14px;top:14px;font:600 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;background:var(--teal);color:#081211;padding:3px 8px;pointer-events:none}
+.yt-lite{position:absolute;inset:0;border:0;padding:0;cursor:pointer;background:#000}
+.yt-lite img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .2s}
+.yt-lite:hover img{opacity:1}
+.yt-playbtn{position:absolute;left:50%;top:50%;width:76px;height:54px;transform:translate(-50%,-50%);background:#e8a49b;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.yt-playbtn::after{content:"";position:absolute;left:31px;top:16px;border-left:18px solid #141110;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.yt-title{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;text-align:left;color:#f3efe6;font:400 clamp(16px,1.6vw,24px) "Bruno Ace SC",sans-serif;background:linear-gradient(180deg,transparent,rgba(0,0,0,.8))}
+.yt-next{margin-top:12px;padding:14px 16px;background:#141312;border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--teal)}
+.yn-top{display:flex;align-items:baseline;gap:8px 16px;flex-wrap:wrap;margin-bottom:10px}
+.yn-lbl{font:600 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.yn-title{font:400 clamp(14px,1.2vw,17px) "Bruno Ace SC",sans-serif;color:#f3efe6}
+.yn-clock{margin-left:auto;font:700 clamp(16px,1.5vw,22px) var(--mono);color:#f3efe6;letter-spacing:.04em}
+.yn-clock small{font-size:.6em;color:rgba(243,239,230,.5);margin:0 3px 0 1px}
+.yt-clock-soon{color:var(--teal)}
+.yn-bar{display:block;height:6px;background:rgba(255,255,255,.07);overflow:hidden}
+.yn-bar em{display:block;height:100%;background:linear-gradient(90deg,var(--teal),#9ff0e7);box-shadow:0 0 10px rgba(60,211,198,.6);transition:width 1s linear}
+.yt-next.soon .yn-bar em{width:30%!important;animation:ynPulse 2.4s ease-in-out infinite}
+@keyframes ynPulse{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
+.yt-list{display:flex;flex-direction:column;gap:10px;padding:16px;background:#121110;border:1px solid rgba(255,255,255,.07)}
+.yt-list h3{margin:0;font:600 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:rgba(243,239,230,.6)}
+.yt-items{display:flex;flex-direction:column;gap:8px;overflow:auto;max-height:420px}
+.yt-item{display:grid;grid-template-columns:120px 1fr;gap:10px;align-items:center;text-decoration:none;color:#f3efe6}
+.yt-item img{width:120px;aspect-ratio:16/9;object-fit:cover}
+.yt-item b{display:block;font-size:13px;line-height:1.3}.yt-item i{font-style:normal;font:500 11px var(--mono);color:rgba(243,239,230,.5)}
+.yt-item:hover b{color:var(--teal)}
+.yt-none{margin:0;font-size:14px;color:rgba(243,239,230,.7);line-height:1.45;flex:1}
+.yt-more{margin-top:auto;justify-content:center}
+@media(max-width:900px){.yt-grid{grid-template-columns:1fr}}

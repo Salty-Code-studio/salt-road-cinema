@@ -29,7 +29,7 @@
   const hasVideos = (D.videos || []).some(v => !v.short);
   const todayISO = new Date().toISOString().slice(0, 10);
   const hasEvent = (D.events || []).some(e => e.date >= todayISO);
-  if (!hasVideos) document.getElementById("films-sec").hidden = true;
+  const filmsSec = document.getElementById("films-sec"); if (filmsSec && !hasVideos) filmsSec.hidden = true;
   
 
   // Subi car + meter
@@ -47,9 +47,9 @@
            <img src="https://i.ytimg.com/vi/${v.id}/${big ? "maxresdefault" : "hqdefault"}.jpg" alt="" loading="lazy">
            <div class="ph shade"><span>${new Date(v.published).toLocaleDateString(locale(), { day: "numeric", month: "short" })}</span><strong>${esc(v.title)}</strong></div></a>`
       : `<a class="vid" href="${C.youtube}" target="_blank" rel="noopener"><div class="ph"><span>${I.t("common.soon")}</span><strong>${I.t("home.films.empty")}</strong></div></a>`;
-    $("#reel").innerHTML = `${card(vids[0], true)}<div class="side">${card(vids[1])}${card(vids[2])}</div>`;
+    if ($("#reel")) $("#reel").innerHTML = `${card(vids[0], true)}<div class="side">${card(vids[1])}${card(vids[2])}</div>`;
 
-    $("#series").innerHTML = (D.series || []).filter(s => s.slug !== "bts")
+    if ($("#series")) $("#series").innerHTML = (D.series || []).filter(s => s.slug !== "bts")
       .map(s => `<a href="films.html?series=${s.slug}">${esc(s[I.lang] || s.en)}</a>`).join("");
 
     // meter
