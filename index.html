@@ -31,9 +31,10 @@
   <div class="hero-bg" data-bg="hero"></div>
   <video class="hero-video" muted loop playsinline preload="none" hidden></video>
   <div class="hero-shade"></div>
+  <div class="sunstrip" aria-hidden="true"></div>
   <div class="timecode"><b></b>REC <span id="tc">00:00:00:00</span> · 12.15°N 68.27°W</div>
   <div class="wrap">
-    <h1 data-i18n-html="home.h1"></h1>
+    <h1 class="banner" data-i18n-html="home.h1"></h1>
   </div>
   <!-- Cockpit: the hero is the view from the driver's seat -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="gbShape" clipPathUnits="objectBoundingBox"><path d="M0,0.22 C0.33,0.125 0.66,0.055 1,0.025 L1,0.9 Q1,1 0.955,1 L0.045,1 Q0,1 0,0.9 Z"/></clipPath><clipPath id="windshield" clipPathUnits="objectBoundingBox"><path d="M0.095,0.088 Q0.5,0.018 0.905,0.088 Q0.932,0.093 0.938,0.125 L0.995,0.86 L0.995,1 L0.005,1 L0.005,0.86 L0.062,0.125 Q0.068,0.093 0.095,0.088 Z"/></clipPath></defs></svg>
@@ -49,7 +50,7 @@
       <path d="M14,40 A50,50 0 0 1 40,12" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
     </svg>
   </div>
-  <a class="mirror" href="behind-the-scenes.html" data-i18n-aria="mirror.label"><i class="mirror-base"></i><i class="mirror-stem"></i><span class="mirror-body"><span class="mirror-glass"></span></span><span class="mirror-cap" data-i18n="mirror.label"></span></a>
+  <a class="mirror" href="behind-the-scenes.html" data-i18n-aria="mirror.label"><i class="mirror-base"></i><i class="mirror-stem"></i><span class="mirror-body"><span class="mirror-glass"></span><span class="mirror-cap" data-i18n="mirror.label"></span></span></a>
   <div class="cockpit" aria-label="Dashboard">
     <div class="cp-scene">
       <svg class="cp-shape" viewBox="0 0 1600 420" preserveAspectRatio="none" aria-hidden="true">
