@@ -1188,3 +1188,39 @@ html,body{overflow-x:clip}
 .island-head{flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .island-head .sub{margin:0 auto;max-width:520px}
 .island-tabs{justify-content:center}
+
+/* ---------- Story: why Salt Road Cinema exists ---------- */
+.story-sec{position:relative;z-index:6;padding:90px 0 80px}
+.story-sec::before{content:"";position:absolute;inset:-60px 0 0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 70% 70% at 50% 40%,rgba(10,10,9,.95),rgba(10,10,9,.8) 50%,rgba(10,10,9,0) 100%)}
+.story-top{display:grid;grid-template-columns:1.1fr 1fr;gap:28px 60px;align-items:end;margin-bottom:56px}
+.story-top h2{margin:0;font-size:clamp(34px,4.6vw,72px);line-height:1}
+.story-lead p{margin:0 0 14px;font-size:clamp(16px,1.25vw,19px);line-height:1.5;color:rgba(243,239,230,.78)}
+.story-lead p b{color:#f3efe6}
+.story-close{font:400 clamp(15px,1.2vw,18px) "Bruno Ace SC",sans-serif!important;color:#e8a49b!important;margin-top:18px!important}
+.story-flow{list-style:none;margin:0 0 44px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
+.story-flow::before{content:"";position:absolute;left:8px;right:8px;top:9px;height:2px;background:linear-gradient(90deg,#e8a49b,rgba(232,164,155,.25))}
+.story-flow li{position:relative;padding:34px 24px 0 0}
+.story-flow li::before{content:"";position:absolute;left:0;top:0;width:20px;height:20px;background:#121110;border:2px solid #e8a49b;transform:rotate(45deg)}
+.story-flow li:last-child::before{background:#e8a49b;box-shadow:0 0 14px rgba(232,164,155,.7)}
+.story-flow b{display:block;font:400 clamp(17px,1.5vw,23px)/1.15 "Bruno Ace SC",sans-serif;margin-bottom:6px}
+.story-flow span{font-size:14.5px;color:rgba(243,239,230,.65);line-height:1.45}
+.story-now{--c:16px;display:grid;grid-template-columns:1.4fr 1fr .6fr auto;gap:20px 34px;align-items:center;padding:22px 26px;margin-bottom:22px;--cut-bg:#171513}
+.sn-lbl{display:inline-block;font:600 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;background:#e8a49b;color:#141110;padding:2px 7px;margin-bottom:8px}
+.sn-car b{display:block;font:400 clamp(20px,1.8vw,28px)/1.1 "Bruno Ace SC",sans-serif}
+.sn-car p{margin:6px 0 0;font-size:13.5px;color:rgba(243,239,230,.6)}
+.sn-num b{display:block;font:400 clamp(26px,2.4vw,38px)/1 "Bruno Ace SC",sans-serif;color:#e8a49b}
+.sn-num span{font:600 11px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(243,239,230,.6)}
+.sn-bar{display:block;height:6px;margin-top:8px;background:rgba(255,255,255,.08)}
+.sn-bar em{display:block;height:100%;background:linear-gradient(90deg,#c9857c,#f3c0b8);box-shadow:0 0 8px rgba(232,164,155,.5)}
+.story-ways{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.way{--c:14px;--cut-bg:#141312;display:flex;flex-direction:column;gap:6px;padding:20px 18px 22px;text-decoration:none;color:#f3efe6;transition:transform .2s,background .2s;min-height:150px}
+.way:hover{transform:translateY(-4px);--cut-bg:#1d1b19}
+.way-ico{font-style:normal;font-size:24px;line-height:1;margin-bottom:6px;filter:grayscale(1) brightness(1.6)}
+.way b{font:400 clamp(15px,1.2vw,18px)/1.15 "Bruno Ace SC",sans-serif}
+.way span{font-size:13.5px;line-height:1.4;color:rgba(243,239,230,.62)}
+.way:hover b{color:#e8a49b}
+@media(max-width:1000px){.story-top{grid-template-columns:1fr}.story-ways{grid-template-columns:repeat(2,1fr)}.story-now{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.story-flow{grid-template-columns:1fr;gap:22px}.story-flow::before{display:none}.story-ways{grid-template-columns:1fr}.story-now{grid-template-columns:1fr}}
+/* island cars now sit at the bottom of the page */
+.island-sec{padding-top:80px}
+.way-ico{filter:none;color:#e8a49b;width:28px;height:28px;display:block}.way-ico svg{width:100%;height:100%}

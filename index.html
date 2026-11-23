@@ -284,12 +284,30 @@
   </div>
 </header>
 
-<section class="island-sec" aria-labelledby="island-h">
-  <div class="wrap island-head">
-    <div><h2 id="island-h" data-i18n-html="island.h"></h2><p class="sub" data-i18n="island.sub"></p></div>
-    <div class="island-tabs" id="island-tabs" role="tablist"></div>
+<section class="story-sec" aria-labelledby="story-h">
+  <div class="wrap">
+    <div class="story-top">
+      <h2 id="story-h" data-i18n-html="story.h"></h2>
+      <div class="story-lead">
+        <p data-i18n-html="story.p1"></p>
+        <p data-i18n-html="story.p2"></p>
+        <p class="story-close" data-i18n-html="story.close"></p>
+      </div>
+    </div>
+    <ol class="story-flow">
+      <li><b data-i18n="story.f1"></b><span data-i18n="story.f1s"></span></li>
+      <li><b data-i18n="story.f2"></b><span data-i18n="story.f2s"></span></li>
+      <li><b data-i18n="story.f3"></b><span data-i18n="story.f3s"></span></li>
+    </ol>
+    <div class="story-now cut" id="story-now"></div>
+    <div class="story-ways">
+      <a class="way cut" href="shop.html"><i class="way-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-5 3 2 4 3-1v12h8V9l3 1 2-4-5-3c-1 2-2.5 3-4 3s-3-1-4-3z"/></svg></i><b data-i18n="story.w1"></b><span data-i18n="story.w1s"></span></a>
+      <a class="way cut" href="subi.html#parts-sec"><i class="way-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/></svg></i><b data-i18n="story.w2"></b><span data-i18n="story.w2s"></span></a>
+      <a class="way cut" href="subi.html#sponsor"><i class="way-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 12h10"/></svg></i><b data-i18n="story.w3"></b><span data-i18n="story.w3s"></span></a>
+      <a class="way cut" href="#garage-tools" data-to-garage><i class="way-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.8-.7-.7-2.8z"/></svg></i><b data-i18n="story.w4"></b><span data-i18n="story.w4s"></span></a>
+      <a class="way cut" href="submit.html"><i class="way-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16v-3l2-5h14l2 5v3"/><path d="M3 16h18v2H3z"/><circle cx="7" cy="16" r="1.5"/><circle cx="17" cy="16" r="1.5"/></svg></i><b data-i18n="story.w5"></b><span data-i18n="story.w5s"></span></a>
+    </div>
   </div>
-  <div class="island-row" id="island-row" tabindex="0" aria-label="Cars of the island, scrolls on its own, pauses on hover"><div class="island-track" id="island-track"></div></div>
 </section>
 
 <section class="reel-sec"><div class="wrap reel-grid">
@@ -427,6 +445,14 @@
   <a class="btn btn-pan reveal" href="submit.html" data-i18n="home.submit.go"></a>
 </div></section>
 
+<section class="island-sec" aria-labelledby="island-h">
+  <div class="wrap island-head">
+    <div><h2 id="island-h" data-i18n-html="island.h"></h2><p class="sub" data-i18n="island.sub"></p></div>
+    <div class="island-tabs" id="island-tabs" role="tablist"></div>
+  </div>
+  <div class="island-row" id="island-row" tabindex="0" aria-label="Cars of the island, scrolls on its own, pauses on hover"><div class="island-track" id="island-track"></div></div>
+</section>
+
 <div data-shell="signup"></div>
 <div data-shell="footer"></div>
 
@@ -450,6 +476,7 @@
 <script src="assets/pegboard.js"></script>
 <script src="assets/tune.js"></script>
 <script src="assets/island.js"></script>
+<script src="assets/story.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="assets/meet.js"></script>
 <script src="assets/title.js"></script>
