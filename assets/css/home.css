@@ -755,3 +755,5 @@ span.gb-obj.zoom{cursor:default}
 .bay-car.has-3d::after{display:none}
 .bay-car.has-3d model-viewer{aspect-ratio:2.4/1}
 .bay-car.has-3d{width:44%;bottom:10%}
+
+.bay-v1{position:absolute;z-index:3;left:50%;bottom:calc(3% + 28px);transform:translateX(-50%);font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#e8a49b;opacity:.75;pointer-events:none}
