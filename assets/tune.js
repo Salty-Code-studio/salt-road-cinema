@@ -9,15 +9,15 @@
   const usd = n => "$" + Number(n).toLocaleString("en-US", { maximumFractionDigits: Number(n) % 1 ? 2 : 0, minimumFractionDigits: Number(n) % 1 ? 2 : 0 });
 
   I.add({
-    en: { "tune.crumb": "Garage", "tune.ep": "Next ep", "tune.browse": "Browse", "tune.turn": "Drag to turn", "tune.all": "All parts", "tune.level": "Build level",
+    en: { "tune.current": "Current build", "tune.next": "Next up", "tune.of": "of", "tune.raisedS": "raised",  "tune.crumb": "Garage", "tune.ep": "Next ep", "tune.browse": "Browse", "tune.turn": "Drag to turn", "tune.all": "All parts", "tune.level": "Build level",
       "tune.engine": "Engine", "tune.power": "Power", "tune.drive": "Drive", "tune.state": "State", "tune.stateV": "Crashed front, tired engine", "tune.raised": "Raised", "tune.built": "Built",
       "tune.needed": "Needed", "tune.fitted": "Fitted", "tune.owned": "In the garage", "tune.fund": "Fund it", "tune.send": "Send the part", "tune.sponsor": "Sponsor it", "tune.buy": "Buy at",
       "tune.g.Engine": "Engine", "tune.g.Turbo": "Turbo", "tune.g.Cooling": "Cooling", "tune.g.Fuel": "Fuel", "tune.g.Ignition": "Ignition", "tune.g.Drive": "Drivetrain", "tune.g.Chassis": "Chassis", "tune.g.Tune": "Tune", "tune.g.Tools": "Tools", "tune.g.Equipment": "Equipment" },
-    nl: { "tune.crumb": "Garage", "tune.ep": "Volgende ep", "tune.browse": "Bladeren", "tune.turn": "Sleep om te draaien", "tune.all": "Alle onderdelen", "tune.level": "Buildniveau",
+    nl: { "tune.current": "Huidige build", "tune.next": "Volgende", "tune.of": "van", "tune.raisedS": "opgehaald", "tune.crumb": "Garage", "tune.ep": "Volgende ep", "tune.browse": "Bladeren", "tune.turn": "Sleep om te draaien", "tune.all": "Alle onderdelen", "tune.level": "Buildniveau",
       "tune.engine": "Motor", "tune.power": "Vermogen", "tune.drive": "Aandrijving", "tune.state": "Staat", "tune.stateV": "Voorkant gecrasht, moeie motor", "tune.raised": "Opgehaald", "tune.built": "Gebouwd",
       "tune.needed": "Nodig", "tune.fitted": "Gemonteerd", "tune.owned": "In de garage", "tune.fund": "Financier het", "tune.send": "Stuur het onderdeel", "tune.sponsor": "Sponsor het", "tune.buy": "Koop bij",
       "tune.g.Engine": "Motor", "tune.g.Turbo": "Turbo", "tune.g.Cooling": "Koeling", "tune.g.Fuel": "Brandstof", "tune.g.Ignition": "Ontsteking", "tune.g.Drive": "Aandrijflijn", "tune.g.Chassis": "Onderstel", "tune.g.Tune": "Tune", "tune.g.Tools": "Gereedschap", "tune.g.Equipment": "Uitrusting" },
-    pap: { "tune.crumb": "Garashi", "tune.ep": "Siguiente ep", "tune.browse": "Wak", "tune.turn": "Hala pa bira", "tune.all": "Tur pida", "tune.level": "Nivel di build",
+    pap: { "tune.current": "Build aktual", "tune.next": "Siguiente", "tune.of": "di", "tune.raisedS": "kolektá", "tune.crumb": "Garashi", "tune.ep": "Siguiente ep", "tune.browse": "Wak", "tune.turn": "Hala pa bira", "tune.all": "Tur pida", "tune.level": "Nivel di build",
       "tune.engine": "Motor", "tune.power": "Forsa", "tune.drive": "Draai", "tune.state": "Estado", "tune.stateV": "Dilanti dañá, motor kansá", "tune.raised": "Kolektá", "tune.built": "Trahá",
       "tune.needed": "Nesesario", "tune.fitted": "Montá", "tune.owned": "Den garashi", "tune.fund": "Paga p'e", "tune.send": "Manda e pida", "tune.sponsor": "Sponsor e", "tune.buy": "Kumpra na",
       "tune.g.Engine": "Motor", "tune.g.Turbo": "Turbo", "tune.g.Cooling": "Enfriamentu", "tune.g.Fuel": "Kombustibel", "tune.g.Ignition": "Ignishon", "tune.g.Drive": "Transmishon", "tune.g.Chassis": "Chasis", "tune.g.Tune": "Tune", "tune.g.Tools": "Hèrmèntnan", "tune.g.Equipment": "Ekipo" }
@@ -75,6 +75,14 @@
       <div class="st-bar"><div class="st-bar-top"><span>${t("tune.raised")}</span><b>${usd(raised)} <small>/ ${usd(goal)}</small></b></div><i><em style="width:${rp.toFixed(1)}%"></em></i></div>
       <div class="st-bar"><div class="st-bar-top"><span>${t("tune.built")}</span><b>${pct}%</b></div><i><em style="width:${pct}%"></em></i></div>
       <a class="btn btn-pan st-go" href="subi.html">${t("home.subi.go")}</a>`;
+    const nextP = P.find(p => p.status === "needed");
+    $("tune-build").innerHTML = `
+      <span class="tb-lbl">${t("tune.current")}</span>
+      <b class="tb-name">2003 Subaru WRX</b>
+      <div class="tb-pct"><b>${pct}%</b><span>${t("tune.built")}</span></div>
+      <i class="tb-bar"><em style="width:${Math.max(pct, 1.5)}%"></em>${[20, 40, 60, 80].map(x => `<s style="left:${x}%"></s>`).join("")}</i>
+      <div class="tb-row"><span>${usd(raised)} ${t("tune.raisedS")} ${t("tune.of")} ${usd(goal)}</span></div>
+      ${nextP ? `<div class="tb-row"><span>${t("tune.next")}</span><b>${esc(nextP.name)}</b></div>` : ""}`;
     $("tune-raised").textContent = usd(raised);
     $("tune-pct").textContent = pct + "%";
   };

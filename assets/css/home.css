@@ -948,3 +948,35 @@ span.gb-obj.zoom{cursor:default}
 .glovebox.latched .gb-handle{animation:gbHandle .5s ease-out .45s}
 @keyframes gbClick{0%{transform:none}25%{transform:translateY(-2px) scale(1.012)}45%{transform:translateY(1px)}70%{transform:translateY(-.5px)}100%{transform:none}}
 @keyframes gbHandle{0%,100%{box-shadow:none;filter:none}30%{box-shadow:0 0 10px 2px rgba(232,164,155,.75);filter:brightness(1.8)}}
+/* garage v4: full bleed, big cuts on all four corners, bolts, "current build" progress */
+.tune{--c:46px;width:100vw;margin-left:calc(50% - 50vw);aspect-ratio:auto;height:clamp(620px,50vw,860px);
+  clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c))}
+.tune.cut::before{z-index:6;background:rgba(243,239,230,.22);
+  clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c),var(--c) 0,
+   calc(var(--c) + .6px) 1.4px,1.4px calc(var(--c) + .6px),1.4px calc(100% - var(--c) - .6px),calc(var(--c) + .6px) calc(100% - 1.4px),calc(100% - var(--c) - .6px) calc(100% - 1.4px),calc(100% - 1.4px) calc(100% - var(--c) - .6px),calc(100% - 1.4px) calc(var(--c) + .6px),calc(100% - var(--c) - .6px) 1.4px,calc(var(--c) + .6px) 1.4px)}
+.bolt{position:absolute;z-index:7;width:9px;height:9px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 35% 30%,#9a948a 0,#5d5850 45%,#2a2724 100%);box-shadow:0 1px 1px rgba(0,0,0,.8),inset 0 0 0 .5px rgba(255,255,255,.15)}
+.bolt::after{content:"";position:absolute;left:1.5px;right:1.5px;top:50%;height:1.4px;margin-top:-.7px;background:#1a1816;transform:rotate(var(--r,35deg))}
+.bolt-tl{left:calc(var(--c) * .5 + 6px);top:calc(var(--c) * .5 + 6px);--r:20deg}
+.bolt-tr{right:calc(var(--c) * .5 + 6px);top:calc(var(--c) * .5 + 6px);--r:-50deg}
+.bolt-bl{left:calc(var(--c) * .5 + 6px);bottom:calc(var(--c) * .5 + 6px);--r:75deg}
+.bolt-br{right:calc(var(--c) * .5 + 6px);bottom:calc(var(--c) * .5 + 6px);--r:5deg}
+.tune-top{left:calc(var(--c) + 14px);right:calc(var(--c) + 14px);top:18px}
+.tune-build{position:absolute;z-index:3;left:calc(var(--c) + 14px);top:62px;width:min(300px,24%);padding:14px 16px;background:rgba(12,12,13,.78);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(3px);
+  clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px))}
+.tb-lbl{display:inline-block;font:600 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;background:#e8a49b;color:#141110;padding:2px 7px;margin-bottom:8px}
+.tb-name{display:block;font:400 clamp(16px,1.4vw,22px)/1.1 "Bruno Ace SC",sans-serif;margin-bottom:10px}
+.tb-pct{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.tb-pct b{font:400 clamp(30px,3vw,46px)/1 "Bruno Ace SC",sans-serif;color:#e8a49b}
+.tb-pct span{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(243,239,230,.65)}
+.tb-bar{position:relative;display:block;height:8px;background:rgba(255,255,255,.08);margin-bottom:10px;clip-path:polygon(0 0,100% 0,calc(100% - 5px) 100%,0 100%)}
+.tb-bar em{display:block;height:100%;background:linear-gradient(90deg,#c9857c,#f3c0b8);box-shadow:0 0 10px rgba(232,164,155,.6)}
+.tb-bar s{position:absolute;top:0;bottom:0;width:1px;background:rgba(0,0,0,.6)}
+.tb-row{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:rgba(243,239,230,.7);padding-top:6px;border-top:1px solid rgba(255,255,255,.06);margin-top:6px}
+.tb-row b{color:#f3efe6;font-weight:600;text-align:right}
+.tune-rail{left:calc(var(--c) + 14px);right:calc(var(--c) + 14px)}
+.tune-keys{left:calc(var(--c) + 14px);right:calc(var(--c) + 14px);bottom:16px}
+.tune-info{left:calc(var(--c) + 14px)}
+@media(max-width:900px){.tune{--c:26px;height:auto}.tune-build{position:relative;left:auto;top:auto;width:auto;order:0}.tune-top,.tune-rail,.tune-keys,.tune-info{left:auto;right:auto}}
+html,body{overflow-x:clip}
+@media(min-width:901px){.tune-car{left:24%;right:24%;top:12%;height:46%}.tune-hint{left:24%;right:24%;top:58%}}
