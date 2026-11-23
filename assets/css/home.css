@@ -715,9 +715,6 @@ span.gb-obj.zoom{cursor:default}
   clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
 .glovebox.focus.open > .gb-caption{opacity:1}
 
-/* glovebox items: decorative only */
-.gb-obj,.gb-obj *{pointer-events:none!important;cursor:default!important}
-.gb-ghost,.gb-caption{display:none!important}
 /* ---------- garage sponsor wall: blacked-out gear ---------- */
 .pegboard{grid-template-columns:1fr 1fr;grid-template-rows:repeat(6,1fr);height:52%;top:7%;padding:10px 8px;gap:6px}
 .sp{position:relative;outline:none;cursor:pointer}
@@ -919,3 +916,19 @@ span.gb-obj.zoom{cursor:default}
   .tune-info{left:2.5%;bottom:24%;width:24%}
   .tune-rail{bottom:6.5%}
 }
+/* glovebox: hovered item flies to the middle of the dashboard */
+.gb-stage{position:absolute;z-index:80;left:0;top:0;display:block;opacity:0;pointer-events:none;transform-origin:50% 50%;
+  transition:transform .42s cubic-bezier(.2,.9,.25,1.05),opacity .2s;text-decoration:none}
+.gb-stage.on{opacity:1}.gb-stage.on.ready{pointer-events:auto;cursor:pointer}
+.gb-stage-item{display:block;width:100%;height:100%;filter:drop-shadow(0 0 3px rgba(232,164,155,.7)) drop-shadow(0 0 12px rgba(232,164,155,.35)) drop-shadow(0 8px 10px rgba(0,0,0,.6))}
+.gb-stage-item svg{width:100%;height:100%;display:block}
+.gb-stage-cap{position:absolute;left:50%;bottom:100%;white-space:nowrap;font:400 13px "Bruno Ace SC",sans-serif;color:#f3efe6;background:rgba(12,11,10,.85);border:1px solid rgba(232,164,155,.45);padding:3px 9px;
+  transform:translate(-50%,-6px) scale(calc(1 / var(--s,1)));transform-origin:50% 100%;text-shadow:none;
+  clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
+.gb-obj.lifted{opacity:.18}
+.glovebox.open .gb-obj.zoom{transform:none}
+.glovebox > .gb-caption{display:none}
+/* banner: no glare or glint; box padded so the S tail is never masked off */
+.hero h1.banner::after{display:none}
+.hero h1.banner{padding:.3em .4em;margin-top:-.3em}
+.hero h1.banner .ch{padding:.1em .3em;margin:-.1em -.3em}

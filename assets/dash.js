@@ -158,4 +158,87 @@
   document.addEventListener("click", e => { if (!gb.contains(e.target)) set(false); });
 })();
 
-// Glovebox items are decorative only (no hover, zoom or links).
+// Glovebox items. Hover: the item comes to the middle. Click: go to its page. Stop hovering: it goes back.
+// Invisible copies stay where the items lie, so every item can be hovered and nothing runs away from the cursor.
+(() => {
+  const cav = document.querySelector(".gb-cavity");
+  if (!cav) return;
+  cav.querySelectorAll(".gb-hit,.gb-ghost").forEach(h => h.remove());
+  const cap = cav.querySelector(".gb-caption") || document.querySelector(".glovebox > .gb-caption");
+  const gbox = document.querySelector(".glovebox");
+  if (cap && cap.parentElement !== gbox) gbox.appendChild(cap); // outside the clipped opening, so the label is never cut off
+  const items = [...cav.querySelectorAll(".gb-obj")];
+  let current = null, enterT = null, backT = null;
+  const ghosts = items.map(el => {
+    const g = el.cloneNode(true);
+    g.classList.add("gb-ghost"); g.removeAttribute("href"); g.setAttribute("aria-hidden", "true"); g.tabIndex = -1;
+    g.querySelectorAll("[id]").forEach(n => n.removeAttribute("id"));
+    g.querySelectorAll("span").forEach(n => n.remove());
+    cav.appendChild(g);
+    return g;
+  });
+  // The hovered item lifts out of the box and flies to the middle of the dashboard (over the tach), big.
+  const cockpit = document.querySelector(".cockpit") || gbox.parentElement;
+  const stage = document.createElement("a");
+  stage.className = "gb-stage"; stage.setAttribute("aria-hidden", "true"); stage.tabIndex = -1;
+  stage.innerHTML = `<span class="gb-stage-cap"></span><span class="gb-stage-item"></span>`;
+  cockpit.appendChild(stage);
+  const sItem = stage.querySelector(".gb-stage-item"), sCap = stage.querySelector(".gb-stage-cap");
+  const centre = () => {
+    const r = cav.getBoundingClientRect(), cr = cockpit.getBoundingClientRect();
+    return [r.left + r.width / 2 - cr.left, r.top + r.height * .55 - cr.top];
+  };
+  const show = el => {
+    clearTimeout(backT);
+    const cr = cockpit.getBoundingClientRect(), r = el.getBoundingClientRect();
+    const [cx, cy] = centre();
+    const cv = cav.getBoundingClientRect(), s = Math.min(3, (cv.width * .62) / r.width, (cv.height * .62) / r.height);
+    sItem.innerHTML = el.querySelector("svg").outerHTML;
+    sItem.querySelectorAll("[id]").forEach(n => n.removeAttribute("id"));
+    sCap.textContent = el.getAttribute("aria-label") || "";
+    stage.href = el.getAttribute("href") || "#";
+    // start exactly on top of the item in the box, then fly to the centre
+    stage.classList.remove("on"); stage.style.transition = "none";
+    stage.style.width = r.width + "px"; stage.style.height = r.height + "px";
+    stage.style.left = (r.left - cr.left) + "px"; stage.style.top = (r.top - cr.top) + "px";
+    stage.style.transform = "none"; stage.style.setProperty("--s", 1);
+    void stage.offsetWidth;
+    stage.style.transition = "";
+    stage.style.transform = `translate(${cx - (r.left - cr.left) - r.width / 2}px,${cy - (r.top - cr.top) - r.height / 2}px) scale(${s.toFixed(2)})`;
+    stage.style.setProperty("--s", s.toFixed(2));
+    stage.classList.add("on"); stage.classList.remove("ready");
+    clearTimeout(stage._rt); stage._rt = setTimeout(() => stage.classList.add("ready"), 450);
+    items.forEach(i => i.classList.toggle("lifted", i === el));
+    current = el;
+  };
+  const hide = () => {
+    clearTimeout(enterT); clearTimeout(backT);
+    if (current) { stage.style.transform = "none"; stage.classList.remove("on", "ready"); }
+    items.forEach(i => i.classList.remove("lifted", "zoom", "glow"));
+    current = null;
+  };
+  const backSoon = () => { clearTimeout(backT); backT = setTimeout(hide, 420); };
+  const stay = () => clearTimeout(backT);
+  stage.addEventListener("mouseenter", stay);
+  stage.addEventListener("mouseleave", () => backSoon());
+  stage.addEventListener("click", e => { if (!current || !current.getAttribute("href")) e.preventDefault(); });
+  const go = el => { if (el.tagName === "A") el.click(); };
+
+  items.forEach((el, i) => {
+    const g = ghosts[i];
+    g.addEventListener("mouseenter", () => {
+      if (current === el) return stay();
+      clearTimeout(enterT);
+      enterT = setTimeout(() => show(el), 90); // tiny delay so sweeping across the pile doesn't flicker
+    });
+    g.addEventListener("mouseleave", () => { clearTimeout(enterT); if (current === el) backSoon(); });
+    g.addEventListener("click", e => { e.preventDefault(); go(el); });
+    el.addEventListener("mouseenter", () => { if (current === el) stay(); });
+    el.addEventListener("mouseleave", () => { if (current === el) backSoon(); });
+    el.addEventListener("focus", () => show(el));
+    el.addEventListener("blur", () => { if (current === el) hide(); });
+  });
+  cav.addEventListener("mouseleave", hide);
+  const lidBtn = document.querySelector(".gb-lid");
+  lidBtn && lidBtn.addEventListener("click", hide);
+})();
