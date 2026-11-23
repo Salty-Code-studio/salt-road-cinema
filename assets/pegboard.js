@@ -2,7 +2,6 @@
 // Hover (or focus / tap) = it lights up with "Help the build: sponsor this?".
 (() => {
   const scene = document.querySelector(".bay-scene"), board = document.getElementById("pegboard");
-  if (!scene || !board || !window.DATA || !DATA.tools) return;
   const I = window.SRC_I18N, C = window.SRC;
   I.add({
     en: { "gear.ask": "Help the build: sponsor this?", "gear.owned": "In the garage. Thank you", "gear.sponsor": "Sponsor it", "gear.send": "Send the part", "gear.fund": "Fund it" },
@@ -37,6 +36,8 @@
     tb: '<rect x="14" y="20" width="72" height="60" rx="30" fill="none" stroke="#000" stroke-width="10"/><circle cx="34" cy="36" r="8"/><circle cx="66" cy="36" r="8"/><circle cx="50" cy="66" r="10"/>',
     inj: '<rect x="14" y="30" width="12" height="44" rx="3"/><rect x="34" y="30" width="12" height="44" rx="3"/><rect x="54" y="30" width="12" height="44" rx="3"/><rect x="74" y="30" width="12" height="44" rx="3"/><rect x="10" y="22" width="80" height="10" rx="3"/>'
   };
+  window.SRC_GEAR_ICON = ICON;
+  if (!scene || !board || !window.DATA || !DATA.tools) return;
   const PART_ICONS = { hg: "hg", turbo: "turbo", rad: "rad", clutch: "clutch", tb: "tb", inj: "inj" };
   const usd = n => "$" + Number(n).toLocaleString("en-US");
   const vb = icon => ["hoist", "stand", "tjack", "jack", "stands", "hg", "turbo", "rad", "clutch", "tb", "inj"].includes(icon) ? "0 0 100 100" : "0 0 64 64";
