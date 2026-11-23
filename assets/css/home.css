@@ -1127,3 +1127,8 @@ html,body{overflow-x:clip}
 .tune-scene .sp.owned .sil{fill:#7fc79a;stroke:rgba(200,255,220,.5)}
 .tune-scene .sp.owned svg{filter:drop-shadow(0 0 8px rgba(130,214,160,.55)) drop-shadow(3px 6px 4px rgba(0,0,0,.7))}
 @media(min-width:901px){.tune-car{left:16%;right:16%;top:calc((100% - var(--band)) * .4);height:calc((100% - var(--band)) * .6)}}
+/* real part photos on the cards and in the info badge */
+.tr-card .part-photo{width:58px;height:44px;object-fit:contain;margin:2px 0 4px;filter:drop-shadow(0 3px 4px rgba(0,0,0,.7));pointer-events:none}
+.tr-card.owned .part-photo{filter:drop-shadow(0 0 6px rgba(130,214,160,.6))}
+.ti-ico .part-photo{width:80px;height:62px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.7))}
+.tune-info .ti-badge{display:block;width:92px}.tune-info .ti-badge span{display:none}.tune-info .ti-ico{width:92px;height:76px;background:rgba(255,255,255,.03)}

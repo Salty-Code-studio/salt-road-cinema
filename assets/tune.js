@@ -39,8 +39,11 @@
     tyre: '<circle cx="50" cy="50" r="42"/><circle cx="50" cy="50" r="26" fill="#000" fill-opacity=".55"/><circle cx="50" cy="50" r="8"/>',
     tune: '<rect x="22" y="8" width="56" height="84" rx="8"/><rect x="30" y="18" width="40" height="30" rx="3" fill-opacity=".35"/><circle cx="40" cy="66" r="6" fill-opacity=".35"/><circle cx="60" cy="66" r="6" fill-opacity=".35"/>'
   };
+  // real photos (Wikimedia Commons, cut out; credits on credits.html). Anything without one keeps its icon.
+  const PHOTO = ["hg", "tb", "bear", "turbo", "feed", "rad", "inj", "clutch", "brake", "torque", "sockets", "impact"];
   const G = () => window.SRC_GEAR_ICON || {};
   const icon = (id) => {
+    if (PHOTO.includes(id)) return `<img class="part-photo" src="media/parts/${id}.png" alt="" loading="lazy" draggable="false">`;
     const g = G(), body = PI[id] || g[id] || "";
     const vb = PI[id] || ["hoist", "stand", "tjack", "jack", "stands", "hg", "turbo", "rad", "clutch", "tb", "inj"].includes(id) ? "0 0 100 100" : "0 0 64 64";
     return `<svg viewBox="${vb}" aria-hidden="true"><g>${body}</g></svg>`;
