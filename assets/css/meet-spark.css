@@ -1,0 +1,18 @@
+/* Home "Spark a meet" block inside the meet panel */
+.meet-spark{display:grid;gap:10px;padding:16px;background:#161513;border:1px solid #2a2724;border-top:2px solid #e8a49b;clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+.spark-top span{font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#e8a49b}
+.spark-top p{margin:4px 0 0;font:400 18px/1.15 "Bruno Ace SC",var(--wide);color:#f3efe6}
+.meet-spark .spark-btn{width:100%;justify-content:center;font-size:18px;padding-block:16px;cursor:pointer}
+.spark-in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid #e8a49b;color:#e8a49b;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.spark-in b{font:400 16px "Bruno Ace SC",var(--wide)}
+.spark-undo{background:none;border:0;padding:0;color:#8f897d;font:600 11px var(--mono);text-decoration:underline;cursor:pointer}
+.spark-undo:hover{color:#f3efe6}
+.spark-count{display:flex;align-items:baseline;gap:8px}
+.spark-count b{font:400 30px/1 "Bruno Ace SC",var(--wide);color:#e8a49b}
+.spark-count span{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#8f897d}
+.spark-dots{display:flex;gap:6px}
+.spark-dots i{flex:1;height:8px;background:#2a2724;clip-path:polygon(3px 0,100% 0,calc(100% - 3px) 100%,0 100%);transition:background .25s}
+.spark-dots i.on{background:#e8a49b;box-shadow:0 0 10px rgba(232,164,155,.6)}
+.spark-line{margin:0;font:600 12px var(--mono);color:#cfc9bd}
+.spark-line.is-on{color:#e8a49b}
+.spark-note{margin:0;font:400 10px var(--mono);color:#6f6a60}

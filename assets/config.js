@@ -10,6 +10,9 @@ window.SRC = {
   youtubeChannelId: "UC_9DRztFlyJ7oeig9lC-v4w", // used by tools/fetch-videos.mjs
   instagram: "https://www.instagram.com/saltroadcinema", // TODO: confirm handle
   tiktok: "",
+  // "Spark a meet" shared counter. Empty = counts this browser only. Set to the deployed
+  // tools/spark-worker URL: GET ?meet=<id> -> {count}, POST {meet, delta:1|-1} -> {count}.
+  sparkEndpoint: "",
 
   // Payments. Sentoo is the processor. Until the merchant account is live,
   // sentooCheckout stays empty and every Pay / Order button opens WhatsApp
