@@ -153,19 +153,21 @@
   if (!gb) return;
   const lid = gb.querySelector(".gb-lid");
   const set = open => { gb.classList.toggle("open", open); lid.setAttribute("aria-expanded", open); };
-  // Old Subaru latch: the first try to shut it swings up, doesn't catch and drops back open. Second try closes it.
-  let jammed = false;
+  // Old Subaru latch: the first two tries to shut it swing up, don't catch and drop back open. Third try clicks shut.
+  let tries = 0;
   const close = () => {
     if (!gb.classList.contains("open")) return;
-    if (!jammed) {
-      jammed = true;
+    if (tries < 2) {
+      tries++;
       gb.classList.remove("jam"); void gb.offsetWidth; gb.classList.add("jam");
       setTimeout(() => gb.classList.remove("jam"), 900);
       return;
     }
-    jammed = false; gb.classList.remove("jam"); set(false);
+    tries = 0; gb.classList.remove("jam"); set(false);
+    gb.classList.remove("latched"); void gb.offsetWidth; gb.classList.add("latched");
+    setTimeout(() => gb.classList.remove("latched"), 900);
   };
-  lid.addEventListener("click", () => gb.classList.contains("open") ? close() : (jammed = false, set(true)));
+  lid.addEventListener("click", () => gb.classList.contains("open") ? close() : (tries = 0, set(true)));
   document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
   document.addEventListener("click", e => { if (!gb.contains(e.target) && !e.target.closest(".gb-stage")) close(); });
 })();
@@ -231,8 +233,6 @@
   };
   const backSoon = () => { clearTimeout(backT); backT = setTimeout(hide, 420); };
   const stay = () => clearTimeout(backT);
-  stage.addEventListener("mouseenter", stay);
-  stage.addEventListener("mouseleave", () => backSoon());
   stage.addEventListener("click", e => { if (!current || !current.getAttribute("href")) e.preventDefault(); });
   const go = el => { if (el.tagName === "A") el.click(); };
 
