@@ -5,6 +5,7 @@
   const I = window.SRC_I18N, C = window.SRC, D = window.DATA || {};
   I.add({
     en: {
+      "story.helpH": "How can <em>you</em> help?", "story.helpP": "Pick a way. Every bit puts a project car back on the road.",
       "story.h": "Help bring them <em>back.</em>",
       "story.p1": "Salt Road Cinema films one car project at a time.<br>**Bringing back cars and projects against all odds.**",
       "story.p2": "",
@@ -21,6 +22,7 @@
       "story.w5": "Bring your project", "story.w5s": "Got a car that needs saving? Tell us."
     },
     nl: {
+      "story.helpH": "Hoe kan <em>jij</em> helpen?", "story.helpP": "Kies een manier. Alles helpt een projectauto terug de weg op.",
       "story.h": "Help ze <em>terug te brengen.</em>",
       "story.p1": "Salt Road Cinema filmt één autoproject tegelijk.<br>**We halen auto's en projecten terug, tegen alle verwachtingen in.**",
       "story.p2": "",
@@ -37,6 +39,7 @@
       "story.w5": "Breng je project", "story.w5s": "Een auto die gered moet worden? Vertel het ons."
     },
     pap: {
+      "story.helpH": "Kon <em>bo</em> por yuda?", "story.helpP": "Skohe un manera. Tur kos ta yuda un outo di proyekto bèk riba kaminda.",
       "story.h": "Yuda trese nan <em>bèk.</em>",
       "story.p1": "Salt Road Cinema ta filma un proyekto di outo pa biaha.<br>**Nos ta trese outo i proyekto bèk, kontra tur pronóstiko.**",
       "story.p2": "",

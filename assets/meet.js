@@ -5,9 +5,9 @@
   if (!box || !mapEl) return;
   const I = window.SRC_I18N, C = window.SRC, D = window.DATA || {};
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-  // Default spot until a real meet is in data/events.js: Boka Onima, near the Onima Indian inscriptions, Rincon, Bonaire.
-  // Coordinates: OpenStreetMap node 4283055253 "Boka Onima" (12.25332, -68.31145).
-  const DEF = { lat: 12.25332, lng: -68.31145, address: "Boka Onima, Kaminda Onima, Bonaire", name: "Onima" };
+  // Default spot until a real meet is in data/events.js: the walled square at Onima (the spot everyone goes to),
+  // off Kaminda Onima, Bonaire. Picked by Rudo on the map, 2026-11-22.
+  const DEF = { lat: 12.24955, lng: -68.31065, address: "Onima, Kaminda Onima, Bonaire", name: "Onima" };
   const fmt = (v, pos, neg) => `${Math.abs(v).toFixed(5)}° ${v >= 0 ? pos : neg}`;
   const next = () => {
     const today = new Date().toISOString().slice(0, 10);
