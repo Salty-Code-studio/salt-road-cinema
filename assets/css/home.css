@@ -757,3 +757,4 @@ span.gb-obj.zoom{cursor:default}
 .bay-car.has-3d{width:44%;bottom:10%}
 
 .bay-v1{position:absolute;z-index:3;left:50%;bottom:calc(3% + 28px);transform:translateX(-50%);font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#e8a49b;opacity:.75;pointer-events:none}
+.bay-car,.bay-car model-viewer{-webkit-user-drag:none;user-select:none;cursor:grab}.bay-car model-viewer:active{cursor:grabbing}
