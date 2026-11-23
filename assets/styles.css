@@ -370,3 +370,4 @@ model-viewer.car-3d{--progress-bar-height:0px}
 .mv-hot i{width:8px;height:8px}
 model-viewer.car-3d{--min-hotspot-opacity:0;--max-hotspot-opacity:1}
 .decal model-viewer.car-3d{aspect-ratio:16/10}
+model-viewer.car-3d{height:auto!important}
