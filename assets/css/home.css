@@ -980,3 +980,4 @@ span.gb-obj.zoom{cursor:default}
 @media(max-width:900px){.tune{--c:26px;height:auto}.tune-build{position:relative;left:auto;top:auto;width:auto;order:0}.tune-top,.tune-rail,.tune-keys,.tune-info{left:auto;right:auto}}
 html,body{overflow-x:clip}
 @media(min-width:901px){.tune-car{left:24%;right:24%;top:12%;height:46%}.tune-hint{left:24%;right:24%;top:58%}}
+.tune{width:calc(100vw - 2 * clamp(16px,2.5vw,40px));margin-left:calc(50% - 50vw + clamp(16px,2.5vw,40px))}
