@@ -100,7 +100,7 @@
         <a href="https://wa.me/${C.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:${C.email}">Email</a>
       </div>
-      <div>© ${new Date().getFullYear()} Salt Road Cinema · <span data-i18n="foot.made"></span> · Footage <a href="https://www.instagram.com/keanupanu/" target="_blank" rel="noopener">@keanupanu</a></div>
+      <div>© ${new Date().getFullYear()} Salt Road Cinema · <span data-i18n="foot.made"></span> · Footage <a href="https://www.instagram.com/keanupanu/" target="_blank" rel="noopener">@keanupanu</a> · <a href="credits.html">Credits</a></div>
     </div>
   </div></footer>`;
 

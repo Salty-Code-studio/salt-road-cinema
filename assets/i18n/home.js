@@ -148,7 +148,7 @@ SRC_I18N.add({
 SRC_I18N.add({ en: { "merch.h": "Merch" }, nl: { "merch.h": "Merch" }, pap: { "merch.h": "Merch" } });
 
 SRC_I18N.add({
-  en: { "bay.v1": "3D scan · first version" },
-  nl: { "bay.v1": "3D-scan · eerste versie" },
-  pap: { "bay.v1": "Scan 3D · promé version" }
+  en: { "bay.v1": "3D model · version 2" },
+  nl: { "bay.v1": "3D-model · versie 2" },
+  pap: { "bay.v1": "Modelo 3D · version 2" }
 });
