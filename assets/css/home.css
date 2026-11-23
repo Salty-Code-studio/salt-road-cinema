@@ -1132,3 +1132,8 @@ html,body{overflow-x:clip}
 .tr-card.owned .part-photo{filter:drop-shadow(0 0 6px rgba(130,214,160,.6))}
 .ti-ico .part-photo{width:80px;height:62px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.7))}
 .tune-info .ti-badge{display:block;width:92px}.tune-info .ti-badge span{display:none}.tune-info .ti-ico{width:92px;height:76px;background:rgba(255,255,255,.03)}
+/* shadow follows the car's footprint as it turns */
+.tune-car::before,.tune-car::after{transform:scaleX(var(--sx,1));transition:transform .08s linear}
+/* tyre stack half off the right edge, tool chest standing on the floor by the left wall */
+.tune .bay-tyres{right:-5%;bottom:2%;width:13%}
+.tune .bay-chest{left:4.5%;bottom:3%;height:26%;width:9.5%}

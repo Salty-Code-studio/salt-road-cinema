@@ -152,6 +152,22 @@
     if (sel === 0 && first > 0) sel = first;
     select(sel); stats(); tick();
   };
+  // the floor shadow turns with the car: its width follows the car's footprint as seen from the camera
+  const carBox = root.querySelector(".tune-car");
+  const hookShadow = () => {
+    const mv = carBox && carBox.querySelector("model-viewer");
+    if (!mv) return setTimeout(hookShadow, 300);
+    const L = 4.42, W = 1.9;
+    const upd = () => {
+      try {
+        const th = mv.getCameraOrbit().theta;
+        const sx = (L * Math.abs(Math.cos(th)) + W * Math.abs(Math.sin(th))) / L;
+        carBox.style.setProperty("--sx", sx.toFixed(3));
+      } catch (e) {}
+    };
+    mv.addEventListener("camera-change", upd); mv.addEventListener("load", upd); upd();
+  };
+  hookShadow();
   all();
   setInterval(tick, 1000);
   document.addEventListener("langchange", all);
